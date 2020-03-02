@@ -1,32 +1,25 @@
 <app-header></app-header>
-<div class="content" role="main">
-
-  <!-- Next Steps -->
-  <app-job-seeker></app-job-seeker>
-
-</div>
-<!-- <router-outlet></router-outlet> -->
-<div class="container my-4 d-flex mob-flex">
+<main class="section-bg mt-5">
+  <router-outlet></router-outlet>
+</main>
+<div class="container my-4 d-flex mob-flex justify-content-center">
   <div class="fs-14 p-2">
-    <a href="#">About</a>
+    <a routerLink="/home">About</a>
   </div>
   <div class="fs-14 p-2">
-    <a href="/zestimate/">Zestimates</a>
+    <a routerLink="/service">Service</a>
   </div>
   <div class="fs-14 p-2">
-    <a href="/research/">Research</a>
+    <a routerLink="/ethics">Business Ethics</a>
   </div>
   <div class="fs-14 p-2">
-    <a href="/careers/">Careers</a>
+    <a routerLink="/mission-vision">Mission and Vision</a>
   </div>
   <div class="fs-14 p-2">
-    <a href="https://zillow.zendesk.com/hc/en-us">Help</a>
+    <a routerLink="/clients">Esteemed Clients</a>
   </div>
   <div class="fs-14 p-2">
-    <a href="#">Advertise</a>
-  </div>
-  <div class="fs-14 p-2">
-    <a href="https://www.zillow.com/rental-manager/resources/fair-housing-guide/">Fair Housing Guide</a>
+    <a routerLink="/home">Advertise</a>
   </div>
   <div class="fs-14 p-2">
     <a href="/corp/Terms.htm">Terms of use</a>
@@ -34,24 +27,6 @@
   <div class="fs-14 p-2">
     <a href="https://privacy.zillowgroup.com">Privacy Portal</a>
   </div>
-  <div class="fs-14 p-2">
-    <a title="Cookie Preference">Cookie Preference</a>
-  </div>
-  <div class="fs-14 p-2">
-    <a href="/blog/">Blog</a>
-  </div>
-  <div class="fs-14 p-2">
-    <a href="/tech/">AI</a>
-  </div>
-  <div class="fs-14 p-2">
-    <a href="/mobile/">Mobile Apps</a>
-  </div>
-</div>
-<div class="text-center mb-4">
-  <a id="doNotSell" href="https://privacy.zillowgroup.com/cookie" aria-label="Do not sell my personal information"
-    class="text-primary">Do Not Sell My Personal Information
-    <span aria-hidden="true"> →</span>
-  </a>
 </div>
 
 <!-- ======= Footer ======= -->
