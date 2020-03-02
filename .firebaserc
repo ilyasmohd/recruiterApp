@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "synergyapp-38e5d": {
+      "hosting": {
+        "recruiterApp": [
+          "synergyapp-38e5d"
+        ]
+      }
+    }
+  }
+}

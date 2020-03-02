@@ -10,10 +10,10 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray, NgForm } fr
 export class JobSeekerComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
-  private qualArray: Array<any> = [];
-  private newQualification: any = {};
-  private expArray: Array<any> = [];
-  private newExperience: any = {};
+  public qualArray: Array<any> = [];
+  public newQualification: any = {};
+  public expArray: Array<any> = [];
+  public newExperience: any = {};
   ngOnInit() {
 
   }

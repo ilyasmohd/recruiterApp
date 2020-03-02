@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "recruiterApp",
+      "public": "dist/recruiterApp",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
