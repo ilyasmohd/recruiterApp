@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
-// import { AppRoutingModule } from './app-routing.module';
+// import { AppRoutingModule } from './app-rozuting.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { JobSeekerComponent } from './job-seeker/job-seeker.component';
@@ -20,10 +20,14 @@ import { EsteemedClientsComponent } from './esteemed-clients/esteemed-clients.co
 import { ProjectExportsComponent } from './project-exports/project-exports.component';
 import { IndustriesComponent } from './industries/industries.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { EmployerComponent } from './employer/employer.component';
+import { CurrentOpeningComponent } from './current-opening/current-opening.component';
 
 const appRoutes: Routes = [    // define this before @NgModule 
   { path: 'home', component: HomeComponent },
   { path: 'jobseeker', component: JobSeekerComponent },
+  { path: 'openings', component: CurrentOpeningComponent },
+  { path: 'employer', component: EmployerComponent },
   { path: 'service', component: ServiceComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'industries', component: IndustriesComponent },
@@ -52,6 +56,8 @@ const appRoutes: Routes = [    // define this before @NgModule
     ProjectExportsComponent,
     IndustriesComponent,
     ContactusComponent,
+    EmployerComponent,
+    CurrentOpeningComponent,
   ],
   imports: [
     BrowserModule,RouterModule,MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule, 
