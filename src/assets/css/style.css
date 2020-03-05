@@ -486,7 +486,7 @@ section {
   color: #343a40;
 }
 
-.faq .faq-list a.collapsed:hover {
+.faq .faq-list a.collapsed:hover, .brown {
   color: #ae227d;
 }
 

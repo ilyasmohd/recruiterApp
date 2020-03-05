@@ -22,6 +22,11 @@ import { IndustriesComponent } from './industries/industries.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { EmployerComponent } from './employer/employer.component';
 import { CurrentOpeningComponent } from './current-opening/current-opening.component';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { OverseasComponent } from './overseas/overseas.component';
+import { DomesticComponent } from './domestic/domestic.component';
+import { SellingComponent } from './selling/selling.component';
+import { RecruitemntComponent } from './recruitemnt/recruitemnt.component';
 
 const appRoutes: Routes = [    // define this before @NgModule 
   { path: 'home', component: HomeComponent },
@@ -35,6 +40,11 @@ const appRoutes: Routes = [    // define this before @NgModule
   { path: 'clients', component: EsteemedClientsComponent },
   { path: 'mission-vision', component: MissionVisionComponent },
   { path: 'ethics', component: EthicsComponent },
+  { path: 'feedback', component: FeedbackComponent },
+  { path: 'overseas', component: OverseasComponent },
+  { path: 'domestic', component: DomesticComponent },
+  { path: 'selling', component: SellingComponent },
+  { path: 'recruitemnt', component: RecruitemntComponent },
   { path: '',
   redirectTo: '/home',
   pathMatch: 'full'
@@ -58,6 +68,11 @@ const appRoutes: Routes = [    // define this before @NgModule
     ContactusComponent,
     EmployerComponent,
     CurrentOpeningComponent,
+    FeedbackComponent,
+    OverseasComponent,
+    DomesticComponent,
+    SellingComponent,
+    RecruitemntComponent,
   ],
   imports: [
     BrowserModule,RouterModule,MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule, 
