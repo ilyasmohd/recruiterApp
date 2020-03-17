@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 // import { AppRoutingModule } from './app-rozuting.module';
+import { HttpModule, Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
+import { HttpClientModule  } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { JobSeekerComponent } from './job-seeker/job-seeker.component';
@@ -27,6 +29,10 @@ import { OverseasComponent } from './overseas/overseas.component';
 import { DomesticComponent } from './domestic/domestic.component';
 import { SellingComponent } from './selling/selling.component';
 import { RecruitemntComponent } from './recruitemnt/recruitemnt.component';
+import { JobseekerService} from './ApiService/jobseeker.service';
+import {CurrentOpeningsService} from './ApiService/current-openings.service';
+import {AppErrorHandler} from './Common/app-error-handler';
+import { DatePipe } from '@angular/common';
 
 const appRoutes: Routes = [    // define this before @NgModule 
   { path: 'home', component: HomeComponent },
@@ -72,15 +78,15 @@ const appRoutes: Routes = [    // define this before @NgModule
     OverseasComponent,
     DomesticComponent,
     SellingComponent,
-    RecruitemntComponent,
+    RecruitemntComponent
   ],
   imports: [
-    BrowserModule,RouterModule,MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule, 
+    HttpClientModule,BrowserModule,RouterModule,MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule, 
     MatFormFieldModule, MatInputModule, MatRadioModule, MatSelectModule,BrowserAnimationsModule,
     AngularFontAwesomeModule,ReactiveFormsModule,FormsModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
   ],
-  providers: [],
+  providers: [JobseekerService, CurrentOpeningsService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
