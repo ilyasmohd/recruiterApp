@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,6 @@ export class DataService {
   UploadFile(fileTobeUploaded:File):Observable<any>{
     let formData:FormData=new FormData();
     formData.append('file', fileTobeUploaded, fileTobeUploaded.name);
-   return this.http.post('http://localhost:63164/api/FileUploader', formData);
+   return this.http.post(environment.fileUploadApiUrl, formData);
   }
 }

@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  jobSeekerApiUrl: 'http://ilyas.somee.com/ManPowerApp/api/jobseeker',
+  currentOpeningsApiUrl: 'http://ilyas.somee.com/ManPowerApp/api/currentopenings',
+  fileUploadApiUrl: 'http://ilyas.somee.com/ManPowerApp/api/FileUploader'
 };
 
 /*
