@@ -9,9 +9,7 @@ import 'rxjs/add/observable/throw';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+
 export class DataService {
   private headers:Headers = new Headers();
   constructor(private url: string, private http: HttpClient) {

@@ -67,7 +67,7 @@ export class JobSeekerComponent implements OnInit {
     this.jobSeekerObj.Experience.splice(expIndex, 1);
   }
 
-  onSubmit(data): void {
+  onSubmit(): void {
     this.jobSeekerObj.DOB = this.jobSeekerObj.DOB;
     console.log('job seeker object on submit click:', this.jobSeekerObj);
     this.jobSeekerSerive.Create(this.jobSeekerObj).subscribe(res => { console.log(res), this.applicationNo = res, this.isApplicationSubmitted = true; }, err =>{ this.isApplicationError=true;this.isApplicationSubmitted = false; console.log(err)});
