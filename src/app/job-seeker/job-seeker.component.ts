@@ -13,6 +13,7 @@ export class JobSeekerComponent implements OnInit {
 
   public totalQualifications: Qualification[] = [{ Degree: "", YearPassed: "", University: "" }];
   public totalExperience: Experience[] = [{ To: "", Company: "", From: "", Designation: "" }];
+  public totalProfessions: Professions[] = [ { Profession: "", Industry:"" }];
   private cvFile: File = null;
   private passportFile: File = null;
   private certificatesFile: File = null;
@@ -28,8 +29,8 @@ export class JobSeekerComponent implements OnInit {
   public jobSeekerObj: JobSeekerDetails = {
     AadharNo: "", FirstName: "", Address: "", AlternateCellNo: "", CV: "", CellNo: "", Certificates: "", City: "",
     Currency: "", DOB: "", Email: "", Experience: [], FamilyName: "", Gender: "Male",
-    ID: 0, Industry: "", PIN: "", PPCopy: "", PassportNo: "", PermanentAddress: "", PermanentCity: "", PermanentPIN: "",
-    Photo: "", Profession: "", Qualification: [], SalaryExpected: 0, SalaryExpectedRemarks: "", SecondName: ""
+    ID: 0, Industry: "", PIN: "", Country:"", PPCopy: "", PassportNo: "", PermanentAddress: "", PermanentCity: "", PermanentPIN: "",PermanentCountry:"",
+    Photo: "", Profession: "", Qualification: [], Professions: [], SalaryExpected: 0, SalaryExpectedRemarks: "", SecondName: ""
   };
 
 
@@ -38,9 +39,25 @@ export class JobSeekerComponent implements OnInit {
   public newQualification: Qualification = { YearPassed: "", Degree: "", University: "" };
   //public expArray: Array<any> = [];
   public newExperience: Experience = { Designation: "", From:"", Company: "", To:"" }
+  //public expArray: Array<any> = [];
+  public newProfession: Professions = { Profession: "", Industry:"" }
+  showLoader:boolean=false;
+
 
   ngOnInit() {
+    //loader
+    // setTimeout(() => { this.showLoader= true; }, 3000);
+  }
 
+  addProfessions(e) {
+    if (e) e.preventDefault();
+    console.log('this.newProfession', this.newProfession);
+    this.jobSeekerObj.Professions.push(this.newProfession);
+    this.newProfession = { Profession: "", Industry:"" };
+  }
+
+  removeProfessions(profIndex) {
+    this.jobSeekerObj.Professions.splice(profIndex, 1);
   }
 
   addQualifications(e) {
@@ -65,6 +82,12 @@ export class JobSeekerComponent implements OnInit {
 
   removeExperience(expIndex) {
     this.jobSeekerObj.Experience.splice(expIndex, 1);
+  }
+
+  isDisabled:boolean = false;
+  toggleAddress(){
+        this.isDisabled = !this.isDisabled;
+        return;
   }
 
   onSubmit(): void {
@@ -105,9 +128,11 @@ interface JobSeekerDetails {
   Address: string;
   City: string;
   PIN: string;
+  Country:"",
   PermanentAddress: string;
   PermanentCity: string;
   PermanentPIN: string;
+  PermanentCountry:"",
   PassportNo: string;
   AadharNo: string;
   CellNo: string;
@@ -122,8 +147,9 @@ interface JobSeekerDetails {
   Photo: string;
   Certificates: string;
   PPCopy: string;
+  Professions:Professions[];
   Qualification: Qualification[];
-  Experience: Experience[];
+    Experience: Experience[];
 }
 
 interface Qualification {
@@ -139,3 +165,7 @@ interface Experience {
   To: string;
 }
 
+interface Professions {
+  Profession: string;
+  Industry: string;
+}

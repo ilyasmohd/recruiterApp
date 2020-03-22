@@ -1,322 +1,404 @@
 <div class="container-fluid bg-pd50">
-  <div class="container">
-    <div class="col-md-12">
-      <div class="card card-pdmg">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-12">
-              <h4>Your Profile</h4>
-              <hr>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12" *ngIf="!isApplicationSubmitted">
-              <form (ngSubmit)="onSubmit()" ngNativeValidate>
-                <div class="row">
-                  <div class="col-md-4 form-group  form-group ">
-                    <label for="firstname" class="col-form-label">First Name*</label>
-                    <input id="firstname" name="firstname" placeholder="First Name" [(ngModel)]="jobSeekerObj.FirstName"
-                      class="form-control here" required="required" type="text">
-                  </div>
-                  <div class="col-md-4 form-group  form-group ">
-                    <label for="secondname" class=" col-form-label">Second Name</label>
-                    <input id="secondname" name="secondname" placeholder="Second Name" class="form-control here"
-                      [(ngModel)]="jobSeekerObj.SecondName" type="text">
-                  </div>
-                  <div class="col-md-4 form-group  form-group ">
-                    <label for="familyname" class=" col-form-label">Family Name</label>
-                    <input id="familyname" name="familyname" placeholder="Family Name"
-                      [(ngModel)]="jobSeekerObj.FamilyName" class="form-control here" type="text">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4 form-group ">
-                    <label for="gender" class="col-form-label">Gender</label>
-                    <!-- <input id="gender" name="gender" placeholder="Gender" class="form-control here"
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card card-pdmg">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Your Profile</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <img src="assets/img/logo.png" alt="" class="img-fluid loader" *ngIf="showLoader">
+
+                    <div class="row">
+                        <div class="col-md-12" *ngIf="!isApplicationSubmitted">
+                            <form (ngSubmit)="onSubmit()" ngNativeValidate>
+                                <div class="row">
+                                    <div class="col-md-4 form-group ">
+                                        <label for="aadharNo" class=" col-form-label">Aadhar No.*</label>
+                                        <input id="aadharNo" name="aadharNo" placeholder="Aadhar No.*"
+                                            class="form-control here" type="text" [(ngModel)]="jobSeekerObj.AadharNo">
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <label for="passportNo" class="col-form-label">Passport No.*</label>
+                                        <input id="passportNo" name="passportNo" placeholder="Passport No.*"
+                                            class="form-control here" required="required" type="text"
+                                            [(ngModel)]="jobSeekerObj.PassportNo">
+                                    </div>
+                                </div>
+                                <hr width="100%">
+                                <label for="address" class="bold  form-group">Personal Details</label>
+                                <div class="row">
+                                    <div class="col-md-4 form-group  form-group ">
+                                        <input id="firstname" name="firstname" placeholder="First Name*"
+                                            [(ngModel)]="jobSeekerObj.FirstName" class="form-control here"
+                                            required="required" type="text">
+                                    </div>
+                                    <div class="col-md-4 form-group  form-group ">
+                                        <input id="secondname" name="secondname" placeholder="Second Name"
+                                            class="form-control here" [(ngModel)]="jobSeekerObj.SecondName" type="text">
+                                    </div>
+                                    <div class="col-md-4 form-group  form-group ">
+                                        <input id="familyname" name="familyname" placeholder="Family Name"
+                                            [(ngModel)]="jobSeekerObj.FamilyName" class="form-control here" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 form-group ">
+                                        <!-- <input id="gender" name="gender" placeholder="Gender" class="form-control here"
                                             required="required" type="text"> -->
-                    <select name="gender" id="gender" class="form-control here" [(ngModel)]="jobSeekerObj.Gender">
-                      <option value="Male" selected>Male</option>
-                      <option value="Female">Female</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4 form-group ">
-                    <label for="DOB" class="col-form-label">DOB*</label>
-                    <input id="DOB" name="DOB" placeholder="DOB*" [(ngModel)]="jobSeekerObj.DOB"
-                      class="form-control here" required="required" type="date">
-                  </div>
-                  <div class="col-md-4 form-group ">
-                    <label for="address" class=" col-form-label">Address*</label>
-                    <input id="address" name="address" placeholder="Address*" class="form-control here" type="text"
-                      [(ngModel)]="jobSeekerObj.Address" required="required">
-                  </div>
+                                        <select name="gender" id="gender" class="form-control here"
+                                            [(ngModel)]="jobSeekerObj.Gender">
+                                            <option value="Male" selected>Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <input id="DOB" name="DOB" placeholder="DOB*" [(ngModel)]="jobSeekerObj.DOB"
+                                            class="form-control here" required="required" type="date" title="DOB*">
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <!-- <label for="email" class="col-form-label">Email.*</label> -->
+                                        <input id="email" name="email" placeholder="Email*" class="form-control here"
+                                            required="required" type="text" [(ngModel)]="jobSeekerObj.Email">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 form-group ">
+                                        <!-- <label for="cellno" class="col-form-label">Cell No.</label> -->
+                                        <input id="cellno" name="cellno" placeholder="Cell No."
+                                            class="form-control here" required="required" type="text"
+                                            [(ngModel)]="jobSeekerObj.CellNo">
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <!-- <label for="altercelno" class=" col-form-label">Alternate Cell No.</label> -->
+                                        <input id="altercelno" name="altercelno" placeholder="Alternate No."
+                                            class="form-control here" type="text"
+                                            [(ngModel)]="jobSeekerObj.AlternateCellNo">
+                                    </div>
 
-                </div>
-                <div class="row">
-                  <div class="col-md-4 form-group ">
-                    <label for="city" class="col-form-label">City*</label>
-                    <input id="city" name="city" placeholder="City*" class="form-control here" required="required"
-                      type="text" [(ngModel)]="jobSeekerObj.City">
-                  </div>
-                  <div class="col-md-4 form-group ">
-                    <label for="pin" class="col-form-label">PIN*</label>
-                    <input id="pin" name="pin" placeholder="PIN*" class="form-control here" required="required"
-                      type="text" [(ngModel)]="jobSeekerObj.PIN">
-                  </div>
-                  <div class="col-md-4 form-group ">
-                    <label for="permanentAddress" class="col-form-label">Permanent Address*</label>
-                    <input id="permanentAddress" name="permanentAddress" placeholder="permanent Address"
-                      class="form-control here" type="text" [(ngModel)]="jobSeekerObj.PermanentAddress">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-4 form-group ">
-                    <label for="permanentcity" class=" col-form-label">City</label>
-                    <input id="permanentcity" name="permanentcity" placeholder="City" class="form-control here"
-                      required="required" type="text" [(ngModel)]="jobSeekerObj.PermanentCity">
-                  </div>
-                  <div class="col-md-4 form-group ">
-                    <label for="permanentpin" class="col-form-label">PIN</label>
-                    <input id="permanentpin" name="permanentpin" placeholder="PIN" class="form-control here" type="text"
-                      [(ngModel)]="jobSeekerObj.PermanentPIN">
-                  </div>
-                  <div class="col-md-4 form-group ">
-                    <label for="passportNo" class="col-form-label">Passport No*</label>
-                    <input id="passportNo" name="passportNo" placeholder="Passport No" class="form-control here"
-                      required="required" type="text" [(ngModel)]="jobSeekerObj.PassportNo">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4 form-group ">
-                    <label for="aadharNo" class=" col-form-label">Aadhar No.*</label>
-                    <input id="aadharNo" name="aadharNo" placeholder="Aadhar No.*" class="form-control here" type="text"
-                      [(ngModel)]="jobSeekerObj.AadharNo">
-                  </div>
-                  <div class="col-md-4 form-group ">
-                    <label for="cellno" class="col-form-label">Cell No.</label>
-                    <input id="cellno" name="cellno" placeholder="Cell No." class="form-control here"
-                      required="required" type="text" [(ngModel)]="jobSeekerObj.CellNo">
-                  </div>
-                  <div class="col-md-4 form-group ">
-                    <label for="altercelno" class=" col-form-label">Alternate Cell No.</label>
-                    <input id="altercelno" name="altercelno" placeholder="Alternate No." class="form-control here"
-                      type="text" [(ngModel)]="jobSeekerObj.AlternateCellNo">
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4 form-group ">
-                    <label for="email" class="col-form-label">Email.*</label>
-                    <input id="email" name="email" placeholder="Email.*" class="form-control here" required="required"
-                      type="text" [(ngModel)]="jobSeekerObj.Email">
-                  </div>
-                  <div class="col-md-4 form-group ">
-                    <label for="profession" class=" col-form-label">Profession*</label>
-                    <input id="profession" name="profession" placeholder="Profession*" class="form-control here"
-                      type="text" required="required" [(ngModel)]="jobSeekerObj.Profession">
-                  </div>
-                  <div class="col-md-4 form-group ">
-                    <label for="industry" class=" col-form-label">Industry</label>
-                    <input id="industry" name="industry" placeholder="Industry" class="form-control here" type="text"
-                      [(ngModel)]="jobSeekerObj.Industry">
-                  </div>
-                </div>
-                <hr width="100%">
-                <div class=" row">
-                  <label for="publicinfo" class="col-md-4 form-group  col-form-label">Qualification</label>
-                  <div class="col-md-8">
-                    <!-- <div class="row">
+                                </div>
+                                <hr width="100%">
+                                <label for="address" class=" form-group bold">Address</label>
+                                <div class="row">
+                                    <div class="col-md-3 form-group ">
+                                        <input id="address" name="address" placeholder="Address*"
+                                            class="form-control here" type="text" [(ngModel)]="jobSeekerObj.Address"
+                                            required="required">
+                                    </div>
+                                    <div class="col-md-3 form-group ">
+                                        <input id="city" name="city" placeholder="City*" class="form-control here"
+                                            required="required" type="text" [(ngModel)]="jobSeekerObj.City">
+                                    </div>
+                                    <div class="col-md-3 form-group ">
+                                        <input id="pin" name="pin" placeholder="PIN*" class="form-control here"
+                                            required="required" type="text" [(ngModel)]="jobSeekerObj.PIN">
+                                    </div>
+                                    <div class="col-md-3 form-group ">
+                                        <select id="company" class="form-control" placeholder="Country*" title="Country"
+                                            [(ngModel)]="jobSeekerObj.Country" name="Country">
+                                            <option>- Select Country -</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr width="100%">
+                                <div class="row">
+                                    <div class="col-md-3 ">
+                                        <label for="permanentAddress" class="form-group bold">Permanent Address </label>
+                                    </div>
+                                    <div class="col-md-9 text-right">
+                                        <label class="col-form-label">
+                                            <input type="checkbox" value="" (click)="toggleAddress()">
+                                            Same as Current Address
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 form-group ">
+                                        <input id="permanentAddress" name="permanentAddress"
+                                            placeholder="permanent Address" class="form-control here" type="text"
+                                            [disabled]="isDisabled" [(ngModel)]="jobSeekerObj.PermanentAddress">
+                                    </div>
+                                    <div class="col-md-3 form-group ">
+                                        <input id="permanentcity" name="permanentcity" placeholder="City"
+                                            [disabled]="isDisabled" class="form-control here" required="required"
+                                            type="text" [(ngModel)]="jobSeekerObj.PermanentCity">
+                                    </div>
+                                    <div class="col-md-3 form-group ">
+                                        <input id="permanentpin" name="permanentpin" placeholder="PIN"
+                                            [disabled]="isDisabled" class="form-control here" type="text"
+                                            [(ngModel)]="jobSeekerObj.PermanentPIN">
+                                    </div>
+                                    <div class="col-md-3 form-group ">
+                                        <select id="company" class="form-control" placeholder="Country*" title="Country"
+                                            [(ngModel)]="jobSeekerObj.PermanentCountry" name="PermanentCountry"
+                                            [disabled]="isDisabled">
+                                            <option>- Select Country -</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr width="100%">
+                                <div class="row">
+                                    <label for="publicinfo"
+                                        class="col-md-2 form-group  col-form-label bold">Professions</label>
+                                    <div class="col-md-10">
+                                        <div class="row">
+                                            <div class="col-md-6 form-group ">
+                                                <!-- <input id="profession" name="profession" placeholder="Profession*"
+                                                    class="form-control here" type="text" required="required"
+                                                    [(ngModel)]="newProfession.Profession"> -->
+                                                <select name="profession" id="profession" class="form-control here"
+                                                    [(ngModel)]="newProfession.Profession">
+                                                </select>
+                                            </div>
+                                            <div class="col-md-5 form-group ">
+                                                <input id="industry" name="industry" placeholder="Industry"
+                                                    class="form-control here" type="text"
+                                                    [(ngModel)]="newProfession.Industry">
+                                            </div>
+                                            <div class="col-md-1 form-group align-self-end">
+                                                <button class="btn btn-primary"
+                                                    (click)="addProfessions($event)">Add</button>
+                                            </div>
+                                        </div>
+                                        <div class="row" *ngFor="let prof of jobSeekerObj.Professions; let p = index">
+                                            <div class="col-md-6 form-group  form-group">
+                                                <input name="{{p}}profession" placeholder="Profession"
+                                                    class="form-control here" [(ngModel)]="prof.Profession" type="text">
+                                            </div>
+                                            <div class="col-md-5 form-group">
+                                                <input name="{{p}}industry" placeholder="Industry"
+                                                    class="form-control here" [(ngModel)]="prof.Industry" type="text">
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <button class="btn btn-danger"
+                                                    (click)="removeProfessions(p)">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr width="100%">
+                                <div class=" row">
+                                    <label for="publicinfo"
+                                        class="col-md-2 form-group  col-form-label bold">Qualification</label>
+                                    <div class="col-md-10">
+                                        <!-- <div class="row">
                                         <label for="publicinfo" class="col-md-4 form-group  col-form-label">University</label>
                                         <label for="publicinfo" class="col-md-4 form-group  col-form-label">Dip/Degree</label>
                                         <label for="publicinfo" class="col-md-4 form-group  col-form-label">Year passed</label>
                                     </div> -->
-                    <div class="row">
-                      <div class="col-md-4 form-group  form-group">
-                        <input class="form-control" placeholder="University" type="text"
-                          [(ngModel)]="newQualification.University" name="newqualuniversity" />
-                      </div>
-                      <div class="col-md-3 form-group">
-                        <input class="form-control" placeholder="Dip/Degree" type="text"
-                          [(ngModel)]="newQualification.Degree" name="newqualdegree" />
+                                        <div class="row">
+                                            <div class="col-md-5 form-group ">
+                                                <input class="form-control" placeholder="University" type="text"
+                                                    [(ngModel)]="newQualification.University"
+                                                    name="newqualuniversity" />
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <input class="form-control" placeholder="Dip/Degree" type="text"
+                                                    [(ngModel)]="newQualification.Degree" name="newqualdegree" />
 
-                      </div>
-                      <div class="col-md-3 form-group">
-                        <input class="form-control" placeholder="Year passed" type="date"
-                          [(ngModel)]="newQualification.YearPassed" name="newqualyear" />
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <input class="form-control" placeholder="Year passed" type="date"
+                                                    [(ngModel)]="newQualification.YearPassed" name="newqualyear" />
 
-                      </div>
-                      <div class="col-md-2 form-group">
-                        <button class="btn btn-primary" (click)="addQualifications($event)">Add</button>
-                      </div>
-                    </div>
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <button class="btn btn-primary"
+                                                    (click)="addQualifications($event)">Add</button>
+                                            </div>
+                                        </div>
 
-                    <div class="row" *ngFor="let qual of jobSeekerObj.Qualification; let q = index">
-                      <div class="col-md-4 form-group  form-group">
-                        <input name="{{q}}university" placeholder="University" class="form-control here"
-                          [(ngModel)]="qual.University" type="text">
-                      </div>
-                      <div class="col-md-3 form-group">
-                        <input name="{{q}}degree" placeholder="Dip/Degree" class="form-control here"
-                          [(ngModel)]="qual.Degree" type="text" name="degree">
-                      </div>
-                      <div class="col-md-3 form-group">
-                        <input name="{{q}}passed" placeholder="Year passed" class="form-control here"
-                          [(ngModel)]="qual.YearPassed" type="date">
-                      </div>
-                      <div class="col-md-2 form-group">
-                        <button class="btn btn-danger" (click)="removeQualifications(q)">Remove</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr width="100%">
+                                        <div class="row" *ngFor="let qual of jobSeekerObj.Qualification; let q = index">
+                                            <div class="col-md-5 form-group ">
+                                                <input name="{{q}}university" placeholder="University"
+                                                    class="form-control here" [(ngModel)]="qual.University" type="text">
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <input name="{{q}}degree" placeholder="Dip/Degree"
+                                                    class="form-control here" [(ngModel)]="qual.Degree" type="text"
+                                                    name="degree">
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <input name="{{q}}passed" placeholder="Year passed"
+                                                    class="form-control here" [(ngModel)]="qual.YearPassed" type="date">
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <button class="btn btn-danger"
+                                                    (click)="removeQualifications(q)">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr width="100%">
 
-                <div class="row">
-                  <label for="publicinfo" class="col-md-4 form-group  col-form-label">Experience</label>
-                  <div class="col-md-8">
-                    <!-- <div class="row">
+                                <div class="row">
+                                    <label for="publicinfo"
+                                        class="col-md-2 form-group  col-form-label bold">Experience</label>
+                                    <div class="col-md-10">
+                                        <!-- <div class="row">
                                 <label for="publicinfo" class="col-md-3 col-form-label">Company worked with</label>
                                 <label for="publicinfo" class="col-md-3 col-form-label">Designation</label>
                                 <label for="publicinfo" class="col-md-3 col-form-label">Period from</label>
                                 <label for="publicinfo" class="col-md-3 col-form-label">Period Upto</label>
                             </div> -->
-                    <div class="row">
-                      <div class="col-md-3 form-group">
-                        <input placeholder="Company worked with" class="form-control here" type="text"
-                          id="newExperienceCode" [(ngModel)]="newExperience.Company" name="newExpworked">
-                      </div>
-                      <div class="col-md-3 form-group">
-                        <input id="website" placeholder="Designation" [(ngModel)]="newExperience.Designation"
-                          name="newExpdesignation" class="form-control here" type="text">
-                      </div>
-                      <div class="col-md-2 form-group">
-                        <input id="website" placeholder="Period from" id="newExperienceFrom"
-                          [(ngModel)]="newExperience.From" name="newExpfrom" class="form-control here" type="date">
-                      </div>
-                      <div class="col-md-2 form-group">
-                        <input id="website" placeholder="Period Upto" id="newExperienceTo"
-                          [(ngModel)]="newExperience.To" name="newExpUpto" class="form-control here" type="date">
-                      </div>
-                      <div class="col-md-2 form-group">
-                        <button class="btn btn-primary" type="button" (click)="addExperience($event)">Add</button>
+                                        <div class="row">
+                                            <div class="col-md-3 form-group">
+                                                <input placeholder="Company worked with" class="form-control here"
+                                                    type="text" id="newExperienceCode"
+                                                    [(ngModel)]="newExperience.Company" name="newExpworked">
+                                            </div>
+                                            <div class="col-md-2 form-group">
+                                                <input id="website" placeholder="Designation"
+                                                    [(ngModel)]="newExperience.Designation" name="newExpdesignation"
+                                                    class="form-control here" type="text">
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <input id="website" placeholder="Period from" id="newExperienceFrom"
+                                                    [(ngModel)]="newExperience.From" name="newExpfrom"
+                                                    class="form-control here" type="date">
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <input id="website" placeholder="Period Upto" id="newExperienceTo"
+                                                    [(ngModel)]="newExperience.To" name="newExpUpto"
+                                                    class="form-control here" type="date">
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <button class="btn btn-primary" type="button"
+                                                    (click)="addExperience($event)">Add</button>
 
-                      </div>
-                    </div>
-                    <div class="row" *ngFor="let exp of jobSeekerObj.Experience; let e = index">
-                      <div class="col-md-3 form-group">
-                        <input placeholder="University" class="form-control here" name="{{e}}companyWorked"
-                          [(ngModel)]="exp.Company" type="text">
-                      </div>
-                      <div class="col-md-3 form-group">
-                        <input placeholder="Designation" class="form-control here" name="{{e}}companyDesignation"
-                          [(ngModel)]="exp.Designation" type="text">
-                      </div>
-                      <div class="col-md-2 form-group">
-                        <input placeholder="Period from" class="form-control here" [(ngModel)]="exp.From" type="text"
-                          name="{{e}}companyFrom">
-                      </div>
-                      <div class="col-md-2 form-group">
-                        <input placeholder="Period Upto" class="form-control here" [(ngModel)]="exp.To" type="text"
-                          name="{{e}}companyTo">
-                      </div>
-                      <div class="col-md-2 form-group">
-                        <button class="btn btn-danger" (click)="removeExperience(e)">Remove</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr width="100%">
+                                            </div>
+                                        </div>
+                                        <div class="row" *ngFor="let exp of jobSeekerObj.Experience; let e = index">
+                                            <div class="col-md-3 form-group">
+                                                <input placeholder="Company worked with" class="form-control here"
+                                                    name="{{e}}companyWorked" [(ngModel)]="exp.Company" type="text">
+                                            </div>
+                                            <div class="col-md-2 form-group">
+                                                <input placeholder="Designation" class="form-control here"
+                                                    name="{{e}}companyDesignation" [(ngModel)]="exp.Designation"
+                                                    type="text">
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <input placeholder="From" class="form-control here"
+                                                    [(ngModel)]="exp.From" type="date" name="{{e}}companyFrom">
+                                            </div>
+                                            <div class="col-md-3 form-group">
+                                                <input placeholder="Upto" class="form-control here" [(ngModel)]="exp.To"
+                                                    type="date" name="{{e}}companyTo">
+                                            </div>
+                                            <div class="col-md-1 form-group">
+                                                <button class="btn btn-danger"
+                                                    (click)="removeExperience(e)">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr width="100%">
 
-                <div class=" row">
-                  <label for="salaryexpected" class="col-md-4 form-group  col-form-label">Min Salary
-                    Expected</label>
-                  <div class="col-md-8">
-                    <div class="row">
-                      <label for="currency" class="col-md-3 col-form-label">Currency</label>
-                      <div class="col-md-3">
-                        <input id="currency" name="currency" placeholder="Currency" class="form-control here"
-                          type="text" [(ngModel)]="jobSeekerObj.Currency">
-                      </div>
-                      <label for="salaryAmount" class="col-md-2 col-form-label">Amount</label>
-                      <div class="col-md-4 form-group ">
-                        <input id="salaryAmount" name="salaryAmount" placeholder="Amount" class="form-control here"
-                          type="text" [(ngModel)]="jobSeekerObj.SalaryExpected">
-                      </div>
-                    </div>
-                    <div class=" row">
-                      <label for="salaryremarks" class="col-md-3 col-form-label">Remarks</label>
-                      <div class="col-md-9">
-                        <input id="salaryremarks" name="salaryremarks" placeholder="Remarks" class="form-control here"
-                          type="text" [(ngModel)]="jobSeekerObj.SalaryExpectedRemarks">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr width="100%">
+                                <div class=" row">
+                                    <label for="salaryexpected" class="col-md-3 form-group  col-form-label bold">Salary
+                                        Expectations</label>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <!-- <label for="currency" class="col-md-3 col-form-label">Currency</label> -->
+                                            <div class="col-md-4 form-group ">
+                                                <input id="currency" name="currency" placeholder="Currency"
+                                                    class="form-control here" type="text"
+                                                    [(ngModel)]="jobSeekerObj.Currency">
+                                            </div>
+                                            <!-- <label for="salaryAmount" class="col-md-2 col-form-label">Amount</label> -->
+                                            <div class="col-md-4 form-group ">
+                                                <input id="salaryAmount" name="salaryAmount" placeholder="Amount"
+                                                    class="form-control here" type="text"
+                                                    [(ngModel)]="jobSeekerObj.SalaryExpected">
+                                            </div>
+                                            <div class="col-md-4 form-group ">
+                                                <input id="salaryremarks" name="salaryremarks" placeholder="Remarks"
+                                                    class="form-control here" type="text"
+                                                    [(ngModel)]="jobSeekerObj.SalaryExpectedRemarks">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr width="100%">
 
-                <div class="row">
-                  <label for="publicinfo" class="col-md-4 form-group  col-form-label">Attach</label>
-                  <div class="col-md-8">
-                    <div class="row form-group">
-                      <label for="cvfile" class="col-md-3 col-form-label">CV</label>
-                      <div class="col-md-9">
-                        <!-- <input id="cvfile" name="cvfile" placeholder="CV"
+                                <div class="row">
+                                    <label for="publicinfo"
+                                        class="col-md-3 form-group  col-form-label bold">Attach</label>
+                                    <div class="col-md-9">
+                                        <div class="row form-group">
+                                            <label for="cvfile" class="col-md-3 col-form-label">CV</label>
+                                            <div class="col-md-9">
+                                                <!-- <input id="cvfile" name="cvfile" placeholder="CV"
                                                     class="form-control here" type="text"> -->
-                        <input id="cvfile" type="file" name="cvfile" value="upload your cv"
-                          (change)="handleCVUpload($event.target.files)" />
-                        <div *ngIf="cvUploaded" class="text-danger">Your CV has been uploaded</div>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <label for="photo" class="col-md-3 col-form-label">Photo</label>
-                      <div class="col-md-9">
-                        <!-- <input id="website" name="website" placeholder="Photo"
+                                                <input id="cvfile" type="file" name="cvfile" value="upload your cv"
+                                                    (change)="handleCVUpload($event.target.files)" />
+                                                <div *ngIf="cvUploaded" class="text-danger">Your CV has been uploaded
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <label for="photo" class="col-md-3 col-form-label">Photo</label>
+                                            <div class="col-md-9">
+                                                <!-- <input id="website" name="website" placeholder="Photo"
                                                     class="form-control here" type="text"> -->
-                        <input type="file" id="photofile" name="photofile" value="upload your photo"
-                          (change)="handlePhotoUpload($event.target.files)" />
-                        <div *ngIf="photoUploaded" class="text-danger">Your photo has been uploaded</div>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <label for="certificates" class="col-md-3 col-form-label">Certificates</label>
-                      <div class="col-md-9">
-                        <!-- <input id="website" name="website" placeholder="Certificates"
+                                                <input type="file" id="photofile" name="photofile"
+                                                    value="upload your photo"
+                                                    (change)="handlePhotoUpload($event.target.files)" />
+                                                <div *ngIf="photoUploaded" class="text-danger">Your photo has been
+                                                    uploaded</div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <label for="certificates"
+                                                class="col-md-3 col-form-label ">Certificates</label>
+                                            <div class="col-md-9">
+                                                <!-- <input id="website" name="website" placeholder="Certificates"
                                                     class="form-control here" type="text"> -->
-                        <input type="file" id="certificatefile" name="certificatefile" value="upload your certificates"
-                          (change)="handleCertificateUpload($event.target.files)">
-                        <div *ngIf="certificateUploaded" class="text-danger">Your certificate has been uploaded</div>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <label for="ppcopy" class="col-md-3 col-form-label">PP copy</label>
-                      <div class="col-md-9">
-                        <!-- <input id="website" name="website" placeholder="PP copy"
+                                                <input type="file" id="certificatefile" name="certificatefile"
+                                                    value="upload your certificates"
+                                                    (change)="handleCertificateUpload($event.target.files)">
+                                                <div *ngIf="certificateUploaded" class="text-danger">Your certificate
+                                                    has been uploaded</div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <label for="ppcopy" class="col-md-3 col-form-label">PP copy</label>
+                                            <div class="col-md-9">
+                                                <!-- <input id="website" name="website" placeholder="PP copy"
                                                     class="form-control here" type="text"> -->
-                        <input type="file" id="ppcopy" name="ppcopy" value="upload your passport copy"
-                          (change)="handlePassportUpload($event.target.files)">
-                        <div *ngIf="ppcopyuploaded" class="text-danger">Your ppcopy has been uploaded</div>
-                      </div>
+                                                <input type="file" id="ppcopy" name="ppcopy"
+                                                    value="upload your passport copy"
+                                                    (change)="handlePassportUpload($event.target.files)">
+                                                <div *ngIf="ppcopyuploaded" class="text-danger">Your ppcopy has been
+                                                    uploaded</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr width="100%">
+                                <div class="row ">
+                                    <div class="col-md-12 text-right">
+                                        <button name="submit" type="submit" class="btn btn-primary">Save
+                                            Profile</button>&nbsp;&nbsp;
+                                        <button class="btn btn-secondary">Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-12" *ngIf="isApplicationSubmitted">
+                            <h3>Your application has been submitted, your application no is {{applicationNo}}</h3>
+                        </div>
+                        <div class="col-md-12" *ngIf="isApplicationError">
+                            <h3 class="text-danger">Error while processing your request, please try again after some
+                                time!!!</h3>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <hr width="100%">
-
-                <div class="row">
-                  <div class="offset-4 col-md-8">
-                    <button name="submit" type="submit" class="btn btn-primary">Save Profile</button>
-                  </div>
-                </div>
-              </form>
             </div>
-            <div class="col-md-12" *ngIf="isApplicationSubmitted">
-              <h3>Your application has been submitted, your application no is {{applicationNo}}</h3>
-            </div>
-            <div class="col-md-12" *ngIf="isApplicationError">
-              <h3 class="text-danger">Error while processing your request, please try again after some time!!!</h3>
-            </div>
-          </div>
-
         </div>
-      </div>
     </div>
-  </div>
 </div>

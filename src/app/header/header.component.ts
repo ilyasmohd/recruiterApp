@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,13 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $('.navbar-toggler').click(function () {
+      $('.navbar-collapse').toggle();
+    });
+    $('.nav-item a').click(function () {
+      $('.navbar-collapse').toggle();
+    });
+
   }
 
 }
