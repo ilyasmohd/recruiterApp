@@ -24,7 +24,7 @@ export class JobSeekerComponent implements OnInit {
   public photoUploaded:boolean=false;
   public certificateUploaded:boolean=false;
   public ppcopyuploaded:boolean=false;
-  public isApplicationError =false;
+  public isApplicationError:boolean =false;
 
   public jobSeekerObj: JobSeekerDetails = {
     AadharNo: "", FirstName: "", Address: "", AlternateCellNo: "", CV: "", CellNo: "", Certificates: "", City: "",

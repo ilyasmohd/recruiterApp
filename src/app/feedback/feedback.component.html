@@ -1,1 +1,55 @@
-<p>feedback works!</p>
+<h1>FeedBack Form:</h1>
+
+<div class="container-fluid bg-pd50">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card card-pdmg">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12" *ngIf="!isFeedBackSubmitted">
+                            <form (ngSubmit)="onSubmit()" ngNativeValidate>
+                                <div class="row">
+                                    <div class="col-md-4 form-group ">
+                                        <label for="customerName" class=" col-form-label">Customer Name:</label>
+                                        <input id="customerName" name="customerName"
+                                            placeholder="Please enter your name*" class="form-control here" type="text"
+                                            [(ngModel)]="feedBackDetails.CustomerName">
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <label for="officialName" class=" col-form-label">Customer Name:</label>
+                                        <input id="officialName" name="officialName"
+                                            placeholder="Please enter official name*" class="form-control here"
+                                            type="text" [(ngModel)]="feedBackDetails.OfficialName">
+                                    </div>
+                                </div>
+                                <hr width="100%">
+                                <div *ngFor="let question of feedBackDetails.FeedBackProvided">
+                                    <div class="row icon-shadow my-4">
+                                        <div class="col-lg-10 col-md-2 " data-aos="fade-up">
+                                            <b> {{question.Question}} </b><br>
+                                        </div>
+                                        <div class="col-lg-10 col-md-2 text-center" data-aos="fade-up">
+                                            <p class=" mb-0"><b> {{question.MaxPoints}} </b><br></p>
+                                             <p class=" mb-0">Points Given: <!-- <b> {{question.PointsGiven}}</b> -->
+                                                <input placeholder="Please provide your points*" class="form-control here" type="text" name="points"
+                                                    [(ngModel)]="question.PointsGiven">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-style my-2 ">Submit</button>
+                            </form>
+                        </div>
+                        <div class="col-md-12" *ngIf="isFeedBackSubmitted">
+                            <h3>Your FeedBack has been submitted</h3>
+                        </div>
+                        <div class="col-md-12" *ngIf="isApplicationError">
+                            <h3 class="text-danger">Error while processing your request, please try again after some
+                                time!!!</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

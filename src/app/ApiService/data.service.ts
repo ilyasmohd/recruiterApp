@@ -11,34 +11,34 @@ import { environment } from '../../environments/environment';
 
 
 export class DataService {
-  private headers:Headers = new Headers();
-  constructor(private url: string, private http: HttpClient) {
+  private headers: Headers = new Headers();
+  constructor(private url: string, public http: HttpClient) {
 
-   }
-
-   GetAll():Observable<any> {
-    return this.http.get(this.url)
-    .catch(this.handleError);
   }
 
-  Create(resource):Observable<any>{
+  GetAll(): Observable<any> {
+    return this.http.get(this.url)
+      .catch(this.handleError);
+  }
+
+  Create(resource): Observable<any> {
     console.log('data to jobseeker service', resource);
-    return this.http.post(this.url, resource,  {
+    return this.http.post(this.url, resource, {
       headers: new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8'),
     }).catch(this.handleError);
   }
 
-  Delete(id):Observable<any> {
+  Delete(id): Observable<any> {
     return this.http.delete(this.url + '/' + id)
-    .catch(this.handleError);
+      .catch(this.handleError);
   }
 
-  Update(post):Observable<any> {
+  Update(post): Observable<any> {
     return this.http.patch(this.url + '/' + post.id, JSON.stringify({ isRead: true }))
-    .catch(this.handleError);
+      .catch(this.handleError);
   }
 
-  private handleError(error: Response): Observable<Error> {
+  public handleError(error: Response): Observable<Error> {
     console.log('here the error', error);
     if (error.status === 404) {
       return Observable.throw(new NotFoundError(error))
@@ -51,10 +51,10 @@ export class DataService {
     return Observable.throw(new AppError(error));
   }
 
-  
-  UploadFile(fileTobeUploaded:File):Observable<any>{
-    let formData:FormData=new FormData();
+
+  UploadFile(fileTobeUploaded: File): Observable<any> {
+    let formData: FormData = new FormData();
     formData.append('file', fileTobeUploaded, fileTobeUploaded.name);
-   return this.http.post(environment.fileUploadApiUrl, formData);
+    return this.http.post(environment.fileUploadApiUrl, formData);
   }
 }
