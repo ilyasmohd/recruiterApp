@@ -1,5 +1,3 @@
-<h1>FeedBack Form:</h1>
-
 <div class="container-fluid bg-pd50">
     <div class="container">
         <div class="col-md-12">
@@ -8,44 +6,64 @@
                     <div class="row">
                         <div class="col-md-12" *ngIf="!isFeedBackSubmitted">
                             <form (ngSubmit)="onSubmit()" ngNativeValidate>
+                                <h4>FeedBack Form</h4>
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
-                                        <label for="customerName" class=" col-form-label">Customer Name:</label>
+                                        <label for="customerName" class=" col-form-label">Name:</label>
                                         <input id="customerName" name="customerName"
                                             placeholder="Please enter your name*" class="form-control here" type="text"
                                             [(ngModel)]="feedBackDetails.CustomerName">
                                     </div>
                                     <div class="col-md-4 form-group ">
-                                        <label for="officialName" class=" col-form-label">Customer Name:</label>
+                                        <label for="officialName" class=" col-form-label">Official Name:</label>
                                         <input id="officialName" name="officialName"
                                             placeholder="Please enter official name*" class="form-control here"
                                             type="text" [(ngModel)]="feedBackDetails.OfficialName">
                                     </div>
                                 </div>
-                                <hr width="100%">
-                                <div *ngFor="let question of feedBackDetails.FeedBackProvided">
-                                    <div class="row icon-shadow my-4">
-                                        <div class="col-lg-10 col-md-2 " data-aos="fade-up">
-                                            <b> {{question.Question}} </b><br>
-                                        </div>
-                                        <div class="col-lg-10 col-md-2 text-center" data-aos="fade-up">
-                                            <p class=" mb-0"><b> {{question.MaxPoints}} </b><br></p>
-                                             <p class=" mb-0">Points Given: <!-- <b> {{question.PointsGiven}}</b> -->
-                                                <input placeholder="Please provide your points*" class="form-control here" type="text" name="points"
+                                <!-- <hr width="100%"> -->
+                                <div class=" my-2">
+                                    <table class="table table-responsive table-striped table-hover">
+                                        <tr>
+                                            <th>Q.no</th>
+                                            <th>Question</th>
+                                            <th>Max Points</th>
+                                            <th>Points Given</th>
+                                        </tr>
+                                        <tr *ngFor="let question of feedBackDetails.FeedBackProvided;let i=index">
+                                            <td>{{i+1}}</td>
+                                            <td>
+                                                {{question.Question}}
+                                            </td>
+                                            <td>
+                                                {{question.MaxPoints}}
+                                            </td>
+                                            <td>
+                                                <input placeholder="Please provide your points*"
+                                                    class="form-control here" type="text" name="points"
                                                     [(ngModel)]="question.PointsGiven">
-                                            </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- <div class="row form-group  "  >
+                                        <div class="col-lg-7 col-md-2 " data-aos="fade-up">
+                                            <b> </b><br>
                                         </div>
-                                    </div>
+                                        <div class="col-lg-5 col-md-2 text-center d-flex" data-aos="fade-up">
+                                             <span class="col-md-6 mb-0">Points Given:  <b> {{question.PointsGiven}}</b> -->
+                                    <!-- <span>   </span></span>
+                                        </div>
+                                    </div> -->
                                 </div>
-                                <button type="submit" class="btn-style my-2 ">Submit</button>
+                                <button type="submit" class="btn-style">Submit</button>
                             </form>
                         </div>
                         <div class="col-md-12" *ngIf="isFeedBackSubmitted">
-                            <h3>Your FeedBack has been submitted</h3>
+                            <h4>Your FeedBack has been submitted</h4>
                         </div>
                         <div class="col-md-12" *ngIf="isApplicationError">
-                            <h3 class="text-danger">Error while processing your request, please try again after some
-                                time!!!</h3>
+                            <h4 class="text-danger">Error while processing your request, please try again after some
+                                time!!!</h4>
                         </div>
                     </div>
                 </div>
