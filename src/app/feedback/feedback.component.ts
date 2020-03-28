@@ -18,13 +18,15 @@ export class FeedbackComponent implements OnInit {
     this.isFeedBackSubmitted = false;
     this.isApplicationError = false;
   }
-
+  showLoader:boolean= true;
   ngOnInit() {
     this.feedBackService.GetAllQuestions().subscribe(
       questions => {
         questions.forEach(element => {
           this.feedBackDetails.FeedBackProvided.push(element);
         });
+        if(this.feedBackDetails)
+        this.showLoader= false;
         console.log(this.feedBackDetails);
       },
       error => {
