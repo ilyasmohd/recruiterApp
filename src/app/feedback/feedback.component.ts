@@ -13,12 +13,13 @@ export class FeedbackComponent implements OnInit {
   public feedBackDetails: FeedBackDetails = { CustomerName: "", OfficialName: "", FeedBackProvided: [] };
   public isFeedBackSubmitted: boolean;
   public isApplicationError: boolean;
-
+  public showLoader:boolean= true;
+  
   constructor(private feedBackService: FeedBackService) {
     this.isFeedBackSubmitted = false;
     this.isApplicationError = false;
   }
-  showLoader:boolean= true;
+  
   ngOnInit() {
     this.feedBackService.GetAllQuestions().subscribe(
       questions => {
