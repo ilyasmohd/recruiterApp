@@ -26,25 +26,27 @@ export class FeedbackComponent implements OnInit {
         questions.forEach(element => {
           this.feedBackDetails.FeedBackProvided.push(element);
         });
-        if(this.feedBackDetails)
-        this.showLoader= false;
+        if (this.feedBackDetails)
         console.log(this.feedBackDetails);
       },
       error => {
-        console.log(error); this.isApplicationError = true
+        console.log(error); this.isApplicationError = true; this.isFeedBackSubmitted = false;
       });
+      this.showLoader = false;
   }
 
   onSubmit(): void {
+    this.showLoader = true;
     console.log('feed back entered:', this.feedBackDetails);
     this.feedBackService.Create(this.feedBackDetails).subscribe(
       res => {
-        console.log(res); this.isFeedBackSubmitted = true
+        console.log(res); this.isFeedBackSubmitted = true;
       },
       err => {
-        console.log(err); this.isApplicationError = true; this.isFeedBackSubmitted = false
+        console.log(err); this.isApplicationError = true; this.isFeedBackSubmitted = false;
       }
     );
+    this.showLoader = false;
   }
 
 }
@@ -54,7 +56,7 @@ interface FeedBackQuestions {
   Question: string;
   MaxPoints: number;
   PointsGiven: number;
-  Remarks: string;
+  FeedBackRemarks: string;
 }
 
 interface FeedBackDetails {

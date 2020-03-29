@@ -49,6 +49,7 @@
                                             <th>Question</th>
                                             <th>Max Points</th>
                                             <th>Points Given</th>
+                                            <th>Remarks(If Any)</th>
                                         </tr>
                                         <tr *ngFor="let question of feedBackDetails.FeedBackProvided;let i=index">
                                             <td>{{i+1}}</td>
@@ -62,6 +63,11 @@
                                                 <input placeholder="enter your points*" maxlength="3"
                                                     class="form-control here" type="text" name="points"
                                                     [(ngModel)]="question.PointsGiven">
+                                            </td>
+                                            <td>
+                                                <input placeholder="Provide any additional remarks(if any)"
+                                                    class="form-control here" type="text" name="points"
+                                                    [(ngModel)]="question.FeedBackRemarks">
                                             </td>
                                         </tr>
                                     </table>
