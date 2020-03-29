@@ -44,7 +44,6 @@ const appRoutes: Routes = [    // define this before @NgModule
   { path: 'industries', component: IndustriesComponent },
   { path: 'projectexports', component: ProjectExportsComponent },
   { path: 'clients', component: EsteemedClientsComponent },
-  { path: 'clients', component: EsteemedClientsComponent },
   { path: 'mission-vision', component: MissionVisionComponent },
   { path: 'ethics', component: EthicsComponent },
   { path: 'feedback', component: FeedbackComponent },
