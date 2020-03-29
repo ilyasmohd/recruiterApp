@@ -10,7 +10,7 @@ import { FeedBackService } from '../ApiService/feed-back.service';
 export class FeedbackComponent implements OnInit {
 
   public feedBackQuestions: FeedBackQuestions[];
-  public feedBackDetails: FeedBackDetails = { CustomerName: "", OfficialName: "", FeedBackProvided: [] };
+  public feedBackDetails: FeedBackDetails = { CustomerName: "", OfficialName: "", feedbackType:"",date:"", FeedBackProvided: [] };
   public isFeedBackSubmitted: boolean;
   public isApplicationError: boolean;
   public showLoader:boolean= true;
@@ -60,6 +60,8 @@ interface FeedBackQuestions {
 interface FeedBackDetails {
   CustomerName: string;
   OfficialName: string;
+  feedbackType:string;
+  date:string
   FeedBackProvided: FeedBackQuestions[];
 }
 

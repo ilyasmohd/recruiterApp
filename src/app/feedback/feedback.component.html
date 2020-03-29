@@ -12,6 +12,17 @@
                                 <h4>FeedBack Form</h4>
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
+                                        <label for="officialName" class=" col-form-label">FeedBack Type:</label>
+                                        <select name="Vendor" id="Vendor" class="form-control here"
+                                        [(ngModel)]="feedBackDetails.Vendor">
+                                        <option value="employer" selected>Employer</option>
+                                        <option value="customer">Customer</option>
+                                        <option value="candidate">Candidate</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 form-group ">
                                         <label for="customerName" class=" col-form-label">Name:</label>
                                         <input id="customerName" name="customerName"
                                             placeholder="Please enter your name*" class="form-control here" type="text"
@@ -22,6 +33,12 @@
                                         <input id="officialName" name="officialName"
                                             placeholder="Please enter official name*" class="form-control here"
                                             type="text" [(ngModel)]="feedBackDetails.OfficialName">
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <label for="customerName" class="col-form-label">Date:</label>
+                                        <input id="date" name="date"
+                                            placeholder="Please enter your date*" class="form-control here" type="date"
+                                            [(ngModel)]="feedBackDetails.date">
                                     </div>
                                 </div>
                                 <!-- <hr width="100%"> -->
@@ -42,7 +59,7 @@
                                                 {{question.MaxPoints}}
                                             </td>
                                             <td>
-                                                <input placeholder="Please provide your points*"
+                                                <input placeholder="enter your points*" maxlength="3"
                                                     class="form-control here" type="text" name="points"
                                                     [(ngModel)]="question.PointsGiven">
                                             </td>
