@@ -21,6 +21,7 @@ export class FeedbackComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.showLoader = true;
     this.feedBackService.GetAllQuestions().subscribe(
       questions => {
         questions.forEach(element => {
