@@ -27,12 +27,12 @@ import { CurrentOpeningComponent } from './current-opening/current-opening.compo
 import { FeedbackComponent } from './feedback/feedback.component';
 import { OverseasComponent } from './overseas/overseas.component';
 import { DomesticComponent } from './domestic/domestic.component';
-import { SellingComponent } from './selling/selling.component';
-import { RecruitemntComponent } from './recruitemnt/recruitemnt.component';
 import { JobseekerService} from './ApiService/jobseeker.service';
 import {CurrentOpeningsService} from './ApiService/current-openings.service';
 import {AppErrorHandler} from './Common/app-error-handler';
 import { DatePipe } from '@angular/common';
+import { UspComponent } from './usp/usp.component';
+import { RpfComponent } from './rpf/rpf.component';
 
 const appRoutes: Routes = [    // define this before @NgModule 
   { path: 'home', component: HomeComponent },
@@ -49,8 +49,6 @@ const appRoutes: Routes = [    // define this before @NgModule
   { path: 'feedback', component: FeedbackComponent },
   { path: 'overseas', component: OverseasComponent },
   { path: 'domestic', component: DomesticComponent },
-  { path: 'selling', component: SellingComponent },
-  { path: 'recruitemnt', component: RecruitemntComponent },
   { path: '',
   redirectTo: '/home',
   pathMatch: 'full'
@@ -77,8 +75,8 @@ const appRoutes: Routes = [    // define this before @NgModule
     FeedbackComponent,
     OverseasComponent,
     DomesticComponent,
-    SellingComponent,
-    RecruitemntComponent
+    UspComponent,
+    RpfComponent,
   ],
   imports: [
     HttpClientModule,BrowserModule,RouterModule,MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule, 

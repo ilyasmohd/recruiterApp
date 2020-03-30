@@ -13,35 +13,34 @@ export class JobSeekerComponent implements OnInit {
 
   public totalQualifications: Qualification[] = [{ Degree: "", YearPassed: "", University: "" }];
   public totalExperience: Experience[] = [{ To: "", Company: "", From: "", Designation: "" }];
-  public totalProfessions: Professions[] = [ { Profession: "", Industry:"" }];
+  public totalProfessions: Professions[] = [{ Profession: "", Industry: "" }];
   private cvFile: File = null;
   private passportFile: File = null;
   private certificatesFile: File = null;
   private picFile: File = null;
   public isApplicationSubmitted: boolean = false;
   public applicationNo: any = 0;
-  public cvUploaded:boolean=false;
-  public photoUploaded:boolean=false;
-  public certificateUploaded:boolean=false;
-  public ppcopyuploaded:boolean=false;
-  public isApplicationError:boolean =false;
+  public cvUploaded: boolean = false;
+  public photoUploaded: boolean = false;
+  public certificateUploaded: boolean = false;
+  public ppcopyuploaded: boolean = false;
+  public isApplicationError: boolean = false;
 
   public jobSeekerObj: JobSeekerDetails = {
     AadharNo: "", FirstName: "", Address: "", AlternateCellNo: "", CV: "", CellNo: "", Certificates: "", City: "",
     Currency: "", DOB: "", Email: "", Experience: [], FamilyName: "", Gender: "Male",
-    ID: 0, Industry: "", PIN: "", Country:"", PPCopy: "", PassportNo: "", PermanentAddress: "", PermanentCity: "", PermanentPIN: "",PermanentCountry:"",
+    ID: 0, Industry: "", PIN: "", Country: "", PPCopy: "", PassportNo: "", PermanentAddress: "", PermanentCity: "", PermanentPIN: "", PermanentCountry: "",
     Photo: "", Profession: "", Qualification: [], Professions: [], SalaryExpected: 0, SalaryExpectedRemarks: "", SecondName: ""
   };
-
 
   constructor(private fb: FormBuilder, private jobSeekerSerive: JobseekerService, private datePipe: DatePipe) { }
   //public qualArray: Array<any> = [];
   public newQualification: Qualification = { YearPassed: "", Degree: "", University: "" };
   //public expArray: Array<any> = [];
-  public newExperience: Experience = { Designation: "", From:"", Company: "", To:"" }
+  public newExperience: Experience = { Designation: "", From: "", Company: "", To: "" }
   //public expArray: Array<any> = [];
-  public newProfession: Professions = { Profession: "", Industry:"" }
-  showLoader:boolean=false;
+  public newProfession: Professions = { Profession: "", Industry: "" }
+  showLoader: boolean = false;
 
 
   ngOnInit() {
@@ -53,7 +52,7 @@ export class JobSeekerComponent implements OnInit {
     if (e) e.preventDefault();
     console.log('this.newProfession', this.newProfession);
     this.jobSeekerObj.Professions.push(this.newProfession);
-    this.newProfession = { Profession: "", Industry:"" };
+    this.newProfession = { Profession: "", Industry: "" };
   }
 
   removeProfessions(profIndex) {
@@ -84,16 +83,24 @@ export class JobSeekerComponent implements OnInit {
     this.jobSeekerObj.Experience.splice(expIndex, 1);
   }
 
-  isDisabled:boolean = false;
-  toggleAddress(){
-        this.isDisabled = !this.isDisabled;
-        return;
+  isDisabled: boolean = false;
+  toggleAddress() {
+    this.isDisabled = !this.isDisabled;
+    return;
   }
 
   onSubmit(): void {
+      this.showLoader = true;
     this.jobSeekerObj.DOB = this.jobSeekerObj.DOB;
     console.log('job seeker object on submit click:', this.jobSeekerObj);
-    this.jobSeekerSerive.Create(this.jobSeekerObj).subscribe(res => { console.log(res), this.applicationNo = res, this.isApplicationSubmitted = true; }, err =>{ this.isApplicationError=true;this.isApplicationSubmitted = false; console.log(err)});
+    this.jobSeekerSerive.Create(this.jobSeekerObj).subscribe(res => {
+      console.log(res), this.applicationNo = res, 
+      this.isApplicationSubmitted = true;
+      this.showLoader = false;
+    }, err => { this.isApplicationError = true; this.isApplicationSubmitted = false;
+      this.showLoader = false;
+       console.log(err) });
+
   }
 
   handleCVUpload(files: FileList): void {
@@ -128,11 +135,11 @@ interface JobSeekerDetails {
   Address: string;
   City: string;
   PIN: string;
-  Country:"",
+  Country: "",
   PermanentAddress: string;
   PermanentCity: string;
   PermanentPIN: string;
-  PermanentCountry:"",
+  PermanentCountry: "",
   PassportNo: string;
   AadharNo: string;
   CellNo: string;
@@ -147,9 +154,9 @@ interface JobSeekerDetails {
   Photo: string;
   Certificates: string;
   PPCopy: string;
-  Professions:Professions[];
+  Professions: Professions[];
   Qualification: Qualification[];
-    Experience: Experience[];
+  Experience: Experience[];
 }
 
 interface Qualification {
