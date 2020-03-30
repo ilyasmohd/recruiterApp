@@ -360,13 +360,17 @@ section {
   height: 2px;
   background: #c2599d;
   bottom: 0;
-  left: calc(50% - 25px);
+  /* left: calc(50% - 25px); */
+}
+.ul-style li{
+text-align: left;
+    color: #666;
 }
 
 .services .description {
   line-height: 24px;
-  font-size: 14px;
-  color: #666 !important
+  text-align: left;
+    color: #666 !important
 }
 
 /*--------------------------------------------------------------
@@ -824,7 +828,7 @@ background: darkslateblue;
 
 #about {
   background: #fff;
-  padding: 60px 0;
+  padding: 20px 0;
 }
 
 #about .about-container .background {
@@ -927,4 +931,19 @@ background: darkslateblue;
 #about .about-extra h4 {
   font-weight: 600;
   font-size: 24px;
+}
+.pointer{
+cursor:pointer
+}
+.about .icon-box .titleHead {
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+.about .icon-box .titleHead1 {
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-transform: uppercase;
 }

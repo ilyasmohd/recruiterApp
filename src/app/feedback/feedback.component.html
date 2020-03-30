@@ -13,9 +13,8 @@
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
                                         <label for="feedBackType" class=" col-form-label">FeedBack Type:</label>
-                                        <select name="feedBackType" id="feedBackType" class="form-control here" required="required"
+                                        <select name="feedBackType" id="feedBackType" class="form-control here" required="required" [value]='employer'
                                         [(ngModel)]="feedBackDetails.feedbackType">
-                                        <option value="">--Select--</option>
                                         <option value="employer">Employer</option>
                                         <option value="customer">Customer</option>
                                         <option value="candidate">Candidate</option>
@@ -65,7 +64,7 @@
                                                     class="form-control here" type="number" min=0 [max]="question.MaxPoints" name="points" required="required"
                                                     [(ngModel)]="question.PointsGiven">
                                             </td>
-                                            <td>
+                                            <td width="20%">
                                                 <input placeholder="Remarks(if any)"
                                                     class="form-control here" type="text" name="pointsRemarks"
                                                     [(ngModel)]="question.FeedBackRemarks">
