@@ -10,41 +10,45 @@ import { FeedBackService } from '../ApiService/feed-back.service';
 export class FeedbackComponent implements OnInit {
 
   public feedBackQuestions: FeedBackQuestions[];
-  public feedBackDetails: FeedBackDetails = { CustomerName: "", OfficialName: "", feedbackType:"",date:"", FeedBackProvided: [] };
+  public feedBackDetails: FeedBackDetails = { CustomerName: "", OfficialName: "", feedbackType: "", date: "", FeedBackProvided: [] };
   public isFeedBackSubmitted: boolean;
   public isApplicationError: boolean;
-  public showLoader:boolean= true;
-  
+  public showLoader: boolean = true;
+
   constructor(private feedBackService: FeedBackService) {
     this.isFeedBackSubmitted = false;
     this.isApplicationError = false;
   }
-  
+
   ngOnInit() {
+    this.showLoader = true;
     this.feedBackService.GetAllQuestions().subscribe(
       questions => {
         questions.forEach(element => {
           this.feedBackDetails.FeedBackProvided.push(element);
         });
-        if(this.feedBackDetails)
-        this.showLoader= false;
-        console.log(this.feedBackDetails);
+        if (this.feedBackDetails) {
+          console.log(this.feedBackDetails);
+          this.showLoader = false;
+        }
       },
       error => {
-        console.log(error); this.isApplicationError = true
+        console.log(error); this.isApplicationError = true; this.isFeedBackSubmitted = false;
       });
   }
 
   onSubmit(): void {
+    this.showLoader = true;
     console.log('feed back entered:', this.feedBackDetails);
     this.feedBackService.Create(this.feedBackDetails).subscribe(
       res => {
-        console.log(res); this.isFeedBackSubmitted = true
+        console.log(res); this.isFeedBackSubmitted = true;
       },
       err => {
-        console.log(err); this.isApplicationError = true; this.isFeedBackSubmitted = false
+        console.log(err); this.isApplicationError = true; this.isFeedBackSubmitted = false;
       }
     );
+    this.showLoader = false;
   }
 
 }
@@ -54,14 +58,14 @@ interface FeedBackQuestions {
   Question: string;
   MaxPoints: number;
   PointsGiven: number;
-  Remarks: string;
+  FeedBackRemarks: string;
 }
 
 interface FeedBackDetails {
   CustomerName: string;
   OfficialName: string;
-  feedbackType:string;
-  date:string
+  feedbackType: string;
+  date: string
   FeedBackProvided: FeedBackQuestions[];
 }
 

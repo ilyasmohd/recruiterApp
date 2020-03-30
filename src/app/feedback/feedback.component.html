@@ -12,10 +12,11 @@
                                 <h4>FeedBack Form</h4>
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
-                                        <label for="officialName" class=" col-form-label">FeedBack Type:</label>
-                                        <select name="Vendor" id="Vendor" class="form-control here"
-                                        [(ngModel)]="feedBackDetails.Vendor">
-                                        <option value="employer" selected>Employer</option>
+                                        <label for="feedBackType" class=" col-form-label">FeedBack Type:</label>
+                                        <select name="feedBackType" id="feedBackType" class="form-control here" required="required"
+                                        [(ngModel)]="feedBackDetails.feedbackType">
+                                        <option value="">--Select--</option>
+                                        <option value="employer">Employer</option>
                                         <option value="customer">Customer</option>
                                         <option value="candidate">Candidate</option>
                                     </select>
@@ -25,19 +26,19 @@
                                     <div class="col-md-4 form-group ">
                                         <label for="customerName" class=" col-form-label">Name:</label>
                                         <input id="customerName" name="customerName"
-                                            placeholder="Please enter your name*" class="form-control here" type="text"
+                                            placeholder="Please enter your name*" class="form-control here" type="text" required="required"
                                             [(ngModel)]="feedBackDetails.CustomerName">
                                     </div>
                                     <div class="col-md-4 form-group ">
                                         <label for="officialName" class=" col-form-label">Official Name:</label>
                                         <input id="officialName" name="officialName"
-                                            placeholder="Please enter official name*" class="form-control here"
+                                            placeholder="Please enter official name*" class="form-control here" required="required"
                                             type="text" [(ngModel)]="feedBackDetails.OfficialName">
                                     </div>
                                     <div class="col-md-4 form-group ">
-                                        <label for="customerName" class="col-form-label">Date:</label>
-                                        <input id="date" name="date"
-                                            placeholder="Please enter your date*" class="form-control here" type="date"
+                                        <label for="feedBackDate" class="col-form-label">Date:</label>
+                                        <input id="date" name="feedBackDate"
+                                            placeholder="Please enter your date*" class="form-control here" type="date" required="required"
                                             [(ngModel)]="feedBackDetails.date">
                                     </div>
                                 </div>
@@ -49,6 +50,7 @@
                                             <th>Question</th>
                                             <th>Max Points</th>
                                             <th>Points Given</th>
+                                            <th>Remarks(If Any)</th>
                                         </tr>
                                         <tr *ngFor="let question of feedBackDetails.FeedBackProvided;let i=index">
                                             <td>{{i+1}}</td>
@@ -59,9 +61,14 @@
                                                 {{question.MaxPoints}}
                                             </td>
                                             <td>
-                                                <input placeholder="enter your points*" maxlength="3"
-                                                    class="form-control here" type="text" name="points"
+                                                <input placeholder="Points*" maxlength="3"
+                                                    class="form-control here" type="number" min=0 [max]="question.MaxPoints" name="points" required="required"
                                                     [(ngModel)]="question.PointsGiven">
+                                            </td>
+                                            <td>
+                                                <input placeholder="Remarks(if any)"
+                                                    class="form-control here" type="text" name="pointsRemarks"
+                                                    [(ngModel)]="question.FeedBackRemarks">
                                             </td>
                                         </tr>
                                     </table>
