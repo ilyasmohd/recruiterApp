@@ -11,7 +11,7 @@
     </div>
   </div>
 </section>
-<div   [class.disabled]="showLoader ">        
+<div [class.disabled]="showLoader ">
 </div>
 <img src="assets/img/logo.png" alt="" class="img-fluid loader mt-3" *ngIf="showLoader">
 
@@ -119,71 +119,9 @@
           </p>
         </div>
         <div class="col-lg-4 col-md-12 text-right aign-self-center" data-aos="fade-up">
-          <button type="submit" class="btn-style my-2 ">Apply</button> </div>
+          <button (click)="navigate(opening.Profession)" class="btn-style my-2 ">Apply</button> 
+        </div>
       </div>
     </div>
-    <!-- <div class="row icon-shadow my-4">
-      <div class="col-lg-4 col-md-12 " data-aos="fade-up">
-        <b class="my-0">
-          Software Developer
-        </b><br>
-        <span>Senior</span>
-      </div>
-      <div class="col-lg-4 col-md-12 text-center" data-aos="fade-up">
-        <p class=" mb-0">
-          Discipline: <b> Development</b>
-        </p>
-        <p class=" mb-0">
-          Location: <b> Madina Park, Dubai</b>
-        </p>
-        <p class=" mb-0">
-          Salary: <b> 50k-80k</b>
-        </p>
-      </div>
-      <div class="col-lg-4 col-md-12 text-right aign-self-center" data-aos="fade-up">
-        <button type="submit" class="btn-style my-2 ">Apply</button> </div>
-    </div>
-    <div class="row icon-shadow my-4">
-      <div class="col-lg-4 col-md-12 " data-aos="fade-up">
-        <b class="my-0">
-          Front end Developer
-        </b><br>
-        <span>Junior</span>
-      </div>
-      <div class="col-lg-4 col-md-12 text-center" data-aos="fade-up">
-        <p class=" mb-0">
-          Discipline: <b> Development</b>
-        </p>
-        <p class=" mb-0">
-          Location: <b> Madina Park, Dubai</b>
-        </p>
-        <p class=" mb-0">
-          Salary: <b> 30k-50k</b>
-        </p>
-      </div>
-      <div class="col-lg-4 col-md-12 text-right aign-self-center" data-aos="fade-up">
-        <button type="submit" class="btn-style my-2 ">Apply</button> </div>
-    </div>
-    <div class="row icon-shadow my-4">
-      <div class="col-lg-4 col-md-12 " data-aos="fade-up">
-        <b class="my-0">
-          Back end Developer
-        </b><br>
-        <span>Junior</span>
-      </div>
-      <div class="col-lg-4 col-md-12 text-center" data-aos="fade-up">
-        <p class=" mb-0">
-          Discipline: <b> Development</b>
-        </p>
-        <p class=" mb-0">
-          Location: <b> Madina Park, Dubai</b>
-        </p>
-        <p class=" mb-0">
-          Salary: <b> 30k-50k</b>
-        </p>
-      </div>
-      <div class="col-lg-4 col-md-12 text-right aign-self-center" data-aos="fade-up">
-        <button type="submit" class="btn-style my-2 ">Apply</button> </div>
-    </div> -->
   </div>
 </section>

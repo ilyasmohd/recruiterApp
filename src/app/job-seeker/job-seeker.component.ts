@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, NgForm } from '@angular/forms';
 import { JobseekerService } from '../ApiService/jobseeker.service';
 import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-job-seeker',
@@ -25,27 +26,29 @@ export class JobSeekerComponent implements OnInit {
   public certificateUploaded: boolean = false;
   public ppcopyuploaded: boolean = false;
   public isApplicationError: boolean = false;
+  public routeProfession: string = '';
+  public newQualification: Qualification = { YearPassed: "", Degree: "", University: "" };
+  public newExperience: Experience = { Designation: "", From: "", Company: "", To: "" }
+  public newProfession: Professions = { Profession: "", Industry: "" }
+  public showLoader: boolean = false;
 
   public jobSeekerObj: JobSeekerDetails = {
     AadharNo: "", FirstName: "", Address: "", AlternateCellNo: "", CV: "", CellNo: "", Certificates: "", City: "",
     Currency: "", DOB: "", Email: "", Experience: [], FamilyName: "", Gender: "Male",
     ID: 0, Industry: "", PIN: "", Country: "", PPCopy: "", PassportNo: "", PermanentAddress: "", PermanentCity: "", PermanentPIN: "", PermanentCountry: "",
-    Photo: "", Profession: "", Qualification: [], Professions: [], SalaryExpected: 0, SalaryExpectedRemarks: "", SecondName: ""
+    Photo: "", Profession: "ilyas", Qualification: [], Professions: [], SalaryExpected: 0, SalaryExpectedRemarks: "", SecondName: ""
   };
 
-  constructor(private fb: FormBuilder, private jobSeekerSerive: JobseekerService, private datePipe: DatePipe) { }
-  //public qualArray: Array<any> = [];
-  public newQualification: Qualification = { YearPassed: "", Degree: "", University: "" };
-  //public expArray: Array<any> = [];
-  public newExperience: Experience = { Designation: "", From: "", Company: "", To: "" }
-  //public expArray: Array<any> = [];
-  public newProfession: Professions = { Profession: "", Industry: "" }
-  showLoader: boolean = false;
+  constructor(private fb: FormBuilder, private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute) { 
 
+  }
 
   ngOnInit() {
-    //loader
-    // setTimeout(() => { this.showLoader= true; }, 3000);
+    this.routeProfession = this.route.snapshot.paramMap.get("profession");
+    this.jobSeekerObj.Profession = this.routeProfession;
+    console.log(this.jobSeekerObj.Profession);
+    //console.log(this.route.snapshot.paramMap);
+    //console.log('profession:', this.routeProfession);
   }
 
   addProfessions(e) {
@@ -90,38 +93,41 @@ export class JobSeekerComponent implements OnInit {
   }
 
   onSubmit(): void {
-      this.showLoader = true;
+    this.showLoader = true;
     this.jobSeekerObj.DOB = this.jobSeekerObj.DOB;
     console.log('job seeker object on submit click:', this.jobSeekerObj);
-    this.jobSeekerSerive.Create(this.jobSeekerObj).subscribe(res => {
-      console.log(res), this.applicationNo = res, 
+    this.jobseekerService.Create(this.jobSeekerObj).subscribe(res => {
+      console.log(res);
+      this.applicationNo = res;
       this.isApplicationSubmitted = true;
       this.showLoader = false;
-    }, err => { this.isApplicationError = true; this.isApplicationSubmitted = false;
+    }, err => {
+      this.isApplicationError = true; this.isApplicationSubmitted = false;
       this.showLoader = false;
-       console.log(err) });
+      console.log(err)
+    });
 
   }
 
   handleCVUpload(files: FileList): void {
     console.log('trying to upload cv file');
     this.cvFile = files.item(0);
-    this.jobSeekerSerive.UploadFile(this.cvFile).subscribe(res => { console.log(res); this.jobSeekerObj.CV = res; this.cvUploaded = true; }, err => console.log('cv upload failure', err));
+    this.jobseekerService.UploadFile(this.cvFile).subscribe(res => { console.log(res); this.jobSeekerObj.CV = res; this.cvUploaded = true; }, err => console.log('cv upload failure', err));
   }
 
   handlePhotoUpload(files: FileList): void {
     this.picFile = files.item(0);
-    this.jobSeekerSerive.UploadFile(this.picFile).subscribe(res => { console.log(res); this.jobSeekerObj.Photo = res; this.photoUploaded = true; }, err => console.log(err));
+    this.jobseekerService.UploadFile(this.picFile).subscribe(res => { console.log(res); this.jobSeekerObj.Photo = res; this.photoUploaded = true; }, err => console.log(err));
   }
 
   handleCertificateUpload(files: FileList): void {
     this.certificatesFile = files.item(0);
-    this.jobSeekerSerive.UploadFile(this.certificatesFile).subscribe(res => { console.log(res); this.jobSeekerObj.Certificates = res; this.certificateUploaded = true; }, err => console.log(err));
+    this.jobseekerService.UploadFile(this.certificatesFile).subscribe(res => { console.log(res); this.jobSeekerObj.Certificates = res; this.certificateUploaded = true; }, err => console.log(err));
   }
 
   handlePassportUpload(files: FileList): void {
     this.passportFile = files.item(0);
-    this.jobSeekerSerive.UploadFile(this.passportFile).subscribe(res => { console.log(res); this.jobSeekerObj.PPCopy = res; this.ppcopyuploaded = true; }, err => console.log(err));
+    this.jobseekerService.UploadFile(this.passportFile).subscribe(res => { console.log(res); this.jobSeekerObj.PPCopy = res; this.ppcopyuploaded = true; }, err => console.log(err));
   }
 }
 

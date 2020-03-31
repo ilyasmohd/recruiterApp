@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrentOpeningsService } from '../ApiService/current-openings.service';
-
+import {  Router } from "@angular/router";
 @Component({
   selector: 'app-current-opening',
   templateUrl: './current-opening.component.html',
@@ -17,7 +17,7 @@ export class CurrentOpeningComponent implements OnInit {
     //console.log('this is the final data', this.openings);
     this._openings = value;
   }
-  constructor(private openingsService: CurrentOpeningsService) {
+  constructor(private openingsService: CurrentOpeningsService, private router: Router) {
   }
 
   ngOnInit() {
@@ -29,6 +29,11 @@ export class CurrentOpeningComponent implements OnInit {
 
   public get getAllOpenings(): currentOpenings[] {
     return this.openings;
+  }
+
+  navigate(profession:any) {
+    console.log(profession);
+    this.router.navigate(['/jobseeker', profession]);
   }
 }
 
