@@ -13,8 +13,9 @@
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
                                         <label for="feedBackType" class=" col-form-label">FeedBack Type:</label>
-                                        <select name="feedBackType" id="feedBackType" class="form-control here" required="required" [value]='employer'
+                                        <select name="feedBackType" id="feedBackType" class="form-control here" required="required"
                                         [(ngModel)]="feedBackDetails.feedbackType">
+                                        <option value="">--Select--</option>
                                         <option value="employer">Employer</option>
                                         <option value="customer">Customer</option>
                                         <option value="candidate">Candidate</option>
