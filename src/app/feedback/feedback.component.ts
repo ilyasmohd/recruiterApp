@@ -33,7 +33,8 @@ export class FeedbackComponent implements OnInit {
         }
       },
       error => {
-        console.log(error); this.isApplicationError = true; this.isFeedBackSubmitted = false;
+        console.log(error); this.isApplicationError = true; this.isFeedBackSubmitted = false;          this.showLoader = false;
+
       });
   }
 

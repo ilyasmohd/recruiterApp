@@ -7,17 +7,46 @@ declare var $: any;
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  private isMobileResolution: boolean;    
+  toggleNav:boolean=true;
+  toggle:boolean=false;
 
-  constructor() { }
-
-  ngOnInit() {
-    $('.navbar-toggler').click(function () {
-      $('.navbar-collapse').toggle();
-    });
-    $('.nav-item a').click(function () {
-      $('.navbar-collapse').toggle();
-    });
+  constructor() {
 
   }
+
+  pixelWidth:any;
+  ngOnInit() {
+    window.scroll(0, 0);
+    this.pixelWidth = window.screen.width;
+    if (this.pixelWidth > 768) {
+      this.toggleNav = true;
+    }
+    // else {
+    //   this.toggleNav = false;
+    // }
+    $(document).ready(function () {
+    $('.navbar-dark .dmenu').hover(function () {
+            $(this).find('.sm-menu').first().stop(true, true).slideDown(200);
+        }, function () {
+            $(this).find('.sm-menu').first().stop(true, true).slideUp(155)
+        });
+    });
+  }
+
+  hideNavbar(){
+
+    this.pixelWidth = window.screen.width;
+    if (this.pixelWidth <= 768) {
+      this.toggleNav = !this.toggleNav;
+    }
+  }
+
+  navToggle(){
+    this.pixelWidth = window.screen.width;
+    if (this.pixelWidth <= 768) {
+      this.toggle = !this.toggle;
+    }
+    }
 
 }
