@@ -352,7 +352,7 @@ section {
   color: #428bca;
 }
 
-.services .title::after {
+/* .services .title::after {
   content: '';
   position: absolute;
   display: block;
@@ -361,7 +361,7 @@ section {
   background: #c2599d;
   bottom: 0;
   /* left: calc(50% - 25px); */
-}
+/* } */ 
 .ul-style li{
 text-align: left;
     color: #666;

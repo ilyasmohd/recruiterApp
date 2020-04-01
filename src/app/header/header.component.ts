@@ -35,7 +35,6 @@ export class HeaderComponent implements OnInit {
   }
 
   hideNavbar(){
-
     this.pixelWidth = window.screen.width;
     if (this.pixelWidth <= 768) {
       this.toggleNav = !this.toggleNav;
@@ -44,9 +43,8 @@ export class HeaderComponent implements OnInit {
 
   navToggle(){
     this.pixelWidth = window.screen.width;
-    if (this.pixelWidth <= 768) {
       this.toggle = !this.toggle;
     }
-    }
+ 
 
 }
