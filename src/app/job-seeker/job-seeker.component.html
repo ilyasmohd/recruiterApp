@@ -140,15 +140,16 @@
                                 </div>
                                 <hr width="100%">
                                 <div class="row">
-                                    <div class="col-md-6 ">
-                                        <label for="source" class="col-md-6 form-group  col-form-label bold">Source</label>
+                                    <label for="publicinfo"
+                                    class="col-md-2 form-group  col-form-label bold">Source</label>
+                                    <div class="col-md-5">
+                                        <!-- <label for="source" class="col-md-6 form-group  col-form-label bold"></label> -->
                                         <select name="source" id="source" (change)="UpdateSourceIdentity($event)" [(ngModel)]="jobSeekerObj.Source" class="form-control" required="required">
                                             <option value="">--Select--</option>
                                             <option *ngFor="let source of miscelaneous.sourceMasterData" [value]="source.Description">{{source.Description}}</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="sourceIdentity" class="col-md-6 form-group  col-form-label bold">Source Identity</label>
+                                    <div class="col-md-5">
                                         <select name="sourceIdentity" id="sourceIdentity" [(ngModel)]="jobSeekerObj.SourceIdentity" class="form-control" required="required">
                                             <option value="">--Select--</option>
                                             <option *ngFor="let sourceIdentity of sourceIdentityMasterData" [value]="sourceIdentity.Description">{{sourceIdentity.Description}}</option>
@@ -161,7 +162,7 @@
                                         class="col-md-2 form-group  col-form-label bold">Professions</label>
                                     <div class="col-md-10">
                                         <div class="row">
-                                            <div class="col-md-6 form-group ">
+                                            <div class="col-md-3 form-group ">
                                                 <!-- <input id="job" name="job" placeholder="Profession*"
                                                    class="form-control here" type="text" required="required"
                                                    [(ngModel)]="newProfession.Profession">  -->
@@ -171,21 +172,21 @@
                                                    <option *ngFor="let job of jobMasterData" [value]="job.Profession">{{job.Profession}}</option>
                                                </select>
                                            </div>
-                                            <div class="col-md-6 form-group ">
+                                            <div class="col-md-3 form-group ">
                                                 <select name="industry" id="industry" class="form-control here"
                                                     [(ngModel)]="jobSeekerObj.Industry">
                                                     <option value="">--Select Industry--</option>
                                                     <option *ngFor="let industry of miscelaneous.IndustryMasterData" [value]="industry.Description">{{industry.Description}}</option>
                                                 </select>
                                             </div>
-                                            <div class="col-md-5 form-group ">
+                                            <div class="col-md-3 form-group ">
                                                 <select name="division" id="division" class="form-control here"
                                                 [(ngModel)]="jobSeekerObj.Division">
                                                 <option value="">--Select Division--</option>
                                                 <option *ngFor="let division of miscelaneous.DivisionMasterData" [value]="division.Description">{{division.Description}}</option>
                                             </select>
                                             </div>
-                                            <div class="col-md-5 form-group ">
+                                            <div class="col-md-3 form-group ">
                                                 <select name="position" id="position" class="form-control here"
                                                 [(ngModel)]="jobSeekerObj.Position">
                                                 <option value="">--Select Position--</option>
