@@ -4,6 +4,7 @@ import { JobseekerService } from '../ApiService/jobseeker.service';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
 import { CurrentOpeningsService } from '../ApiService/current-openings.service';
+import { isDefined } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-job-seeker',
@@ -33,7 +34,7 @@ export class JobSeekerComponent implements OnInit {
   public showLoader: boolean = false;
   public isAddresSame: boolean = false;
   //public sourceMasterData: string[] = [];
-  //public sourceIdentityMasterData: string[] = [];
+  public sourceIdentityMasterData: SourceIdentityMasterData[] = [];
   //public jobMasterData: string[] = [];
   //public industryMasterData: string[] = [];
   // public divisionMasterData: string[] = [];
@@ -141,8 +142,15 @@ export class JobSeekerComponent implements OnInit {
     this.jobSeekerObj.Experience.splice(expIndex, 1);
   }
 
-  UpdateSourceIdentity($event: any) {
-    console.log('update source identity', $event);
+  UpdateSourceIdentity($event: SourceMasterData) {
+
+    if (isDefined(this.miscelaneous.SourceMasterData.filter(_productType => _productType.Description == this.jobSeekerObj.Source)[0])) {
+      this.sourceIdentityMasterData = this.miscelaneous.SourceMasterData.filter(_productType => _productType.Description == this.jobSeekerObj.Source)[0].SourceIdentities;
+    }
+    else {
+      this.sourceIdentityMasterData = [];
+      this.jobSeekerObj.SourceIdentity = "";
+    }
   }
 
   toggleAddress() {

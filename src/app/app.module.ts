@@ -36,6 +36,7 @@ import { RpfComponent } from './rpf/rpf.component';
 
 const appRoutes: Routes = [    // define this before @NgModule 
   { path: 'home', component: HomeComponent },
+  { path: 'jobseeker', component: JobSeekerComponent },
   { path: 'jobseeker/:profession', component: JobSeekerComponent },
   { path: 'careers', component: CurrentOpeningComponent },
   { path: 'employer', component: EmployerComponent },
