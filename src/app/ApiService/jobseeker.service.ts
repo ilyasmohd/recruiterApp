@@ -13,11 +13,4 @@ export class JobseekerService extends DataService {
   constructor(http: HttpClient) {
     super(environment.jobSeekerApiUrl, http);
   }
-
-  GetJobSeekerMiscellaneous(): Observable<any> {
-    const opts = { params: new HttpParams().set('miscellaneous', 'miscellaneous') };
-    return this.http.get(environment.jobSeekerApiUrl, opts)
-      .catch(super.handleError);
-  }
-
 }

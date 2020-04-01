@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
 import { CurrentOpeningsService } from '../ApiService/current-openings.service';
 import { isDefined } from '@angular/compiler/src/util';
+import { MiscellaneousService} from '../ApiService/miscellaneous.service';
 
 @Component({
   selector: 'app-job-seeker',
@@ -80,16 +81,17 @@ export class JobSeekerComponent implements OnInit {
     Position: ""
   };
 
-  constructor(private fb: FormBuilder, private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute, private openingsService: CurrentOpeningsService) {
+  constructor(private fb: FormBuilder, private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute, 
+    private openingsService: CurrentOpeningsService, private miscellaneousService:MiscellaneousService) {
 
-  }
+    }
 
   ngOnInit() {
     this.routeJob = this.route.snapshot.paramMap.get("profession");
     this.jobSeekerObj.Job = this.routeJob;
     console.log(this.jobSeekerObj.Job);
 
-    this.jobseekerService.GetJobSeekerMiscellaneous().subscribe(res => {
+    this.miscellaneousService.GetJobSeekerMiscellaneous().subscribe(res => {
       console.log("response from miscelaneous", res);
       this.miscelaneous = res;
     }, err => {
