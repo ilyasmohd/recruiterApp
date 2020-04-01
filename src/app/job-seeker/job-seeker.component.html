@@ -80,7 +80,7 @@
 
                                 </div>
                                 <hr width="100%">
-                                <label for="address" class=" form-group bold">Address</label>
+                                <label for="address" class=" form-group bold">Present Address</label>
                                 <div class="row">
                                     <div class="col-md-3 form-group ">
                                         <input id="address" name="address" placeholder="Address*"
@@ -98,7 +98,7 @@
                                     <div class="col-md-3 form-group ">
                                         <select id="company" class="form-control" placeholder="Country*" title="Country"
                                             [(ngModel)]="jobSeekerObj.Country" name="Country">
-                                            <option>- Select Country -</option>
+                                            <option value="">--Select Country--</option>
                                         </select>
                                     </div>
                                 </div>
@@ -117,24 +117,41 @@
                                 <div class="row">
                                     <div class="col-md-3 form-group ">
                                         <input id="permanentAddress" name="permanentAddress"
-                                            placeholder="permanent Address" class="form-control here" type="text"
-                                            [disabled]="isDisabled" [(ngModel)]="jobSeekerObj.PermanentAddress">
+                                            placeholder="Permanent Address*" class="form-control here" type="text"
+                                            [disabled]="isAddresSame" [(ngModel)]="jobSeekerObj.PermanentAddress">
                                     </div>
                                     <div class="col-md-3 form-group ">
-                                        <input id="permanentcity" name="permanentcity" placeholder="City"
-                                            [disabled]="isDisabled" class="form-control here" required="required"
+                                        <input id="permanentcity" name="permanentcity" placeholder="Permanent City*"
+                                            [disabled]="isAddresSame" class="form-control here" required="required"
                                             type="text" [(ngModel)]="jobSeekerObj.PermanentCity">
                                     </div>
                                     <div class="col-md-3 form-group ">
-                                        <input id="permanentpin" name="permanentpin" placeholder="PIN"
-                                            [disabled]="isDisabled" class="form-control here" type="text"
+                                        <input id="permanentpin" name="permanentpin" placeholder="Permanent PIN*"
+                                            [disabled]="isAddresSame" class="form-control here" type="text"
                                             [(ngModel)]="jobSeekerObj.PermanentPIN">
                                     </div>
                                     <div class="col-md-3 form-group ">
-                                        <select id="company" class="form-control" placeholder="Country*" title="Country"
+                                        <select id="company" class="form-control" placeholder="Permanent Country*" title="Country"
                                             [(ngModel)]="jobSeekerObj.PermanentCountry" name="PermanentCountry"
-                                            [disabled]="isDisabled">
-                                            <option>- Select Country -</option>
+                                            [disabled]="isAddresSame">
+                                            <option value="">--Select Country--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr width="100%">
+                                <div class="row">
+                                    <div class="col-md-6 ">
+                                        <label for="source" class="col-md-6 form-group  col-form-label bold">Source</label>
+                                        <select name="source" id="source" (change)="UpdateSourceIdentity($event)" [(ngModel)]="jobSeekerObj.Source" class="form-control" required="required">
+                                            <option value="">--Select--</option>
+                                            <option *ngFor="let source of miscelaneous.sourceMasterData" [value]="source.Description">{{source.Description}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="sourceIdentity" class="col-md-6 form-group  col-form-label bold">Source Identity</label>
+                                        <select name="sourceIdentity" id="sourceIdentity" [(ngModel)]="jobSeekerObj.SourceIdentity" class="form-control" required="required">
+                                            <option value="">--Select--</option>
+                                            <option *ngFor="let sourceIdentity of sourceIdentityMasterData" [value]="sourceIdentity.Description">{{sourceIdentity.Description}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -145,22 +162,40 @@
                                     <div class="col-md-10">
                                         <div class="row">
                                             <div class="col-md-6 form-group ">
-                                                 <input id="profession" name="profession" placeholder="Profession*"
-                                                    class="form-control here" type="text" required="required"
-                                                    [(ngModel)]="newProfession.Profession"> 
-                                                <!--<select name="profession" id="profession" class="form-control here"
-                                                    [(ngModel)]="newProfession.Profession">
-                                                </select>-->
+                                                <!-- <input id="job" name="job" placeholder="Profession*"
+                                                   class="form-control here" type="text" required="required"
+                                                   [(ngModel)]="newProfession.Profession">  -->
+                                               <select name="job" id="job" class="form-control here"
+                                                   [(ngModel)]="jobSeekerObj.Job">
+                                                   <option value="">--Select Job--</option>
+                                                   <option *ngFor="let job of jobMasterData" [value]="job.Profession">{{job.Profession}}</option>
+                                               </select>
+                                           </div>
+                                            <div class="col-md-6 form-group ">
+                                                <select name="industry" id="industry" class="form-control here"
+                                                    [(ngModel)]="jobSeekerObj.Industry">
+                                                    <option value="">--Select Industry--</option>
+                                                    <option *ngFor="let industry of miscelaneous.IndustryMasterData" [value]="industry.Description">{{industry.Description}}</option>
+                                                </select>
                                             </div>
                                             <div class="col-md-5 form-group ">
-                                                <input id="industry" name="industry" placeholder="Industry"
-                                                    class="form-control here" type="text"
-                                                    [(ngModel)]="newProfession.Industry">
+                                                <select name="division" id="division" class="form-control here"
+                                                [(ngModel)]="jobSeekerObj.Division">
+                                                <option value="">--Select Division--</option>
+                                                <option *ngFor="let division of miscelaneous.DivisionMasterData" [value]="division.Description">{{division.Description}}</option>
+                                            </select>
                                             </div>
-                                            <div class="col-md-1 form-group align-self-end">
+                                            <div class="col-md-5 form-group ">
+                                                <select name="position" id="position" class="form-control here"
+                                                [(ngModel)]="jobSeekerObj.Position">
+                                                <option value="">--Select Position--</option>
+                                                <option *ngFor="let position of miscelaneous.PositionMasterData" [value]="position.Description">{{position.Description}}</option>
+                                            </select>
+                                            </div>
+                                            <!-- <div class="col-md-1 form-group align-self-end">
                                                 <button class="btn btn-primary"
                                                     (click)="addProfessions($event)">Add</button>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="row" *ngFor="let prof of jobSeekerObj.Professions; let p = index">
                                             <div class="col-md-6 form-group  form-group">

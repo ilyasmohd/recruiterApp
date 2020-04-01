@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, NgForm } from '@angular/forms';
 import { JobseekerService } from '../ApiService/jobseeker.service';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
+import { CurrentOpeningsService } from '../ApiService/current-openings.service';
 
 @Component({
   selector: 'app-job-seeker',
@@ -14,48 +14,101 @@ export class JobSeekerComponent implements OnInit {
 
   public totalQualifications: Qualification[] = [{ Degree: "", YearPassed: "", University: "" }];
   public totalExperience: Experience[] = [{ To: "", Company: "", From: "", Designation: "" }];
-  public totalProfessions: Professions[] = [{ Profession: "", Industry: "" }];
+  public totalProfessions: Profession[] = [{ Division: "", Industry: "", Position: "" }];
   private cvFile: File = null;
   private passportFile: File = null;
   private certificatesFile: File = null;
   private picFile: File = null;
   public isApplicationSubmitted: boolean = false;
-  public applicationNo: any = 0;
+  public applicationNo: number = 0;
   public cvUploaded: boolean = false;
   public photoUploaded: boolean = false;
   public certificateUploaded: boolean = false;
   public ppcopyuploaded: boolean = false;
   public isApplicationError: boolean = false;
-  public routeProfession: string = '';
+  public routeJob: string = '';
   public newQualification: Qualification = { YearPassed: "", Degree: "", University: "" };
   public newExperience: Experience = { Designation: "", From: "", Company: "", To: "" }
-  public newProfession: Professions = { Profession: "", Industry: "" }
+  public newProfession: Profession = { Division: "", Industry: "", Position: "" }
   public showLoader: boolean = false;
+  public isAddresSame: boolean = false;
+  //public sourceMasterData: string[] = [];
+  //public sourceIdentityMasterData: string[] = [];
+  //public jobMasterData: string[] = [];
+  //public industryMasterData: string[] = [];
+  // public divisionMasterData: string[] = [];
+  //public positionMasterData: string[] = [];
+  public miscelaneous: Miscelaneous = { SourceMasterData: [], IndustryMasterData: [], PositionMasterData: [], DivisionMasterData: [] };
+  public jobMasterData: currentOpenings[] = [];
 
   public jobSeekerObj: JobSeekerDetails = {
-    AadharNo: "", FirstName: "", Address: "", AlternateCellNo: "", CV: "", CellNo: "", Certificates: "", City: "",
-    Currency: "", DOB: "", Email: "", Experience: [], FamilyName: "", Gender: "Male",
-    ID: 0, Industry: "", PIN: "", Country: "", PPCopy: "", PassportNo: "", PermanentAddress: "", PermanentCity: "", PermanentPIN: "", PermanentCountry: "",
-    Photo: "", Profession: "ilyas", Qualification: [], Professions: [], SalaryExpected: 0, SalaryExpectedRemarks: "", SecondName: ""
+    AadharNo: "",
+    FirstName: "",
+    Address: "",
+    AlternateCellNo: "",
+    CV: "",
+    CellNo: "",
+    Certificates: "",
+    City: "",
+    Currency: "",
+    Country: "",
+    DOB: "",
+    Email: "",
+    Experience: [],
+    FamilyName: "",
+    Gender: "Male",
+    ID: 0,
+    Industry: "",
+    Job: "",
+    PIN: "",
+    PPCopy: "",
+    PassportNo: "",
+    PermanentAddress: "",
+    PermanentCity: "",
+    PermanentPIN: "",
+    PermanentCountry: "",
+    Photo: "",
+    Professions: [],
+    Qualification: [],
+    SalaryExpected: 0,
+    SalaryExpectedRemarks: "",
+    SecondName: "",
+    SourceIdentity: "",
+    Source: "",
+    Division: "",
+    Position: ""
   };
 
-  constructor(private fb: FormBuilder, private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute) { 
+  constructor(private fb: FormBuilder, private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute, private openingsService: CurrentOpeningsService) {
 
   }
 
   ngOnInit() {
-    this.routeProfession = this.route.snapshot.paramMap.get("profession");
-    this.jobSeekerObj.Profession = this.routeProfession;
-    console.log(this.jobSeekerObj.Profession);
-    //console.log(this.route.snapshot.paramMap);
-    //console.log('profession:', this.routeProfession);
+    this.routeJob = this.route.snapshot.paramMap.get("profession");
+    this.jobSeekerObj.Job = this.routeJob;
+    console.log(this.jobSeekerObj.Job);
+
+    this.jobseekerService.GetJobSeekerMiscellaneous().subscribe(res => {
+      console.log("response from miscelaneous", res);
+      this.miscelaneous = res;
+    }, err => {
+      console.log("err from miscelaneous", err);
+    });
+
+    this.openingsService.GetAll().subscribe(res => {
+      console.log('res from current openings', res);
+      this.jobMasterData = res;
+      console.log(this.jobMasterData);
+    }, err => {
+      console.log("err from current openings controller", err);
+    });
   }
 
   addProfessions(e) {
     if (e) e.preventDefault();
-    console.log('this.newProfession', this.newProfession);
-    this.jobSeekerObj.Professions.push(this.newProfession);
-    this.newProfession = { Profession: "", Industry: "" };
+    // console.log('this.newProfession', this.newProfession);
+    // this.jobSeekerObj.Professions.push(this.newProfession);
+    // this.newProfession = { Division: "", Industry: "", Position: "" };
   }
 
   removeProfessions(profIndex) {
@@ -65,9 +118,11 @@ export class JobSeekerComponent implements OnInit {
   addQualifications(e) {
     if (e) e.preventDefault();
     console.log('this.newQualification', this.newQualification);
-    this.newQualification.YearPassed = this.datePipe.transform(this.newQualification.YearPassed, 'yyyy-MM-dd');
-    this.jobSeekerObj.Qualification.push(this.newQualification);
-    this.newQualification = { Degree: "", University: "", YearPassed: "" };
+    if (this.newQualification.Degree != "" && this.newQualification.University != "" && this.newQualification.YearPassed != "") {
+      this.newQualification.YearPassed = this.datePipe.transform(this.newQualification.YearPassed, 'yyyy-MM-dd');
+      this.jobSeekerObj.Qualification.push(this.newQualification);
+      this.newQualification = { Degree: "", University: "", YearPassed: "" };
+    }
   }
 
   removeQualifications(qualIndex) {
@@ -86,9 +141,24 @@ export class JobSeekerComponent implements OnInit {
     this.jobSeekerObj.Experience.splice(expIndex, 1);
   }
 
-  isDisabled: boolean = false;
+  UpdateSourceIdentity($event: any) {
+    console.log('update source identity', $event);
+  }
+
   toggleAddress() {
-    this.isDisabled = !this.isDisabled;
+    this.isAddresSame = !this.isAddresSame;
+    if (this.isAddresSame) {
+      this.jobSeekerObj.PermanentCity = this.jobSeekerObj.City;
+      this.jobSeekerObj.PermanentAddress = this.jobSeekerObj.Address;
+      this.jobSeekerObj.PermanentPIN = this.jobSeekerObj.PIN;
+      this.jobSeekerObj.PermanentCountry = this.jobSeekerObj.Country;
+    }
+    else {
+      this.jobSeekerObj.PermanentCity = "";
+      this.jobSeekerObj.PermanentAddress = "";
+      this.jobSeekerObj.PermanentPIN = "";
+      this.jobSeekerObj.PermanentCountry = "";
+    }
     return;
   }
 
@@ -132,37 +202,41 @@ export class JobSeekerComponent implements OnInit {
 }
 
 interface JobSeekerDetails {
-  ID: number
-  FirstName: string;
-  SecondName: string;
-  FamilyName: string;
-  Gender: string;
-  DOB: string;
-  Address: string;
-  City: string;
-  PIN: string;
-  Country: "",
-  PermanentAddress: string;
-  PermanentCity: string;
+  ID: number,
+  FirstName: string,
+  SecondName: string,
+  FamilyName: string,
+  Gender: string,
+  DOB: string,
+  Address: string,
+  City: string,
+  PIN: string,
+  Country: string,
+  PermanentAddress: string,
+  PermanentCity: string,
   PermanentPIN: string;
-  PermanentCountry: "",
-  PassportNo: string;
-  AadharNo: string;
-  CellNo: string;
-  AlternateCellNo: string;
-  Email: string;
-  Profession: string;
-  Industry: string;
-  SalaryExpected: number;
-  Currency: string;
-  SalaryExpectedRemarks: string;
-  CV: string;
-  Photo: string;
-  Certificates: string;
-  PPCopy: string;
-  Professions: Professions[];
-  Qualification: Qualification[];
-  Experience: Experience[];
+  PermanentCountry: string,
+  PassportNo: string,
+  AadharNo: string,
+  CellNo: string,
+  AlternateCellNo: string,
+  Email: string,
+  Industry: string,
+  SalaryExpected: number,
+  Currency: string,
+  SalaryExpectedRemarks: string,
+  CV: string,
+  Photo: string,
+  Certificates: string,
+  PPCopy: string,
+  Professions: Profession[],
+  Qualification: Qualification[],
+  Experience: Experience[],
+  Source: string,
+  SourceIdentity: string,
+  Job: string,
+  Division: string,
+  Position: string
 }
 
 interface Qualification {
@@ -178,7 +252,52 @@ interface Experience {
   To: string;
 }
 
-interface Professions {
+interface Profession {
+  Industry: string,
+  Position: string,
+  Division: string
+}
+
+interface Miscelaneous {
+  PositionMasterData: PositionMasterData[],
+  DivisionMasterData: DivisionMasterData[],
+  IndustryMasterData: IndustryMasterData[],
+  SourceMasterData: SourceMasterData[]
+}
+
+interface PositionMasterData {
+  ID: number,
+  Description: string
+}
+
+interface DivisionMasterData {
+  ID: number,
+  Description: string
+}
+
+interface IndustryMasterData {
+  ID: number,
+  Description: string
+}
+
+interface SourceMasterData {
+  ID: number,
+  Description: string,
+  SourceIdentities: SourceIdentityMasterData[]
+}
+
+interface SourceIdentityMasterData {
+  ID: number,
+  Description: string
+}
+
+interface currentOpenings {
+  ID: number;
   Profession: string;
-  Industry: string;
+  Employer: string;
+  EmploymentCity: string;
+  Renumeration: string;
+  JobDescription: string;
+  IsOppurtunityOpen: boolean;
+  CreatedOn: Date;
 }
