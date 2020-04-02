@@ -896,13 +896,13 @@ background: darkslateblue;
   color:#fff !important;
 }
 
-#about .about-container .icon-box:hover .icon {
+/* #about .about-container .icon-box:hover .icon {
   background: linear-gradient(to top, #36d1dc, #5b86e5) !important;
 }
 
 #about .about-container .icon-box:hover .icon i {
   color: #fff;
-}
+} */
 
 #about .about-container .icon-box .title {
   margin-left: 80px;
