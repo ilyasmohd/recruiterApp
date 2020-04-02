@@ -26,8 +26,8 @@ export class StatusService extends DataService {
       .catch(super.handleError);
   }
 
-  UpdateTrackStatus(jobSeekerID: number, presentID: number, nextID: number, remarks: string, nextStatusDate: Date): Observable<any> {
-    return this.http.post(environment.statusApiUrl, { jobSeekerID, presentID, nextID, remarks, nextStatusDate })
+  UpdateTrackStatus(jobSeekerID: number, presentStatusID: number, nextStatusID: number, remarks: string, nextStatusDate: Date): Observable<any> {
+    return this.http.post(environment.statusApiUrl, { jobSeekerID, presentStatusID, nextStatusID, remarks, nextStatusDate })
       .catch(super.handleError);
   }
 }

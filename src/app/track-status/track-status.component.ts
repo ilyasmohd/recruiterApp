@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { StatusService } from '../ApiService/status.service';
 
+
 @Component({
   selector: 'app-track-status',
   templateUrl: './track-status.component.html',

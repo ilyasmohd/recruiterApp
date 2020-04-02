@@ -16,7 +16,7 @@
                                 <div>{{completeStatus.Name}} - {{completeStatus.Passport}} - {{completeStatus.Aadhar}} -
                                     {{completeStatus.Task}} - {{completeStatus.Cell}}</div>
                                 <ul *ngFor="let singleStatus of completeStatus.Status">
-                                    <li>{{singleStatus.Date}} - {{singleStatus.PresentStatus}} -
+                                    <li>{{singleStatus.Date | date:'shortDate' }} - {{singleStatus.PresentStatus}} -
                                         {{singleStatus.NextStatus}} - {{singleStatus.NextStatusDate}} -
                                         {{singleStatus.Remarks}}</li>
                                 </ul>
@@ -26,11 +26,11 @@
                         <div class="row">
                             <select id="presentStatus" name="presentStatus" [(ngModel)]="presentStatusID">
                                 <option value="0">--Present Status--</option>
-                                <option *ngFor="let stat of statusMasterData" value="stat.ID">{{stat.Description}}</option>
+                                <option *ngFor="let stat of statusMasterData" [value]="stat.ID">{{stat.Description}}</option>
                             </select>
                             <select id="nextStatus" name="nextStatus" [(ngModel)]="nextStatusID">
                                 <option value="0">--Next Status--</option>
-                                <option *ngFor="let stat of statusMasterData" value="stat.ID">{{stat.Description}}</option>
+                                <option *ngFor="let stat of statusMasterData" [value]="stat.ID">{{stat.Description}}</option>
                             </select>
                             <input type="date" id="nextStatusDate" name="nextStatusDate" [(ngModel)]="nextStatusDate"
                                 placeholder="next status date" title="next status date">

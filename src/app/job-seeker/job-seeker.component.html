@@ -163,9 +163,6 @@
                                     <div class="col-md-10">
                                         <div class="row">
                                             <div class="col-md-3 form-group ">
-                                                <!-- <input id="job" name="job" placeholder="Profession*"
-                                                   class="form-control here" type="text" required="required"
-                                                   [(ngModel)]="newProfession.Profession">  -->
                                                <select name="job" id="job" class="form-control here"
                                                    [(ngModel)]="jobSeekerObj.Job">
                                                    <option value="">--Select Job--</option>
@@ -193,10 +190,10 @@
                                                 <option *ngFor="let position of miscelaneous.PositionMasterData" [value]="position.Description">{{position.Description}}</option>
                                             </select>
                                             </div>
-                                            <!-- <div class="col-md-1 form-group align-self-end">
+                                             <div class="col-md-1 form-group align-self-end">
                                                 <button class="btn btn-primary"
                                                     (click)="addProfessions($event)">Add</button>
-                                            </div> -->
+                                            </div>
                                         </div>
                                         <div class="row" *ngFor="let prof of jobSeekerObj.Professions; let p = index">
                                             <div class="col-md-6 form-group  form-group">

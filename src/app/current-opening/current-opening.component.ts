@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrentOpeningsService } from '../ApiService/current-openings.service';
-import {  Router } from "@angular/router";
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-current-opening',
   templateUrl: './current-opening.component.html',
   styleUrls: ['./current-opening.component.scss']
 })
 export class CurrentOpeningComponent implements OnInit {
-  showLoader:boolean=false
+  showLoader: boolean = false
   private _openings: currentOpenings[];
 
   public get openings(): currentOpenings[] {
@@ -22,16 +22,24 @@ export class CurrentOpeningComponent implements OnInit {
 
   ngOnInit() {
     this.showLoader = true;
-    this.openingsService.GetAll().subscribe(jobs => this.openings = jobs);
-    setTimeout(() => { if(this.openings) this.showLoader = false; }, 3000);
-    
+    this.openingsService.GetAll().subscribe(
+      jobs => {
+        this.openings = jobs;
+        if (this.openings) {
+          this.showLoader = false;
+        }
+      }, err => {
+        console.log(err);
+      });
+    //setTimeout(() => { if(this.openings) this.showLoader = false; }, 3000);
+
   }
 
   public get getAllOpenings(): currentOpenings[] {
     return this.openings;
   }
 
-  navigate(profession:any) {
+  navigate(profession: any) {
     console.log(profession);
     this.router.navigate(['/jobseeker', profession]);
   }

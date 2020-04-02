@@ -5,7 +5,7 @@ import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
 import { CurrentOpeningsService } from '../ApiService/current-openings.service';
 import { isDefined } from '@angular/compiler/src/util';
-import { MiscellaneousService} from '../ApiService/miscellaneous.service';
+import { MiscellaneousService } from '../ApiService/miscellaneous.service';
 
 @Component({
   selector: 'app-job-seeker',
@@ -34,12 +34,7 @@ export class JobSeekerComponent implements OnInit {
   public newProfession: Profession = { Division: "", Industry: "", Position: "" }
   public showLoader: boolean = false;
   public isAddresSame: boolean = false;
-  //public sourceMasterData: string[] = [];
   public sourceIdentityMasterData: SourceIdentityMasterData[] = [];
-  //public jobMasterData: string[] = [];
-  //public industryMasterData: string[] = [];
-  // public divisionMasterData: string[] = [];
-  //public positionMasterData: string[] = [];
   public miscelaneous: Miscelaneous = { SourceMasterData: [], IndustryMasterData: [], PositionMasterData: [], DivisionMasterData: [] };
   public jobMasterData: currentOpenings[] = [];
 
@@ -81,10 +76,10 @@ export class JobSeekerComponent implements OnInit {
     Position: ""
   };
 
-  constructor(private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute, 
-    private openingsService: CurrentOpeningsService, private miscellaneousService:MiscellaneousService) {
+  constructor(private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute,
+    private openingsService: CurrentOpeningsService, private miscellaneousService: MiscellaneousService) {
 
-    }
+  }
 
   ngOnInit() {
     this.routeJob = this.route.snapshot.paramMap.get("profession");
@@ -134,10 +129,12 @@ export class JobSeekerComponent implements OnInit {
 
   addExperience(e) {
     if (e) e.preventDefault();
-    this.newExperience.From = this.datePipe.transform(this.newExperience.From, 'yyyy-MM-dd');
-    this.newExperience.To = this.datePipe.transform(this.newExperience.To, 'yyyy-MM-dd');
-    this.jobSeekerObj.Experience.push(this.newExperience)
-    this.newExperience = { Company: "", Designation: "", From: "", To: "" };
+    if (this.newExperience.From != "" && this.newExperience.To != "" && this.newExperience.Designation != "" && this.newExperience.Company != "") {
+      this.newExperience.From = this.datePipe.transform(this.newExperience.From, 'yyyy-MM-dd');
+      this.newExperience.To = this.datePipe.transform(this.newExperience.To, 'yyyy-MM-dd');
+      this.jobSeekerObj.Experience.push(this.newExperience)
+      this.newExperience = { Company: "", Designation: "", From: "", To: "" };
+    }
   }
 
   removeExperience(expIndex) {
@@ -174,7 +171,7 @@ export class JobSeekerComponent implements OnInit {
 
   onSubmit(): void {
     this.showLoader = true;
-    this.jobSeekerObj.DOB = this.jobSeekerObj.DOB;
+    this.jobSeekerObj.DOB = this.datePipe.transform(this.jobSeekerObj.DOB, 'yyyy-MM-dd');
     console.log('job seeker object on submit click:', this.jobSeekerObj);
     this.jobseekerService.Create(this.jobSeekerObj).subscribe(res => {
       console.log(res);
@@ -186,7 +183,6 @@ export class JobSeekerComponent implements OnInit {
       this.showLoader = false;
       console.log(err)
     });
-
   }
 
   handleCVUpload(files: FileList): void {
