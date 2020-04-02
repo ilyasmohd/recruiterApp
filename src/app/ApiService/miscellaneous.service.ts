@@ -11,20 +11,12 @@ import { Observable } from 'rxjs/Observable';
 export class MiscellaneousService extends DataService {
 
   constructor(http: HttpClient) {
-    super(environment.jobSeekerApiUrl, http);
+    super(environment.miscellaneousApiUrl, http);
   }
 
   GetJobSeekerMiscellaneous(): Observable<any> {
-    //const opts = { params: new HttpParams().set('miscellaneous', 'miscellaneous') };
-    //return this.http.get(environment.miscellaneousApiUrl + '/GetJobSeekerMiscellaneousDetails', opts)
-    //  .catch(super.handleError);
-
-    return this.http.get(environment.miscellaneousApiUrl + '/GetJobSeekerMiscellaneousDetails')
-      .catch(super.handleError);
-  }
-
-  GetJobSeekerStatus():Observable<any>{
-    return this.http.get(environment.miscellaneousApiUrl + '/GetJobSeekerStatus')
+    const opts = { params: new HttpParams().set('type', 'Miscellaneous') };
+    return this.http.get(environment.miscellaneousApiUrl, opts)
       .catch(super.handleError);
   }
 }

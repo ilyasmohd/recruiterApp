@@ -28,11 +28,14 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { OverseasComponent } from './overseas/overseas.component';
 import { DomesticComponent } from './domestic/domestic.component';
 import { JobseekerService} from './ApiService/jobseeker.service';
+import { StatusService} from './ApiService/status.service';
+import { MiscellaneousService} from './ApiService/miscellaneous.service'
 import {CurrentOpeningsService} from './ApiService/current-openings.service';
 import {AppErrorHandler} from './Common/app-error-handler';
 import { DatePipe } from '@angular/common';
 import { UspComponent } from './usp/usp.component';
 import { RpfComponent } from './rpf/rpf.component';
+import { TrackStatusComponent } from './track-status/track-status.component';
 
 const appRoutes: Routes = [    // define this before @NgModule 
   { path: 'home', component: HomeComponent },
@@ -50,10 +53,8 @@ const appRoutes: Routes = [    // define this before @NgModule
   { path: 'feedback', component: FeedbackComponent },
   { path: 'overseas', component: OverseasComponent },
   { path: 'domestic', component: DomesticComponent },
-  { path: '',
-  redirectTo: '/home',
-  pathMatch: 'full'
-},
+  { path: 'status', component:TrackStatusComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', component: HomeComponent }
 ];
 
@@ -78,6 +79,7 @@ const appRoutes: Routes = [    // define this before @NgModule
     DomesticComponent,
     UspComponent,
     RpfComponent,
+    TrackStatusComponent,
   ],
   imports: [
     HttpClientModule,BrowserModule,RouterModule,MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule, 
@@ -85,7 +87,7 @@ const appRoutes: Routes = [    // define this before @NgModule
     AngularFontAwesomeModule,ReactiveFormsModule,FormsModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
   ],
-  providers: [JobseekerService, CurrentOpeningsService, DatePipe],
+  providers: [JobseekerService, CurrentOpeningsService,StatusService, MiscellaneousService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

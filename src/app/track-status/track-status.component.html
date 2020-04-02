@@ -1,0 +1,46 @@
+<div class="container-fluid bg-pd50">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card card-pdmg">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">track-status!!!!</div>
+                        <div class="row">
+                            <input type="text" placeholder="PassportNo*" required #passportNo>
+                            <input type="text" placeholder="AadharNo*" required #aadharNo>
+                            <button class="btn btn-success"
+                                (click)="checkStatus(passportNo.value, aadharNo.value)">Check
+                                Status</button>
+
+                            <div>
+                                <div>{{completeStatus.Name}} - {{completeStatus.Passport}} - {{completeStatus.Aadhar}} -
+                                    {{completeStatus.Task}} - {{completeStatus.Cell}}</div>
+                                <ul *ngFor="let singleStatus of completeStatus.Status">
+                                    <li>{{singleStatus.Date}} - {{singleStatus.PresentStatus}} -
+                                        {{singleStatus.NextStatus}} - {{singleStatus.NextStatusDate}} -
+                                        {{singleStatus.Remarks}}</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <select id="presentStatus" name="presentStatus" [(ngModel)]="presentStatusID">
+                                <option value="0">--Present Status--</option>
+                                <option *ngFor="let stat of statusMasterData" value="stat.ID">{{stat.Description}}</option>
+                            </select>
+                            <select id="nextStatus" name="nextStatus" [(ngModel)]="nextStatusID">
+                                <option value="0">--Next Status--</option>
+                                <option *ngFor="let stat of statusMasterData" value="stat.ID">{{stat.Description}}</option>
+                            </select>
+                            <input type="date" id="nextStatusDate" name="nextStatusDate" [(ngModel)]="nextStatusDate"
+                                placeholder="next status date" title="next status date">
+                            <input type="text" id="statusRemarks" name="statusRemarks" [(ngModel)]="remarks"
+                                placeholder="enter remarks(if any)">
+                            <button class="btn btn-success" (click)="updateTrackStatus()">Update Status</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,7 +13,6 @@ import { environment } from '../../environments/environment';
 export class DataService {
   private headers: Headers = new Headers();
   constructor(private url: string, public http: HttpClient) {
-
   }
 
   GetAll(): Observable<any> {
@@ -50,7 +49,6 @@ export class DataService {
 
     return Observable.throw(new AppError(error));
   }
-
 
   UploadFile(fileTobeUploaded: File): Observable<any> {
     let formData: FormData = new FormData();

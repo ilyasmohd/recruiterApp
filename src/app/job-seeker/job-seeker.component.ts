@@ -81,7 +81,7 @@ export class JobSeekerComponent implements OnInit {
     Position: ""
   };
 
-  constructor(private fb: FormBuilder, private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute, 
+  constructor(private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute, 
     private openingsService: CurrentOpeningsService, private miscellaneousService:MiscellaneousService) {
 
     }

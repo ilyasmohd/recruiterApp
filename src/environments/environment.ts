@@ -8,7 +8,8 @@ export const environment = {
   currentOpeningsApiUrl: 'http://localhost:63164/api/currentopenings',
   fileUploadApiUrl: 'http://localhost:63164/api/FileUploader',
   feedBackApiUrl:'http://localhost:63164/api/feedbacks',
-  miscellaneousApiUrl:'http://localhost:63164/miscellaneous',
+  miscellaneousApiUrl:'http://localhost:63164/api/miscellaneous',
+  statusApiUrl: 'http://localhost:63164/api/status',
 };
 
 /*
