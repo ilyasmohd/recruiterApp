@@ -1,0 +1,76 @@
+<div class="container-fluid bg-pd50">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="card card-pdmg">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Total Job Applicants!!!!</h1>
+                            <input type="text" placeholder="Applicant name" [(ngModel)]="searchByName"
+                                class="form-control here">
+                            <button class="btn btn-primary" (click)="searchApplicantsByName($event)">Search by Applicant
+                                Name</button>
+                            <hr>
+                            <select name="industrySearch" id="industrySearch" [(ngModel)]="searchByIndustry">
+                                <option value="">--select Industry--</option>
+                                <option *ngFor="let industry of miscelaneous.IndustryMasterData" [value]="industry.Description">
+                                    {{industry.Description}}</option>
+                            </select>
+                            <button class="btn btn-primary" (click)="searchApplicantsByIndustry($event)">Search by
+                                Industry</button>
+                            <div>
+                                <div *ngFor="let applicant of jobSeekers">
+                                    {{applicant.FirstName}} - {{applicant.SecondName}},
+                                    {{applicant.FamilyName}}
+                                    {{applicant.Gender}}
+                                    {{applicant.DOB}}
+                                    {{applicant.Address}}
+                                    {{applicant.City}},
+                                    {{applicant.PIN}}
+                                    {{applicant.Country}}
+                                    {{applicant.PermanentAddress}}
+                                    {{applicant.PermanentCity}}
+                                    {{applicant.PermanentPIN}}
+                                    {{applicant.PermanentCountry}}
+                                    {{applicant.PassportNo}}
+                                    {{applicant.AadharNo}}
+                                    {{applicant.CellNo}}
+                                    {{applicant.AlternateCellNo}}
+                                    {{applicant.Email}}
+                                    {{applicant.Industry}}
+                                    {{applicant.SalaryExpected}}
+                                    {{applicant.Currency}}
+                                    {{applicant.SalaryExpectedRemarks}}
+
+                                    <div *ngFor="let professions of applicant.Profession">
+                                        industry- {{professions.Industry}}
+                                        Position- {{professions.Position}}
+                                        Division- {{professions.Division}}
+                                    </div>
+
+                                    <div *ngFor="let qualification of applicant.Qualification">
+                                        University: {{qualification.University}}
+                                        Degree: {{qualification.Degree}}
+                                        YearPassed: {{qualification.YearPassed}}
+                                    </div>
+                                    <div *ngFor="let experience of applicant.Experience">
+                                        Company: {{experience.University}}
+                                        Designation: {{experience.Designation}}
+                                        From: {{experience.From}}
+                                        To: {{experience.To}}
+                                    </div>
+                                    {{applicant.Source}}
+                                    {{applicant.SourceIdentity}}
+                                    {{applicant.Job}}
+                                    {{applicant.Division}}
+                                    {{applicant.Position}}
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

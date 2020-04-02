@@ -31,6 +31,7 @@ import { RecruitementProcessFlowComponent } from './recruitement-process-flow/re
 import { OtherServicesComponent } from './other-services/other-services.component';
 import { UniqueSellingPropositionComponent } from './unique-selling-proposition/unique-selling-proposition.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { TotalApplicantsComponent } from './total-applicants/total-applicants.component';
 
 const appRoutes: Routes = [    // define this before @NgModule 
   { path: 'home', component: HomeComponent },
@@ -49,6 +50,7 @@ const appRoutes: Routes = [    // define this before @NgModule
   { path: 'aboutus', component: AboutUsComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'contactus', component: ContactusComponent },
+  { path: 'totalApplicants', component: TotalApplicantsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent }
 ];
@@ -72,7 +74,8 @@ const appRoutes: Routes = [    // define this before @NgModule
     OtherServicesComponent,
     UniqueSellingPropositionComponent,
     AboutUsComponent,
-    RecruitementProcessFlowComponent
+    RecruitementProcessFlowComponent,
+    TotalApplicantsComponent
   ],
   imports: [
     HttpClientModule, BrowserModule, RouterModule, MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule,
