@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployerComponent implements OnInit {
 
+  public optionSelected:string = "";
   constructor() { }
 
   ngOnInit() {

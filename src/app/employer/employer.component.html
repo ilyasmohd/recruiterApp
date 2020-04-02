@@ -7,9 +7,58 @@
                         <div class="col-md-12">
                             <h4>We need manpower as detailed below</h4>
                             <hr>
+                            <select class="form-control here" name="employerOption" [(ngModel)]="optionSelected"
+                                id="employerOption">
+                                <option value="">--Select--</option>
+                                <option value="option1">Option1</option>
+                                <option value="option2">Option2</option>
+                            </select>
+                            <hr>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" *ngIf="optionSelected=='option1'">
+                        <div class="col-md-12">
+                            <form>
+                                <div class="row">
+                                    <div class="form-group ">
+                                        <div>Please call me on my Phone No to discuss my manpower requirements.</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group ">
+                                        <label for="callername" class=" col-form-label">Name of Caller</label>
+                                        <input id="callername" name="callername" placeholder="Name of Caller*"
+                                            class="form-control here" type="text" required="required">
+                                    </div>
+                                    <div class="col-md-6 form-group ">
+                                        <label for="companyname" class="col-form-label">Name of Company</label>
+                                        <input id="companyname" name="companyname" placeholder="Name of Company*"
+                                            class="form-control here" required="required" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group ">
+                                        <label for="calleremail" class=" col-form-label">Email</label>
+                                        <input id="calleremail" name="calleremail" placeholder="Industry"
+                                            class="form-control here" type="text" required="required">
+                                    </div>
+                                    <div class="col-md-6 form-group ">
+                                        <label for="callercontactno" class=" col-form-label">Contact No(along with
+                                            country code)</label>
+                                        <input id="callercontactno" name="callercontactno" placeholder="contact no"
+                                            class="form-control here" type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="offset-4 col-md-8">
+                                        <button name="submit" type="submit" class="btn btn-primary"> Submit My Request
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="optionSelected=='option2'">
                         <div class="col-md-12">
                             <form>
                                 <div class="row">
@@ -79,10 +128,21 @@
                                     </div>
                                 </div>
                                 <hr width="100%">
-
+                                <div class="row">
+                                    <div class="col-md-4 form-group ">
+                                        <label for="website" class=" col-form-label">Work hours</label>
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <label for="website" class=" col-form-label">8 hours</label>
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <label for="publicinfo" class=" col-form-label">Per day, excluding lunch break
+                                            and tea breaks</label>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="offset-4 col-md-8">
-                                        <button name="submit" type="submit" class="btn btn-primary"> Save
+                                        <button name="submit" type="submit" class="btn btn-primary"> Submit My Request
                                         </button>
                                     </div>
                                 </div>
