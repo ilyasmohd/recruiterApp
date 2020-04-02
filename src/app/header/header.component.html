@@ -11,42 +11,45 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03" *ngIf="toggleNav">
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home" (click)="hideNavbar()">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/service" (click)="hideNavbar()">About Us</a>
+          <a class="nav-link" routerLink="/home" (click)="hideNavbar()">Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item dropdown dmenu">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" (click)="navToggle()">
             Our Services
           </a>
           <div class="dropdown-menu sm-menu" *ngIf="toggle">
-            <a class="dropdown-item" routerLink="/service" (click)="hideNavbar()"> Service</a>
             <a class="dropdown-item" routerLink="/mission-vision" (click)="hideNavbar()">Mission and Vision</a>
-            <a class="dropdown-item" routerLink="/recruitement-process-flow'" (click)="hideNavbar()">Overseas
-              Recruitment Process Flow</a>
-            <a class="dropdown-item" routerLink="/ousp" (click)="hideNavbar()">Our Unique Selling Proposition</a>
+            <a class="dropdown-item" routerLink="/recruitement-process-flow" (click)="hideNavbar()">Recruitment Process
+              Flow Chart</a>
+            <a class="dropdown-item" routerLink="/sellingProposition" (click)="hideNavbar()">Our Unique Selling
+              Proposition(USP)</a>
             <a class="dropdown-item" routerLink="/ethics" (click)="hideNavbar()">Ethics, Confidentiality and Data
-              Protection</a>
+              Protection Policies</a>
+            <a class="dropdown-item" routerLink="/ourclients" (click)="hideNavbar()">Some of Our Clients</a>
+            <a class="dropdown-item" routerLink="/industriesServed" (click)="hideNavbar()">Industries Served by Us</a>
+            <a class="dropdown-item" routerLink="/otherServices" (click)="hideNavbar()">Other Services</a>
           </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/openings" (click)="hideNavbar()">Current Openings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/status" (click)="hideNavbar()">Check Status</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/employer" (click)="hideNavbar()">Employer Zone</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/jobseeker" (click)="hideNavbar()">Jobseeker Zone</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/aboutus" (click)="hideNavbar()">About Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/feedback" (click)="hideNavbar()">Feedback</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/careers" (click)="hideNavbar()">Careers</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/status" (click)="hideNavbar()">Ongoing Job Status</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" routerLink="/contactus" (click)="hideNavbar()">Contact Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/jobseeker" (click)="hideNavbar()">Employer</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/jobseeker" (click)="hideNavbar()">Jobseeker</a>
         </li>
       </ul>
     </div>

@@ -10,15 +10,15 @@
                         </div>
                     </div>
                     <img src="assets/img/logo.png" alt="" class="img-fluid loader" *ngIf="showLoader">
-
                     <div class="row">
                         <div class="col-md-12" *ngIf="!isApplicationSubmitted">
                             <form (ngSubmit)="onSubmit()" ngNativeValidate>
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
                                         <label for="aadharNo" class=" col-form-label">Aadhar No.*</label>
-                                        <input id="aadharNo" name="aadharNo" placeholder="Aadhar No.*" required="required"
-                                            class="form-control here" type="text" [(ngModel)]="jobSeekerObj.AadharNo">
+                                        <input id="aadharNo" name="aadharNo" placeholder="Aadhar No.*"
+                                            required="required" class="form-control here" type="text"
+                                            [(ngModel)]="jobSeekerObj.AadharNo">
                                     </div>
                                     <div class="col-md-4 form-group ">
                                         <label for="passportNo" class="col-form-label">Passport No.*</label>
@@ -46,8 +46,6 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
-                                        <!-- <input id="gender" name="gender" placeholder="Gender" class="form-control here"
-                                            required="required" type="text"> -->
                                         <select name="gender" id="gender" class="form-control here"
                                             [(ngModel)]="jobSeekerObj.Gender">
                                             <option value="Male" selected>Male</option>
@@ -59,25 +57,21 @@
                                             class="form-control here" required="required" type="date" title="DOB*">
                                     </div>
                                     <div class="col-md-4 form-group ">
-                                        <!-- <label for="email" class="col-form-label">Email.*</label> -->
                                         <input id="email" name="email" placeholder="Email*" class="form-control here"
                                             required="required" type="text" [(ngModel)]="jobSeekerObj.Email">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
-                                        <!-- <label for="cellno" class="col-form-label">Cell No.</label> -->
                                         <input id="cellno" name="cellno" placeholder="Cell No."
                                             class="form-control here" required="required" type="text"
                                             [(ngModel)]="jobSeekerObj.CellNo">
                                     </div>
                                     <div class="col-md-4 form-group ">
-                                        <!-- <label for="altercelno" class=" col-form-label">Alternate Cell No.</label> -->
                                         <input id="altercelno" name="altercelno" placeholder="Alternate No."
                                             class="form-control here" type="text"
                                             [(ngModel)]="jobSeekerObj.AlternateCellNo">
                                     </div>
-
                                 </div>
                                 <hr width="100%">
                                 <label for="address" class=" form-group bold">Present Address</label>
@@ -131,9 +125,9 @@
                                             [(ngModel)]="jobSeekerObj.PermanentPIN">
                                     </div>
                                     <div class="col-md-3 form-group ">
-                                        <select id="company" class="form-control" placeholder="Permanent Country*" title="Country"
-                                            [(ngModel)]="jobSeekerObj.PermanentCountry" name="PermanentCountry"
-                                            [disabled]="isAddresSame">
+                                        <select id="company" class="form-control" placeholder="Permanent Country*"
+                                            title="Country" [(ngModel)]="jobSeekerObj.PermanentCountry"
+                                            name="PermanentCountry" [disabled]="isAddresSame">
                                             <option value="">--Select Country--</option>
                                         </select>
                                     </div>
@@ -141,18 +135,23 @@
                                 <hr width="100%">
                                 <div class="row">
                                     <label for="publicinfo"
-                                    class="col-md-2 form-group  col-form-label bold">Source</label>
+                                        class="col-md-2 form-group  col-form-label bold">Source</label>
                                     <div class="col-md-5">
-                                        <!-- <label for="source" class="col-md-6 form-group  col-form-label bold"></label> -->
-                                        <select name="source" id="source" (change)="UpdateSourceIdentity($event)" [(ngModel)]="jobSeekerObj.Source" class="form-control" required="required">
+                                        <select name="source" id="source" (change)="UpdateSourceIdentity($event)"
+                                            [(ngModel)]="jobSeekerObj.Source" class="form-control" required="required">
                                             <option value="">--Select Source--</option>
-                                            <option *ngFor="let source of miscelaneous.SourceMasterData" [value]="source.Description">{{source.Description}}</option>
+                                            <option *ngFor="let source of miscelaneous.SourceMasterData"
+                                                [value]="source.Description">{{source.Description}}</option>
                                         </select>
                                     </div>
                                     <div class="col-md-5">
-                                        <select name="sourceIdentity" id="sourceIdentity" [(ngModel)]="jobSeekerObj.SourceIdentity" class="form-control" required="required">
+                                        <select name="sourceIdentity" id="sourceIdentity"
+                                            [(ngModel)]="jobSeekerObj.SourceIdentity" class="form-control"
+                                            required="required">
                                             <option value="">--Select Source Identities--</option>
-                                            <option *ngFor="let sourceIdentity of sourceIdentityMasterData" [value]="sourceIdentity.Description">{{sourceIdentity.Description}}</option>
+                                            <option *ngFor="let sourceIdentity of sourceIdentityMasterData"
+                                                [value]="sourceIdentity.Description">{{sourceIdentity.Description}}
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -163,34 +162,38 @@
                                     <div class="col-md-10">
                                         <div class="row">
                                             <div class="col-md-3 form-group ">
-                                               <select name="job" id="job" class="form-control here"
-                                                   [(ngModel)]="jobSeekerObj.Job">
-                                                   <option value="">--Select Job--</option>
-                                                   <option *ngFor="let job of jobMasterData" [value]="job.Profession">{{job.Profession}}</option>
-                                               </select>
-                                           </div>
+                                                <select name="job" id="job" class="form-control here"
+                                                    [(ngModel)]="jobSeekerObj.Job">
+                                                    <option value="">--Select Job--</option>
+                                                    <option *ngFor="let job of jobMasterData" [value]="job.Profession">
+                                                        {{job.Profession}}</option>
+                                                </select>
+                                            </div>
                                             <div class="col-md-3 form-group ">
                                                 <select name="industry" id="industry" class="form-control here"
                                                     [(ngModel)]="jobSeekerObj.Industry">
                                                     <option value="">--Select Industry--</option>
-                                                    <option *ngFor="let industry of miscelaneous.IndustryMasterData" [value]="industry.Description">{{industry.Description}}</option>
+                                                    <option *ngFor="let industry of miscelaneous.IndustryMasterData"
+                                                        [value]="industry.Description">{{industry.Description}}</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-3 form-group ">
                                                 <select name="division" id="division" class="form-control here"
-                                                [(ngModel)]="jobSeekerObj.Division">
-                                                <option value="">--Select Division--</option>
-                                                <option *ngFor="let division of miscelaneous.DivisionMasterData" [value]="division.Description">{{division.Description}}</option>
-                                            </select>
+                                                    [(ngModel)]="jobSeekerObj.Division">
+                                                    <option value="">--Select Division--</option>
+                                                    <option *ngFor="let division of miscelaneous.DivisionMasterData"
+                                                        [value]="division.Description">{{division.Description}}</option>
+                                                </select>
                                             </div>
                                             <div class="col-md-3 form-group ">
                                                 <select name="position" id="position" class="form-control here"
-                                                [(ngModel)]="jobSeekerObj.Position">
-                                                <option value="">--Select Position--</option>
-                                                <option *ngFor="let position of miscelaneous.PositionMasterData" [value]="position.Description">{{position.Description}}</option>
-                                            </select>
+                                                    [(ngModel)]="jobSeekerObj.Position">
+                                                    <option value="">--Select Position--</option>
+                                                    <option *ngFor="let position of miscelaneous.PositionMasterData"
+                                                        [value]="position.Description">{{position.Description}}</option>
+                                                </select>
                                             </div>
-                                             <div class="col-md-1 form-group align-self-end">
+                                            <div class="col-md-1 form-group align-self-end">
                                                 <button class="btn btn-primary"
                                                     (click)="addProfessions($event)">Add</button>
                                             </div>
@@ -216,11 +219,6 @@
                                     <label for="publicinfo"
                                         class="col-md-2 form-group  col-form-label bold">Qualification</label>
                                     <div class="col-md-10">
-                                        <!-- <div class="row">
-                                        <label for="publicinfo" class="col-md-4 form-group  col-form-label">University</label>
-                                        <label for="publicinfo" class="col-md-4 form-group  col-form-label">Dip/Degree</label>
-                                        <label for="publicinfo" class="col-md-4 form-group  col-form-label">Year passed</label>
-                                    </div> -->
                                         <div class="row">
                                             <div class="col-md-5 form-group ">
                                                 <input class="form-control" placeholder="University" type="text"
@@ -270,12 +268,6 @@
                                     <label for="publicinfo"
                                         class="col-md-2 form-group  col-form-label bold">Experience</label>
                                     <div class="col-md-10">
-                                        <!-- <div class="row">
-                                <label for="publicinfo" class="col-md-3 col-form-label">Company worked with</label>
-                                <label for="publicinfo" class="col-md-3 col-form-label">Designation</label>
-                                <label for="publicinfo" class="col-md-3 col-form-label">Period from</label>
-                                <label for="publicinfo" class="col-md-3 col-form-label">Period Upto</label>
-                            </div> -->
                                         <div class="row">
                                             <div class="col-md-3 form-group">
                                                 <input placeholder="Company worked with" class="form-control here"
@@ -335,13 +327,11 @@
                                         Expectations</label>
                                     <div class="col-md-9">
                                         <div class="row">
-                                            <!-- <label for="currency" class="col-md-3 col-form-label">Currency</label> -->
                                             <div class="col-md-4 form-group ">
                                                 <input id="currency" name="currency" placeholder="Currency"
                                                     class="form-control here" type="text"
                                                     [(ngModel)]="jobSeekerObj.Currency">
                                             </div>
-                                            <!-- <label for="salaryAmount" class="col-md-2 col-form-label">Amount</label> -->
                                             <div class="col-md-4 form-group ">
                                                 <input id="salaryAmount" name="salaryAmount" placeholder="Amount"
                                                     class="form-control here" type="text"
@@ -364,8 +354,6 @@
                                         <div class="row form-group">
                                             <label for="cvfile" class="col-md-3 col-form-label">CV</label>
                                             <div class="col-md-9">
-                                                <!-- <input id="cvfile" name="cvfile" placeholder="CV"
-                                                    class="form-control here" type="text"> -->
                                                 <input id="cvfile" type="file" name="cvfile" value="upload your cv"
                                                     (change)="handleCVUpload($event.target.files)" />
                                                 <div *ngIf="cvUploaded" class="text-danger">Your CV has been uploaded
@@ -375,8 +363,6 @@
                                         <div class="row form-group">
                                             <label for="photo" class="col-md-3 col-form-label">Photo</label>
                                             <div class="col-md-9">
-                                                <!-- <input id="website" name="website" placeholder="Photo"
-                                                    class="form-control here" type="text"> -->
                                                 <input type="file" id="photofile" name="photofile"
                                                     value="upload your photo"
                                                     (change)="handlePhotoUpload($event.target.files)" />
@@ -388,8 +374,6 @@
                                             <label for="certificates"
                                                 class="col-md-3 col-form-label ">Certificates</label>
                                             <div class="col-md-9">
-                                                <!-- <input id="website" name="website" placeholder="Certificates"
-                                                    class="form-control here" type="text"> -->
                                                 <input type="file" id="certificatefile" name="certificatefile"
                                                     value="upload your certificates"
                                                     (change)="handleCertificateUpload($event.target.files)">
@@ -400,8 +384,6 @@
                                         <div class="row form-group">
                                             <label for="ppcopy" class="col-md-3 col-form-label">PP copy</label>
                                             <div class="col-md-9">
-                                                <!-- <input id="website" name="website" placeholder="PP copy"
-                                                    class="form-control here" type="text"> -->
                                                 <input type="file" id="ppcopy" name="ppcopy"
                                                     value="upload your passport copy"
                                                     (change)="handlePassportUpload($event.target.files)">
