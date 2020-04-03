@@ -1,9 +1,9 @@
-<div id="header" class="fixed-top header-transparent">
+<!-- <div id="header" class="fixed-top header-transparent">
   <nav class="navbar navbar-expand-sm   navbar-dark">
     <div class="logo text-white pull-left" routerLink="/home">
       <h3><img src="assets/img/logo.png" alt="" class="img-fluid" height="30px" width="30px"> Synergy </h3>
     </div>
-    <button class="navbar-toggler pull-right" type="button" (click)="hideNavbar()" data-toggle="collapse"
+    <button class="navbar-toggler pull-right" type="button"  data-toggle="collapse"
       data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
       aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,47 +11,138 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03" *ngIf="toggleNav">
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home" (click)="hideNavbar()">Home<span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/home" >Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item dropdown dmenu">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" (click)="navToggle()">
             Our Services
           </a>
           <div class="dropdown-menu sm-menu" *ngIf="toggle">
-            <a class="dropdown-item" routerLink="/mission-vision" (click)="hideNavbar()">Mission and Vision</a>
-            <a class="dropdown-item" routerLink="/recruitement-process-flow" (click)="hideNavbar()">Recruitment Process
+            <a class="dropdown-item" routerLink="/mission-vision" >Mission and Vision</a>
+            <a class="dropdown-item" routerLink="/recruitement-process-flow" >Recruitment Process
               Flow Chart</a>
-            <a class="dropdown-item" routerLink="/sellingProposition" (click)="hideNavbar()">Our Unique Selling
+            <a class="dropdown-item" routerLink="/sellingProposition" >Our Unique Selling
               Proposition(USP)</a>
-            <a class="dropdown-item" routerLink="/ethics" (click)="hideNavbar()">Ethics, Confidentiality and Data
+            <a class="dropdown-item" routerLink="/ethics" >Ethics, Confidentiality and Data
               Protection Policies</a>
-            <a class="dropdown-item" routerLink="/ourclients" (click)="hideNavbar()">Some of Our Clients</a>
-            <a class="dropdown-item" routerLink="/industriesServed" (click)="hideNavbar()">Industries Served by Us</a>
-            <a class="dropdown-item" routerLink="/otherServices" (click)="hideNavbar()">Other Services</a>
+            <a class="dropdown-item" routerLink="/ourclients" >Some of Our Clients</a>
+            <a class="dropdown-item" routerLink="/industriesServed" >Industries Served by Us</a>
+            <a class="dropdown-item" routerLink="/otherServices" >Other Services</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/openings" (click)="hideNavbar()">Current Openings</a>
+          <a class="nav-link" routerLink="/openings" >Current Openings</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/status" (click)="hideNavbar()">Check Status</a>
+          <a class="nav-link" routerLink="/status" >Check Status</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/employer" (click)="hideNavbar()">Employer Zone</a>
+          <a class="nav-link" routerLink="/employer" >Employer Zone</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/jobseeker" (click)="hideNavbar()">Jobseeker Zone</a>
+          <a class="nav-link" routerLink="/jobseeker" >Jobseeker Zone</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/aboutus" (click)="hideNavbar()">About Us</a>
+          <a class="nav-link" routerLink="/aboutus" >About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/feedback" (click)="hideNavbar()">Feedback</a>
+          <a class="nav-link" routerLink="/feedback" >Feedback</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/contactus" (click)="hideNavbar()">Contact Us</a>
+          <a class="nav-link" routerLink="/contactus" >Contact Us</a>
         </li>
       </ul>
     </div>
   </nav>
-</div>
+</div> -->
+<!-- <div class="bg-light"> -->
+<nav class="navbar navbar-expand-sm p-10pc fixed-top bg-light">
+  <a class="navbar-brand"  routerLink="/home">
+    <img src="assets/img/logo.png" alt="" class="img-fluid" height="40px" width="40px"> Synergy </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon fa fa-bars"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/home">Home</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Our Services
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink="/mission-vision" >Mission and Vision</a>
+        <a class="dropdown-item" routerLink="/recruitement-process-flow" >Recruitment Process
+          Flow Chart</a>
+        <a class="dropdown-item" routerLink="/sellingProposition" >Our Unique Selling
+          Proposition(USP)</a>
+          <a class="dropdown-item" routerLink="/ethics" >Ethics, Confidentiality and Data
+            Protection Policies</a>
+          <a class="dropdown-item" routerLink="/ourclients" >Some of Our Clients</a>
+          <a class="dropdown-item" routerLink="/industriesServed" >Industries Served by Us</a>
+          <a class="dropdown-item" routerLink="/otherServices" >Other Services</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/openings" >Current Openings</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/status" >Check Status</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/employer" >Employer Zone</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/jobseeker" >Jobseeker Zone</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/aboutus" >About Us</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/feedback" >Feedback</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/contactus" >Contact Us</a>
+    </li>
+    
+  </ul>
+  </div>
+</nav>
+<!-- </div> -->
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav> -->
