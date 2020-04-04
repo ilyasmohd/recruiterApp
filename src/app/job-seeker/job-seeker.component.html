@@ -200,46 +200,44 @@
                                         </div>
 
                                         <div class="row" *ngFor="let prof of jobSeekerObj.Professions; let p = index">
-                                            <div class="row">
-                                                <div class="col form-group ">
-                                                    <select name="{{p}}job" id="job" class="form-control here"
-                                                        [(ngModel)]="jobSeekerObj.Job">
-                                                        <option value="">--Select Job--</option>
-                                                        <option *ngFor="let job of jobMasterData" [value]="job.Profession">
-                                                            {{job.Profession}}</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col form-group ">
-                                                    <select name="{{p}}industry" id="industry" class="form-control here"
-                                                        [(ngModel)]="jobSeekerObj.Industry">
-                                                        <option value="">--Select Industry--</option>
-                                                        <option *ngFor="let industry of miscelaneous.IndustryMasterData"
-                                                            [value]="industry.Description">{{industry.Description}}</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col form-group ">
-                                                    <select name="{{p}}division" id="division" class="form-control here"
-                                                        [(ngModel)]="jobSeekerObj.Division">
-                                                        <option value="">--Select Division--</option>
-                                                        <option *ngFor="let division of miscelaneous.DivisionMasterData"
-                                                            [value]="division.Description">{{division.Description}}</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col form-group ">
-                                                    <select name="{{p}}position" id="position" class="form-control here"
-                                                        [(ngModel)]="jobSeekerObj.Position">
-                                                        <option value="">--Select Position--</option>
-                                                        <option *ngFor="let position of miscelaneous.PositionMasterData"
-                                                            [value]="position.Description">{{position.Description}}</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col form-group ">
+                                                <select name="{{p}}job" id="job" class="form-control here"
+                                                    [(ngModel)]="jobSeekerObj.Job">
+                                                    <option value="">--Select Job--</option>
+                                                    <option *ngFor="let job of jobMasterData" [value]="job.Profession">
+                                                        {{job.Profession}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col form-group ">
+                                                <select name="{{p}}industry" id="industry" class="form-control here"
+                                                    [(ngModel)]="jobSeekerObj.Industry">
+                                                    <option value="">--Select Industry--</option>
+                                                    <option *ngFor="let industry of miscelaneous.IndustryMasterData"
+                                                        [value]="industry.Description">{{industry.Description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col form-group ">
+                                                <select name="{{p}}division" id="division" class="form-control here"
+                                                    [(ngModel)]="jobSeekerObj.Division">
+                                                    <option value="">--Select Division--</option>
+                                                    <option *ngFor="let division of miscelaneous.DivisionMasterData"
+                                                        [value]="division.Description">{{division.Description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col form-group ">
+                                                <select name="{{p}}position" id="position" class="form-control here"
+                                                    [(ngModel)]="jobSeekerObj.Position">
+                                                    <option value="">--Select Position--</option>
+                                                    <option *ngFor="let position of miscelaneous.PositionMasterData"
+                                                        [value]="position.Description">{{position.Description}}</option>
+                                                </select>
+                                            </div>
                                             <div class="col-md-1 form-group">
                                                 <button class="btn btn-danger"
                                                     (click)="removeProfessions(p)">Remove</button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
                                 <hr width="100%">
                                 <div class=" row">

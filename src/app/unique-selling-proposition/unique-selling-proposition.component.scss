@@ -1,0 +1,27 @@
+.box-style{
+    box-shadow: 0 0 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);
+    padding: 10px 30px 15px;
+    background: #c8da90;
+    // margin: 20px;
+}
+.ok-style{
+    background-image: url("../../assets/img/ok.png");
+background-position: center;
+background-repeat: no-repeat;
+background-size: contain;
+height: 40px;
+width: 40px;
+position: absolute;
+left: -20px;
+top: 15px;
+}
+.text-logo{
+color: #1c5c93;
+font-weight: 500;
+}
+.titlehd{
+    margin-left: 14%;
+    margin-bottom: 30px;
+    text-decoration: underline;
+    color: #1c5c93;
+}

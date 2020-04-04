@@ -104,9 +104,9 @@ export class JobSeekerComponent implements OnInit {
 
   addProfessions(e) {
     if (e) e.preventDefault();
-    // console.log('this.newProfession', this.newProfession);
-    // this.jobSeekerObj.Professions.push(this.newProfession);
-    // this.newProfession = { Division: "", Industry: "", Position: "" };
+    console.log('this.newProfession', this.newProfession);
+    this.jobSeekerObj.Professions.push(this.newProfession);
+    this.newProfession = { Job:"", Division: "", Industry: "", Position: "" };
   }
 
   removeProfessions(profIndex) {
