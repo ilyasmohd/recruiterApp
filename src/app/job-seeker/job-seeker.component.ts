@@ -16,7 +16,7 @@ export class JobSeekerComponent implements OnInit {
 
   public totalQualifications: Qualification[] = [{ Degree: "", YearPassed: "", University: "" }];
   public totalExperience: Experience[] = [{ To: "", Company: "", From: "", Designation: "" }];
-  public totalProfessions: Profession[] = [{ Division: "", Industry: "", Position: "" }];
+  public totalProfessions: Profession[] = [{ Job:"", Division: "", Industry: "", Position: "" }];
   private cvFile: File = null;
   private passportFile: File = null;
   private certificatesFile: File = null;
@@ -31,7 +31,7 @@ export class JobSeekerComponent implements OnInit {
   public routeJob: string = '';
   public newQualification: Qualification = { YearPassed: "", Degree: "", University: "" };
   public newExperience: Experience = { Designation: "", From: "", Company: "", To: "" }
-  public newProfession: Profession = { Division: "", Industry: "", Position: "" }
+  public newProfession: Profession = { Job:"",Division: "", Industry: "", Position: "" }
   public showLoader: boolean = false;
   public isAddresSame: boolean = false;
   public sourceIdentityMasterData: SourceIdentityMasterData[] = [];
@@ -259,6 +259,7 @@ interface Experience {
 }
 
 interface Profession {
+  Job:string,
   Industry: string,
   Position: string,
   Division: string
