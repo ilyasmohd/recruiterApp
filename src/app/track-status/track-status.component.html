@@ -7,8 +7,8 @@
                     <div class="col-md-4 form-group">
                         <input type="text" class="form-control" placeholder="PassportNo*" required #passportNo>
                     </div>
-                    <div class="col-md-4 form-group"> <input type="text" placeholder="AadharNo*" class="form-control" required
-                            #aadharNo> </div>
+                    <div class="col-md-4 form-group"> <input type="text" placeholder="AadharNo*" class="form-control"
+                            required #aadharNo> </div>
                     <div class="col-md-4 form-group">
                         <button class="btn btn-success" (click)="checkStatus(passportNo.value, aadharNo.value)">Check
                             Status</button>
@@ -42,8 +42,8 @@
                         <button class="btn btn-success" (click)="updateTrackStatus()">Update</button>
                     </div>
                 </div>
+                <div *ngIf="completeStatus.Status.length<=0"><b class="text-danger">No Applicant Found</b></div>
                 <div class="card-style">
-                    <!-- <div class="col-md-12"> -->
                     <div class="row mb-4" *ngIf="completeStatus">
                         <div class="col-md-6">
                             <p><b> Name:</b> {{completeStatus.Name}} </p>
@@ -55,37 +55,27 @@
                             <b>Cell No.:</b> {{completeStatus.Cell}}
                         </div>
                     </div>
-                <div class="table-responsive row">
-                <table class="table "  *ngIf="completeStatus.Status">
-                    <tr>
-                        <th>Date</th>
-                        <th>Present Status</th>
-                        <th>Next Status</th>
-                        <th>Next Status Date</th>
-                        <th>Remarks</th>
-                    </tr>
-                    <tbody>
-                    <tr *ngFor="let singleStatus of completeStatus.Status">
-                        <td>{{singleStatus.Date | date:'shortDate' }}</td>
-                        <td>{{singleStatus.PresentStatus}}</td>
-                        <td>{{singleStatus.NextStatus}}</td>
-                        <td>{{singleStatus.NextStatusDate}}</td>
-                        <td>{{singleStatus.Remarks}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
+                    <div class="table-responsive row">
+                        <table class="table " *ngIf="completeStatus.Status">
+                            <tr>
+                                <th>Date</th>
+                                <th>Present Status</th>
+                                <th>Next Status</th>
+                                <th>Next Status Date</th>
+                                <th>Remarks</th>
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let singleStatus of completeStatus.Status">
+                                    <td>{{singleStatus.Date | date:'shortDate' }}</td>
+                                    <td>{{singleStatus.PresentStatus}}</td>
+                                    <td>{{singleStatus.NextStatus}}</td>
+                                    <td>{{singleStatus.NextStatusDate}}</td>
+                                    <td>{{singleStatus.Remarks}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <!-- <ul *ngFor="let singleStatus of completeStatus.Status">
-                                <li>{{singleStatus.Date | date:'shortDate' }} - {{singleStatus.PresentStatus}} -
-                                    {{singleStatus.NextStatus}} - {{singleStatus.NextStatusDate}} -
-                                    {{singleStatus.Remarks}}</li>
-                            </ul> -->
-                <!-- </div> -->
-
-           
             </div>
         </div>
-
     </div>

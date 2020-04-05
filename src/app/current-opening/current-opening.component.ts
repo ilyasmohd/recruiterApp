@@ -25,6 +25,7 @@ export class CurrentOpeningComponent implements OnInit {
     this.openingsService.GetAll().subscribe(
       jobs => {
         this.openings = jobs;
+        this.openings = this.openings.filter(x => x.IsOppurtunityOpen == true);
         if (this.openings) {
           this.showLoader = false;
         }

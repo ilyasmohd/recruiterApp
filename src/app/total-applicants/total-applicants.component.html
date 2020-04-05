@@ -1,106 +1,138 @@
+<!--
+    {{applicant.Gender}}, {{applicant.DOB}} , {{applicant.Address}} , {{applicant.City}},
+    {{applicant.PIN}} , {{applicant.Country}}, {{applicant.PermanentAddress}}, {{applicant.PermanentCity}}
+    {{applicant.PermanentPIN}}, {{applicant.PermanentCountry}}, {{applicant.Source}}, {{applicant.SourceIdentity}}
+    {{applicant.Job}}, {{applicant.Division}}, {{applicant.Position}}, {{applicant.Industry}}
+    {{applicant.SalaryExpected}}, {{applicant.Currency}}, {{applicant.SalaryExpectedRemarks}}
+-->
+
+<!--New below-->
 <div class="container-fluid bg-pd50">
-    <div class="container">
-        <div class="col-md-12">
-            <div class="card card-pdmg">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1>Search Job Applicants!!!!</h1>
-                            <input type="text" placeholder="Applicant name" [(ngModel)]="searchByName"
-                                class="form-control here">
-                            <button class="btn btn-primary" (click)="searchApplicantsByName($event)">Search by Applicant
-                                First Name</button>
-                            <hr>
-                            <input type="text" placeholder="Passport No" [(ngModel)]="searchByPassPortNo"
-                                class="form-control here">
-                            <button class="btn btn-primary" (click)="searchApplicantsByPassPortNo($event)">Search by
-                                Applicant
-                                PassPort No</button>
-                            <hr>
-                            <input type="text" placeholder="Aadhar No" [(ngModel)]="searchByAadharNo"
-                                class="form-control here">
-                            <button class="btn btn-primary" (click)="searchApplicantsByAadharNo($event)">Search by
-                                Applicant
-                                Aadhar no</button>
-                            <hr>
-                            <select name="industrySearch" id="industrySearch" [(ngModel)]="searchByIndustry">
-                                <option value="">--select Industry--</option>
-                                <option *ngFor="let industry of miscelaneous.IndustryMasterData"
-                                    [value]="industry.Description">
-                                    {{industry.Description}}</option>
-                            </select>
-                            <button class="btn btn-primary" (click)="searchApplicantsByIndustry($event)">Search by
-                                Industry</button>
-                            <hr>
-                            <select name="divisionSearch" id="divisionSearch" [(ngModel)]="searchByDivision">
-                                <option value="">--Select Division--</option>
-                                <option *ngFor="let division of miscelaneous.DivisionMasterData"
-                                    [value]="division.Description">
-                                    {{division.Description}}</option>
-                            </select>
-                            <button class="btn btn-primary" (click)="searchApplicantsByDivision($event)">Search by
-                                Division</button>
-                            <hr>
-                            <select name="positionSearch" id="positionSearch" [(ngModel)]="searchByPosition">
-                                <option value="">--Select Position--</option>
-                                <option *ngFor="let position of miscelaneous.PositionMasterData"
-                                    [value]="position.Description">
-                                    {{position.Description}}</option>
-                            </select>
-                            <button class="btn btn-primary" (click)="searchApplicantsByPosition($event)">Search by
-                                Position</button>
-                            <hr>
-                            <div class="row">
-                                <div *ngFor="let applicant of jobSeekers">
-                                    {{applicant.FirstName}} - {{applicant.SecondName}},
-                                    {{applicant.FamilyName}}
-                                    {{applicant.Gender}}
-                                    {{applicant.DOB}}
-                                    {{applicant.Address}}
-                                    {{applicant.City}},
-                                    {{applicant.PIN}}
-                                    {{applicant.Country}}
-                                    {{applicant.PermanentAddress}}
-                                    {{applicant.PermanentCity}}
-                                    {{applicant.PermanentPIN}}
-                                    {{applicant.PermanentCountry}}
-                                    {{applicant.PassportNo}}
-                                    {{applicant.AadharNo}}
-                                    {{applicant.CellNo}}
-                                    {{applicant.AlternateCellNo}}
-                                    {{applicant.Email}}
-                                    {{applicant.Industry}}
-                                    {{applicant.SalaryExpected}}
-                                    {{applicant.Currency}}
-                                    {{applicant.SalaryExpectedRemarks}}
-
-                                    <div *ngFor="let professions of applicant.Profession">
-                                        industry- {{professions.Industry}}
-                                        Position- {{professions.Position}}
-                                        Division- {{professions.Division}}
-                                    </div>
-
-                                    <div *ngFor="let qualification of applicant.Qualification">
-                                        University: {{qualification.University}}
-                                        Degree: {{qualification.Degree}}
-                                        YearPassed: {{qualification.YearPassed}}
-                                    </div>
-                                    <div *ngFor="let experience of applicant.Experience">
-                                        Company: {{experience.University}}
-                                        Designation: {{experience.Designation}}
-                                        From: {{experience.From}}
-                                        To: {{experience.To}}
-                                    </div>
-                                    {{applicant.Source}}
-                                    {{applicant.SourceIdentity}}
-                                    {{applicant.Job}}
-                                    {{applicant.Division}}
-                                    {{applicant.Position}}
-                                    <hr>
-                                </div>
-                            </div>
-                        </div>
+    <div class="container mt-5 pt-3">
+        <div class="card card-pdmg ">
+            <div class="card-body">
+                <h4 class="text-success mb-3">Search Job Applicants!!!!</h4>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <input type="text" class="form-control" placeholder="Applicant name" [(ngModel)]="searchByName">
+                        <button class="btn btn-primary" (click)="searchApplicantsByName($event)">Search by First
+                            Name</button>
                     </div>
+                    <div class="col-md-4 form-group">
+                        <input type="text" placeholder="Passport No" class="form-control here"
+                            [(ngModel)]="searchByPassPortNo">
+                        <button class="btn btn-primary" (click)="searchApplicantsByPassPortNo($event)">Search by
+                            PassPort No</button>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <input type="text" placeholder="Aadhar No" [(ngModel)]="searchByAadharNo"
+                            class="form-control here">
+                        <button class="btn btn-primary" (click)="searchApplicantsByAadharNo($event)">Search by
+                            Aadhar no</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <select name="industrySearch" class="form-control here" id="industrySearch"
+                            [(ngModel)]="searchByIndustry">
+                            <option value="">--select Industry--</option>
+                            <option *ngFor="let industry of miscelaneous.IndustryMasterData"
+                                [value]="industry.Description">
+                                {{industry.Description}}</option>
+                        </select>
+                        <button class="btn btn-primary" (click)="searchApplicantsByIndustry($event)">Search by
+                            Industry</button>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <select name="divisionSearch" class="form-control here" id="divisionSearch"
+                            [(ngModel)]="searchByDivision">
+                            <option value="">--Select Division--</option>
+                            <option *ngFor="let division of miscelaneous.DivisionMasterData"
+                                [value]="division.Description">
+                                {{division.Description}}</option>
+                        </select>
+                        <button class="btn btn-primary" (click)="searchApplicantsByDivision($event)">Search by
+                            Division</button>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <select name="positionSearch" class="form-control here" id="positionSearch"
+                            [(ngModel)]="searchByPosition">
+                            <option value="">--Select Position--</option>
+                            <option *ngFor="let position of miscelaneous.PositionMasterData"
+                                [value]="position.Description">
+                                {{position.Description}}</option>
+                        </select>
+                        <button class="btn btn-primary" (click)="searchApplicantsByPosition($event)">Search by
+                            Position</button>
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let applicant of jobSeekers" class="card-style">
+                <div class="row mb-4 myTable-style">
+                    <div class="col-md-6">
+                        <p><b> Name:</b> {{applicant.FirstName}} - {{applicant.SecondName}} -
+                            {{applicant.FamilyName}}</p>
+                        <p> <b> Passport:</b> {{applicant.PassportNo}} </p>
+                        <b>Aadhar No:</b> {{applicant.AadharNo}}
+                    </div>
+                    <div class="col-md-6">
+                        <p> <b>Email:</b> {{applicant.Email}} </p>
+                        <p><b>Cell No:</b> {{applicant.CellNo}}</p>
+                        <b>Alternate Cell No:</b> {{applicant.AlternateCellNo}}
+                    </div>
+                </div>
+                <div class="table-responsive row myTable-style">
+                    <p><b>Profession Details:-</b></p>
+                    <table class="table " *ngIf="applicant.Profession">
+                        <tr>
+                            <th>Industry</th>
+                            <th>Position</th>
+                            <th>Division</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let professions of applicant.Profession">
+                                <td> {{professions.Industry}}</td>
+                                <td>{{professions.Position}}</td>
+                                <td>{{professions.Division}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-responsive row myTable-style">
+                    <p><b>Qualification Details:-</b></p>
+                    <table class="table " *ngIf="applicant.Qualification">
+                        <tr>
+                            <th>University</th>
+                            <th>Degree</th>
+                            <th>YearPassed</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let qualification of applicant.Qualification">
+                                <td>{{qualification.University}}</td>
+                                <td>{{qualification.Degree}}</td>
+                                <td>{{qualification.YearPassed}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-responsive row myTable-style">
+                    <p> <b> Experience Details:-</b></p>
+                    <table class="table " *ngIf="applicant.Experience">
+                        <tr>
+                            <th>Company</th>
+                            <th>Designation</th>
+                            <th>From</th>
+                            <th>To</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let experience of applicant.Experience">
+                                <td>{{experience.Company}}</td>
+                                <td>{{experience.Designation}}</td>
+                                <td>{{experience.From}}</td>
+                                <td>{{experience.To}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

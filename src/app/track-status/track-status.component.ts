@@ -22,7 +22,6 @@ export class TrackStatusComponent implements OnInit {
 
   ngOnInit() {
     this.statusService.GetStatusMasterData().subscribe(statuses => {
-      //console.log(statuses);
       this.statusMasterData = statuses;
       console.log(this.statusMasterData);
     }, err => {
@@ -34,7 +33,12 @@ export class TrackStatusComponent implements OnInit {
     console.log('checkStatus', passportNo, aadhar);
     this.statusService.TrackStatus(passportNo, aadhar).subscribe(status => {
       console.log(status);
-      this.completeStatus = status[0];
+      if (status.length > 0) {
+        this.completeStatus = status[0];
+      }
+      else {
+        this.completeStatus = { ID: 0, Name: "", Passport: "", Aadhar: "", Task: "", Cell: "", Status: [] };
+      }
     }, err => {
       console.log(err);
     })
