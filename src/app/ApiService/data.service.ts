@@ -6,9 +6,8 @@ import { BadRequest } from '../Common/bad-request-error';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-
 
 export class DataService {
   private headers: Headers = new Headers();
@@ -27,14 +26,22 @@ export class DataService {
     }).catch(this.handleError);
   }
 
-  Delete(id): Observable<any> {
-    return this.http.delete(this.url + '/' + id)
+  Delete(id: any): Observable<any> {
+    const opts = { params: new HttpParams().set('Id', id) };
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'text/html; charset=UTF-8'        
+      })
+    };
+    return this.http.delete(this.url + '/' + id, httpOptions)
       .catch(this.handleError);
   }
 
-  Update(post): Observable<any> {
-    return this.http.patch(this.url + '/' + post.id, JSON.stringify({ isRead: true }))
+  Update(resource): Observable<any> {
+    const opts = { params: new HttpParams().set('Id', resource.ID) };
+    return this.http.put(this.url, resource, opts)
       .catch(this.handleError);
+    //this.http.put
   }
 
   public handleError(error: Response): Observable<Error> {

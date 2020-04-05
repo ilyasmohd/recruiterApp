@@ -31,8 +31,6 @@ export class CurrentOpeningComponent implements OnInit {
       }, err => {
         console.log(err);
       });
-    //setTimeout(() => { if(this.openings) this.showLoader = false; }, 3000);
-
   }
 
   public get getAllOpenings(): currentOpenings[] {

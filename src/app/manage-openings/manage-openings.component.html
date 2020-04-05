@@ -1,0 +1,161 @@
+<br>
+<div [class.disabled]="showLoader ">
+</div>
+<img src="assets/img/logo.png" alt="" class="img-fluid loader mt-3" *ngIf="showLoader">
+
+<section>
+    <div class="container">
+        <h4 class="brown">Update Present Openings!</h4>
+        <div *ngFor="let opening of currentOpenings;let q = index">
+            <div class="icon-shadow">
+                <div class="row my-4">
+                    <div class="col-lg-4 col-md-12 " data-aos="fade-up">
+                        <p class=" mb-0">
+                            <label for="{{q}}Profession">Profession:
+                                <input name="{{q}}Profession" placeholder="Profession" class="form-control here"
+                                    type="text" [(ngModel)]="opening.Profession"></label>
+                        </p>
+                        <p class=" mb-0">
+                            <label for="{{q}}Employer">Employer:
+                                <input name="{{q}}Employer" placeholder="Employer" class="form-control here" type="text"
+                                    [(ngModel)]="opening.Employer"></label>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-12" data-aos="fade-up">
+                        <p class=" mb-0">
+                            <label for="{{q}}EmploymentCity">Employment City:
+                                <input name="{{q}}EmploymentCity" placeholder="EmploymentCity" class="form-control here"
+                                    type="text" [(ngModel)]="opening.EmploymentCity"></label>
+                        </p>
+                        <p class=" mb-0">
+                            <label for="{{q}}Renumeration">Renumeration:
+                                <input name="{{q}}Renumeration" placeholder="Renumeration" class="form-control here"
+                                    type="number" [(ngModel)]="opening.Renumeration"></label>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-12" data-aos="fade-up">
+                        <p class=" mb-0">
+                            <label for="{{q}}JobDescription">Job Description:
+                                <input name="{{q}}JobDescription" placeholder="JobDescription" class="form-control here"
+                                    type="text" [(ngModel)]="opening.JobDescription"></label>
+                        </p>
+                        <p class="mb-0">
+                            <label class="col-form-label">
+                                Is Oppurtunity Open
+                                <input type="checkbox" [(ngModel)]="opening.IsOppurtunityOpen">
+                            </label>
+                        </p>
+                    </div>
+                </div>
+                <div class="" data-aos="fade-up">
+                    <button class="btn btn-success" (click)="updateOpening(opening, q)">Update Opening</button>
+                    <button class="btn btn-danger pull-right" (click)="removeOpening(opening.ID, q)">Remove
+                        Opening</button>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h4 class="brown">Add New Opening!</h4>
+        <div class="row icon-shadow my-4">
+            <div class="col-lg-4 col-md-12 " data-aos="fade-up">
+                <p class="mb-0">
+                    <label for="NewProfession">Profession:
+                        <input name="NewProfession" placeholder="Profession" class="form-control here" type="text"
+                            [(ngModel)]="singleNewOpening.Profession"></label>
+                </p>
+                <p class="mb-0">
+                    <label for="NewEmployer">Employer:
+                        <input name="NewEmployer" placeholder="Employer" class="form-control here" type="text"
+                            [(ngModel)]="singleNewOpening.Employer"></label>
+                </p>
+
+            </div>
+            <div class="col-lg-4 col-md-12" data-aos="fade-up">
+                <p class=" mb-0">
+                    <label for="NewEmploymentCity">Employment City:
+                        <input name="NewEmploymentCity" placeholder="EmploymentCity" class="form-control here"
+                            type="text" [(ngModel)]="singleNewOpening.EmploymentCity"></label>
+                </p>
+                <p class=" mb-0">
+                    <label for="NewRenumeration">Renumeration Amount:
+                        <input name="NewRenumeration" placeholder="Renumeration" class="form-control here" type="number"
+                            [(ngModel)]="singleNewOpening.Renumeration"></label>
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-12" data-aos="fade-up">
+                <p class="mb-0">
+                    <label for="NewJobDescription">Job Description:
+                        <input name="NewJobDescription" placeholder="JobDescription" class="form-control here"
+                            type="text" [(ngModel)]="singleNewOpening.JobDescription"></label>
+                    <label class="col-form-label">
+                        Is Oppurtunity Open:
+                        <select class="form-control here" name="NewIsOppurtunityOpen"
+                            [(ngModel)]="singleNewOpening.IsOppurtunityOpen">
+                            <option [value]="1==1">Yes</option>
+                            <option [value]="1==2">No</option>
+                        </select>
+                    </label>
+                </p>
+            </div>
+            <button class="btn-style my-2 " (click)="addOpening($event)">Add Opening</button>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class="brown">Newly Added Openings!</h4>
+        <div *ngIf="newOpenings.length==0">No New openings added</div>
+        <div *ngFor="let opening of newOpenings;let q = index">
+            <div class="icon-shadow">
+                <div class="row my-4">
+                    <div class="col-lg-4 col-md-12 " data-aos="fade-up">
+                        <p class=" mb-0">
+                            <label for="{{q}}Profession">Profession:
+                                <input name="{{q}}Profession" type="text" disabled [(ngModel)]="opening.Profession">
+                            </label>
+                        </p>
+                        <p class=" mb-0">
+                            <label for="{{q}}Employer">Employer:
+                                <input name="{{q}}Employer" type="text" disabled [(ngModel)]="opening.Employer">
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-12" data-aos="fade-up">
+                        <p class=" mb-0">
+                            <label for="{{q}}EmploymentCity">Employment City:
+                                <input name="{{q}}EmploymentCity" type="text" disabled
+                                    [(ngModel)]="opening.EmploymentCity">
+                            </label>
+                        </p>
+                        <p class=" mb-0">
+                            <label for="{{q}}Renumeration">Renumeration:
+                                <input name="{{q}}Renumeration" type="text" disabled [(ngModel)]="opening.Renumeration">
+                            </label>
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-12" data-aos="fade-up">
+                        <p class=" mb-0">
+                            <label for="{{q}}JobDescription">Employment City:
+                                <input name="{{q}}JobDescription" type="text" disabled
+                                    [(ngModel)]="opening.JobDescription">
+                            </label>
+                        </p>
+                        <p class=" mb-0">
+                            <label for="{{q}}IsOppurtunityOpen">IsOppurtunityOpen:
+                                <input type="text" *ngIf="opening.IsOppurtunityOpen" value="Yes" disabled>
+                                <input type="text" *ngIf="!opening.IsOppurtunityOpen" value="No" disabled>
+                            </label>
+                        </p>
+                    </div>
+                    <button class="btn btn-danger my-2 pull-right" (click)="this.newOpenings.splice(q, 1);">Remove
+                        Opening</button>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <button *ngIf="newOpenings.length>0" class="btn-style my-2 " (click)="createOpening($event)">Create All
+            Openings</button>
+    </div>
+</section>

@@ -5,20 +5,52 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1>Total Job Applicants!!!!</h1>
+                            <h1>Search Job Applicants!!!!</h1>
                             <input type="text" placeholder="Applicant name" [(ngModel)]="searchByName"
                                 class="form-control here">
                             <button class="btn btn-primary" (click)="searchApplicantsByName($event)">Search by Applicant
-                                Name</button>
+                                First Name</button>
+                            <hr>
+                            <input type="text" placeholder="Passport No" [(ngModel)]="searchByPassPortNo"
+                                class="form-control here">
+                            <button class="btn btn-primary" (click)="searchApplicantsByPassPortNo($event)">Search by
+                                Applicant
+                                PassPort No</button>
+                            <hr>
+                            <input type="text" placeholder="Aadhar No" [(ngModel)]="searchByAadharNo"
+                                class="form-control here">
+                            <button class="btn btn-primary" (click)="searchApplicantsByAadharNo($event)">Search by
+                                Applicant
+                                Aadhar no</button>
                             <hr>
                             <select name="industrySearch" id="industrySearch" [(ngModel)]="searchByIndustry">
                                 <option value="">--select Industry--</option>
-                                <option *ngFor="let industry of miscelaneous.IndustryMasterData" [value]="industry.Description">
+                                <option *ngFor="let industry of miscelaneous.IndustryMasterData"
+                                    [value]="industry.Description">
                                     {{industry.Description}}</option>
                             </select>
                             <button class="btn btn-primary" (click)="searchApplicantsByIndustry($event)">Search by
                                 Industry</button>
-                            <div>
+                            <hr>
+                            <select name="divisionSearch" id="divisionSearch" [(ngModel)]="searchByDivision">
+                                <option value="">--Select Division--</option>
+                                <option *ngFor="let division of miscelaneous.DivisionMasterData"
+                                    [value]="division.Description">
+                                    {{division.Description}}</option>
+                            </select>
+                            <button class="btn btn-primary" (click)="searchApplicantsByDivision($event)">Search by
+                                Division</button>
+                            <hr>
+                            <select name="positionSearch" id="positionSearch" [(ngModel)]="searchByPosition">
+                                <option value="">--Select Position--</option>
+                                <option *ngFor="let position of miscelaneous.PositionMasterData"
+                                    [value]="position.Description">
+                                    {{position.Description}}</option>
+                            </select>
+                            <button class="btn btn-primary" (click)="searchApplicantsByPosition($event)">Search by
+                                Position</button>
+                            <hr>
+                            <div class="row">
                                 <div *ngFor="let applicant of jobSeekers">
                                     {{applicant.FirstName}} - {{applicant.SecondName}},
                                     {{applicant.FamilyName}}

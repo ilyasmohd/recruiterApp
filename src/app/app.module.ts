@@ -32,6 +32,7 @@ import { OtherServicesComponent } from './other-services/other-services.componen
 import { UniqueSellingPropositionComponent } from './unique-selling-proposition/unique-selling-proposition.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { TotalApplicantsComponent } from './total-applicants/total-applicants.component';
+import { ManageOpeningsComponent } from './manage-openings/manage-openings.component';
 
 const appRoutes: Routes = [    // define this before @NgModule 
   { path: 'home', component: HomeComponent },
@@ -51,6 +52,7 @@ const appRoutes: Routes = [    // define this before @NgModule
   { path: 'feedback', component: FeedbackComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'totalApplicants', component: TotalApplicantsComponent },
+  { path: 'manageOpenings', component: ManageOpeningsComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent }
 ];
@@ -75,7 +77,8 @@ const appRoutes: Routes = [    // define this before @NgModule
     UniqueSellingPropositionComponent,
     AboutUsComponent,
     RecruitementProcessFlowComponent,
-    TotalApplicantsComponent
+    TotalApplicantsComponent,
+    ManageOpeningsComponent
   ],
   imports: [
     HttpClientModule, BrowserModule, RouterModule, MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule,
