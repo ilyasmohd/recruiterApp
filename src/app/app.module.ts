@@ -45,6 +45,7 @@ const appRoutes: Routes = [    // define this before @NgModule
   { path: 'openings', component: CurrentOpeningComponent },
   { path: 'otherServices', component: OtherServicesComponent },
   { path: 'status', component: TrackStatusComponent },
+  { path: 'adminstatus/:admin', component: TrackStatusComponent },
   { path: 'employer', component: EmployerComponent },
   { path: 'jobseeker', component: JobSeekerComponent },
   { path: 'jobseeker/:profession', component: JobSeekerComponent },

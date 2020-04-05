@@ -16,7 +16,7 @@ export class JobSeekerComponent implements OnInit {
 
   public totalQualifications: Qualification[] = [{ Degree: "", YearPassed: "", University: "" }];
   public totalExperience: Experience[] = [{ To: "", Company: "", From: "", Designation: "" }];
-  public totalProfessions: Profession[] = [{ Job:"", Division: "", Industry: "", Position: "" }];
+  public totalProfessions: Profession[] = [{ Job: "", Division: "", Industry: "", Position: "" }];
   private cvFile: File = null;
   private passportFile: File = null;
   private certificatesFile: File = null;
@@ -31,7 +31,7 @@ export class JobSeekerComponent implements OnInit {
   public routeJob: string = '';
   public newQualification: Qualification = { YearPassed: "", Degree: "", University: "" };
   public newExperience: Experience = { Designation: "", From: "", Company: "", To: "" }
-  public newProfession: Profession = { Job:"",Division: "", Industry: "", Position: "" }
+  public newProfession: Profession = { Job: "", Division: "", Industry: "", Position: "" }
   public showLoader: boolean = false;
   public isAddresSame: boolean = false;
   public sourceIdentityMasterData: SourceIdentityMasterData[] = [];
@@ -55,8 +55,6 @@ export class JobSeekerComponent implements OnInit {
     FamilyName: "",
     Gender: "Male",
     ID: 0,
-    Industry: "",
-    Job: "",
     PIN: "",
     PPCopy: "",
     PassportNo: "",
@@ -65,15 +63,13 @@ export class JobSeekerComponent implements OnInit {
     PermanentPIN: "",
     PermanentCountry: "",
     Photo: "",
-    Professions: [],
+    Profession: [],
     Qualification: [],
     SalaryExpected: 0,
     SalaryExpectedRemarks: "",
     SecondName: "",
     SourceIdentity: "",
     Source: "",
-    Division: "",
-    Position: ""
   };
 
   constructor(private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute,
@@ -83,8 +79,11 @@ export class JobSeekerComponent implements OnInit {
 
   ngOnInit() {
     this.routeJob = this.route.snapshot.paramMap.get("profession");
-    this.jobSeekerObj.Job = this.routeJob;
-    console.log(this.jobSeekerObj.Job);
+    if (this.routeJob) {
+      this.newProfession.Job = this.routeJob;
+      //this.jobSeekerObj.Professions.push(this.newProfession);
+      console.log('routeJob', this.routeJob);
+    }
 
     this.miscellaneousService.GetJobSeekerMiscellaneous().subscribe(res => {
       console.log("response from miscelaneous", res);
@@ -105,12 +104,12 @@ export class JobSeekerComponent implements OnInit {
   addProfessions(e) {
     if (e) e.preventDefault();
     console.log('this.newProfession', this.newProfession);
-    this.jobSeekerObj.Professions.push(this.newProfession);
-    this.newProfession = { Job:"", Division: "", Industry: "", Position: "" };
+    this.jobSeekerObj.Profession.push(this.newProfession);
+    this.newProfession = { Job: "", Division: "", Industry: "", Position: "" };
   }
 
   removeProfessions(profIndex) {
-    this.jobSeekerObj.Professions.splice(profIndex, 1);
+    this.jobSeekerObj.Profession.splice(profIndex, 1);
   }
 
   addQualifications(e) {
@@ -227,7 +226,6 @@ interface JobSeekerDetails {
   CellNo: string,
   AlternateCellNo: string,
   Email: string,
-  Industry: string,
   SalaryExpected: number,
   Currency: string,
   SalaryExpectedRemarks: string,
@@ -235,14 +233,11 @@ interface JobSeekerDetails {
   Photo: string,
   Certificates: string,
   PPCopy: string,
-  Professions: Profession[],
+  Profession: Profession[],
   Qualification: Qualification[],
   Experience: Experience[],
   Source: string,
   SourceIdentity: string,
-  Job: string,
-  Division: string,
-  Position: string
 }
 
 interface Qualification {
@@ -259,7 +254,7 @@ interface Experience {
 }
 
 interface Profession {
-  Job:string,
+  Job: string,
   Industry: string,
   Position: string,
   Division: string

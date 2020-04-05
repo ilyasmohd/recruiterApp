@@ -163,7 +163,7 @@
                                         <div class="row">
                                             <div class="col form-group ">
                                                 <select name="job" id="job" class="form-control here"
-                                                    [(ngModel)]="jobSeekerObj.Job">
+                                                    [(ngModel)]="newProfession.Job">
                                                     <option value="">--Select Job--</option>
                                                     <option *ngFor="let job of jobMasterData" [value]="job.Profession">
                                                         {{job.Profession}}</option>
@@ -171,7 +171,7 @@
                                             </div>
                                             <div class="col form-group ">
                                                 <select name="industry" id="industry" class="form-control here"
-                                                    [(ngModel)]="jobSeekerObj.Industry">
+                                                    [(ngModel)]="newProfession.Industry">
                                                     <option value="">--Select Industry--</option>
                                                     <option *ngFor="let industry of miscelaneous.IndustryMasterData"
                                                         [value]="industry.Description">{{industry.Description}}</option>
@@ -179,7 +179,7 @@
                                             </div>
                                             <div class="col form-group ">
                                                 <select name="division" id="division" class="form-control here"
-                                                    [(ngModel)]="jobSeekerObj.Division">
+                                                    [(ngModel)]="newProfession.Division">
                                                     <option value="">--Select Division--</option>
                                                     <option *ngFor="let division of miscelaneous.DivisionMasterData"
                                                         [value]="division.Description">{{division.Description}}</option>
@@ -187,7 +187,7 @@
                                             </div>
                                             <div class="col form-group ">
                                                 <select name="position" id="position" class="form-control here"
-                                                    [(ngModel)]="jobSeekerObj.Position">
+                                                    [(ngModel)]="newProfession.Position">
                                                     <option value="">--Select Position--</option>
                                                     <option *ngFor="let position of miscelaneous.PositionMasterData"
                                                         [value]="position.Description">{{position.Description}}</option>
@@ -199,43 +199,53 @@
                                             </div>
                                         </div>
 
-                                        <div class="row" *ngFor="let prof of jobSeekerObj.Professions; let p = index">
+                                        <div class="row" *ngFor="let prof of jobSeekerObj.Profession; let p = index">
+                                            <!-- <div *ngIf="jobSeekerObj.Professions && prof.Job.length>0 && prof.Industry.length>0 && prof.Division.length>0 && prof.Position.length>0 "> -->
                                             <div class="col form-group ">
-                                                <select name="{{p}}job" id="job" class="form-control here"
+                                                <!-- <select name="{{p}}job" id="job" class="form-control here"
                                                     [(ngModel)]="jobSeekerObj.Job">
                                                     <option value="">--Select Job--</option>
                                                     <option *ngFor="let job of jobMasterData" [value]="job.Profession">
                                                         {{job.Profession}}</option>
-                                                </select>
+                                                </select> -->
+                                                <input type="text" name="{{p}}job" class="form-control here"
+                                                    [value]="prof.Job" disabled>
                                             </div>
                                             <div class="col form-group ">
-                                                <select name="{{p}}industry" id="industry" class="form-control here"
+                                                <!-- <select name="{{p}}industry" id="industry" class="form-control here"
                                                     [(ngModel)]="jobSeekerObj.Industry">
                                                     <option value="">--Select Industry--</option>
                                                     <option *ngFor="let industry of miscelaneous.IndustryMasterData"
                                                         [value]="industry.Description">{{industry.Description}}</option>
-                                                </select>
+                                                </select> -->
+                                                <input type="text" name="{{p}}industry" class="form-control here"
+                                                    [value]="prof.Industry" disabled>
                                             </div>
                                             <div class="col form-group ">
-                                                <select name="{{p}}division" id="division" class="form-control here"
+                                                <!-- <select name="{{p}}division" id="division" class="form-control here"
                                                     [(ngModel)]="jobSeekerObj.Division">
                                                     <option value="">--Select Division--</option>
                                                     <option *ngFor="let division of miscelaneous.DivisionMasterData"
                                                         [value]="division.Description">{{division.Description}}</option>
-                                                </select>
+                                                </select> -->
+                                                <input type="text" name="{{p}}division" class="form-control here"
+                                                    [value]="prof.Division" disabled>
                                             </div>
                                             <div class="col form-group ">
-                                                <select name="{{p}}position" id="position" class="form-control here"
+                                                <!-- <select name="{{p}}position" id="position" class="form-control here"
                                                     [(ngModel)]="jobSeekerObj.Position">
                                                     <option value="">--Select Position--</option>
                                                     <option *ngFor="let position of miscelaneous.PositionMasterData"
                                                         [value]="position.Description">{{position.Description}}</option>
-                                                </select>
+                                                </select> -->
+                                                <input type="text" name="{{p}}position" class="form-control here"
+                                                    [value]="prof.Position" disabled>
                                             </div>
                                             <div class="col-md-1 form-group">
                                                 <button class="btn btn-danger"
                                                     (click)="removeProfessions(p)">Remove</button>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

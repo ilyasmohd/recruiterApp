@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { StatusService } from '../ApiService/status.service';
-
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-track-status',
@@ -17,10 +17,17 @@ export class TrackStatusComponent implements OnInit {
   public nextStatusID: number = 0;
   public remarks: string = "";
   public nextStatusDate: Date;
+  public isAdmin:boolean = false;
 
-  constructor(private datePipe: DatePipe, private statusService: StatusService) { }
+  constructor(private datePipe: DatePipe, private statusService: StatusService, private route: ActivatedRoute) { 
+    const url:any = route.snapshot.url.join('');
+  }
 
   ngOnInit() {
+    //console.log(this.route.snapshot.paramMap.get("admin"));
+    //console.log(this.route.snapshot.url);
+    this.isAdmin = (this.route.snapshot.paramMap.get("admin") == "admin") && (this.route.snapshot.url[0].path == "adminstatus");
+    console.log(this.isAdmin);
     this.statusService.GetStatusMasterData().subscribe(statuses => {
       this.statusMasterData = statuses;
       console.log(this.statusMasterData);
