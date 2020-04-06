@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { StatusService } from '../ApiService/status.service';
 import { ActivatedRoute } from "@angular/router";
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-track-status',
@@ -12,15 +13,18 @@ export class TrackStatusComponent implements OnInit {
 
   public statusMasterData: StatusMasterData[] = [];
   public statusUpdated: boolean = false;
-  public completeStatus: TrackStatus = { ID: 0, Name: "", Passport: "", Aadhar: "", Task: "", Cell: "", Status: [] };
+  public searchByPassport: string = "";
+  public searchByAadhar: string = "";
+  public searchByApplication: string = "";
+  public completeStatus: TrackStatus = { ID: 0, Name: "", PassPort: "", Aadhar: "", TaskDetails: "", Cell: "", Status: [] };
   public presentStatusID: number = 0;
   public nextStatusID: number = 0;
   public remarks: string = "";
   public nextStatusDate: Date;
-  public isAdmin:boolean = false;
-
-  constructor(private datePipe: DatePipe, private statusService: StatusService, private route: ActivatedRoute) { 
-    const url:any = route.snapshot.url.join('');
+  public isAdmin: boolean = false;
+  public noResultFound: string = "";
+  constructor(private datePipe: DatePipe, private statusService: StatusService, private route: ActivatedRoute) {
+    const url: any = route.snapshot.url.join('');
   }
 
   ngOnInit() {
@@ -36,19 +40,83 @@ export class TrackStatusComponent implements OnInit {
     })
   }
 
-  checkStatus(passportNo: string, aadhar: string) {
-    console.log('checkStatus', passportNo, aadhar);
-    this.statusService.TrackStatus(passportNo, aadhar).subscribe(status => {
-      console.log(status);
-      if (status.length > 0) {
-        this.completeStatus = status[0];
-      }
-      else {
-        this.completeStatus = { ID: 0, Name: "", Passport: "", Aadhar: "", Task: "", Cell: "", Status: [] };
-      }
-    }, err => {
-      console.log(err);
-    })
+ changeStatus() {
+  document.getElementById('noresultFound').innerHTML = "No Applicant Found";
+    setTimeout(function () {
+      document.getElementById('noresultFound').innerHTML = "";
+    }, 1500);
+  }
+
+  checkStatusbyAadhar() {
+    console.log('checkStatus', this.completeStatus.PassPort, this.completeStatus.Aadhar, this.completeStatus.ID);
+    if (this.searchByAadhar != "") {
+      this.statusService.TrackStatus("", this.searchByAadhar, 0).subscribe(status => {
+        console.log(status);
+        if (status.length > 0) {
+          this.completeStatus = status[0];
+        }
+        else {
+          this.completeStatus.ID = 0;
+          this.completeStatus.Name = "";
+          this.completeStatus.TaskDetails = "";
+          this.completeStatus.Cell = "";
+          this.completeStatus.Status = [];
+          this.completeStatus.PassPort = "";
+          this.completeStatus.Aadhar = "";
+          this.changeStatus();
+        }
+      }, err => {
+        console.log(err);
+      });
+    }
+  }
+
+  checkStatusbyApplicationNo() {
+    console.log('checkStatus', this.completeStatus.PassPort, this.completeStatus.Aadhar, this.completeStatus.ID);
+    if (this.searchByApplication != "") {
+      this.statusService.TrackStatus("", "", this.searchByApplication).subscribe(status => {
+        console.log(status);
+        if (status.length > 0) {
+          this.completeStatus = status[0];
+        }
+        else {
+          this.completeStatus.ID = 0;
+          this.completeStatus.Name = "";
+          this.completeStatus.TaskDetails = "";
+          this.completeStatus.Cell = "";
+          this.completeStatus.Status = [];
+          this.completeStatus.PassPort = "";
+          this.completeStatus.Aadhar = "";
+          this.changeStatus();
+        }
+      }, err => {
+        console.log(err);
+      });
+    }
+  }
+
+  checkStatusbyPassPort() {
+    console.log('checkStatus', this.completeStatus.PassPort, this.completeStatus.Aadhar, this.completeStatus.ID);
+    if (this.searchByPassport != "") {
+      this.statusService.TrackStatus(this.searchByPassport, "", 0).subscribe(status => {
+        console.log(status);
+        if (status.length > 0) {
+          this.completeStatus = status[0];
+        }
+        else {
+          this.completeStatus.ID = 0;
+          this.completeStatus.Name = "";
+          this.completeStatus.TaskDetails = "";
+          this.completeStatus.Cell = "";
+          this.completeStatus.Status = [];
+          this.completeStatus.PassPort = "";
+          this.completeStatus.Aadhar = "";
+          this.changeStatus();
+        }
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 
   updateTrackStatus() {
@@ -71,9 +139,9 @@ export class TrackStatusComponent implements OnInit {
 interface TrackStatus {
   ID: number,
   Name: string,
-  Passport: string,
+  PassPort: string,
   Aadhar: string,
-  Task: string,
+  TaskDetails: string,
   Cell: string,
   Status: Status[]
 }

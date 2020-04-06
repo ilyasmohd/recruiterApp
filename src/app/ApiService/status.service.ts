@@ -14,8 +14,8 @@ export class StatusService extends DataService {
     super(environment.statusApiUrl, http);
   }
 
-  TrackStatus(passPortNo: string, adharNo: string): Observable<any> {
-    const opts = { params: new HttpParams().set('type', 'TrackStatus').set("passPortNo", passPortNo).set("aadharNo", adharNo) };
+  TrackStatus(passPortNo: string, adharNo: string, applicationNo: any): Observable<any> {
+    const opts = { params: new HttpParams().set('type', 'TrackStatus').set("passPortNo", passPortNo).set("aadharNo", adharNo).set("applicationNo", applicationNo) };
     return this.http.get(environment.statusApiUrl, opts)
       .catch(super.handleError);
   }

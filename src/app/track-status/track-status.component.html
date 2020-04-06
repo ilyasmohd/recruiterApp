@@ -5,13 +5,21 @@
                 <h4 class="text-success mb-3">Track-status!!!!</h4>
                 <div class="row">
                     <div class="col-md-4 form-group">
-                        <input type="text" class="form-control" placeholder="PassportNo*" required #passportNo>
+                        <input type="text" class="form-control" placeholder="PassportNo*" required
+                            [(ngModel)]="searchByPassport">
+                        <button class="btn btn-success" (click)="checkStatusbyPassPort()">Check Status by PassPort
+                            No</button>
                     </div>
                     <div class="col-md-4 form-group"> <input type="text" placeholder="AadharNo*" class="form-control"
-                            required #aadharNo> </div>
+                            required [(ngModel)]="searchByAadhar">
+                        <button class="btn btn-success" (click)="checkStatusbyAadhar()">Check Status by Aadhar
+                            No</button>
+                    </div>
                     <div class="col-md-4 form-group">
-                        <button class="btn btn-success" (click)="checkStatus(passportNo.value, aadharNo.value)">Check
-                            Status</button>
+                        <input type="text" class="form-control" placeholder="Application No*" required
+                            [(ngModel)]="searchByApplication" type="number">
+                        <button class="btn btn-success" (click)="checkStatusbyApplicationNo()">Check Status by
+                            Application No</button>
                     </div>
                 </div>
                 <div class="row" *ngIf="isAdmin">
@@ -42,16 +50,16 @@
                         <button class="btn btn-success" (click)="updateTrackStatus()">Update</button>
                     </div>
                 </div>
-                <div *ngIf="completeStatus.Status.length<=0"><b class="text-danger">No Applicant Found</b></div>
+                <b class="text-danger"><div id="noresultFound"></div></b>
                 <div class="card-style">
                     <div class="row mb-4" *ngIf="completeStatus">
                         <div class="col-md-6">
                             <p><b> Name:</b> {{completeStatus.Name}} </p>
-                            <p> <b> Passport:</b> {{completeStatus.Passport}} </p>
+                            <p><b> Passport:</b> {{completeStatus.PassPort}} </p>
                             <b>Aadhar No.:</b> {{completeStatus.Aadhar}}
                         </div>
                         <div class="col-md-6">
-                            <p> <b>Task:</b> {{completeStatus.Task}} </p>
+                            <p> <b>Task:</b> {{completeStatus.TaskDetails}} </p>
                             <b>Cell No.:</b> {{completeStatus.Cell}}
                         </div>
                     </div>
