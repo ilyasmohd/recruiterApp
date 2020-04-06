@@ -59,52 +59,52 @@
 <nav class="navbar navbar-expand-sm p-10pc fixed-top bg-light">
   <a class="navbar-brand"  routerLink="/home">
     <img src="assets/img/logo.png" alt="" class="img-fluid" height="40px" width="40px"> Synergy </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="navToggle()">
       <span class="navbar-toggler-icon fa fa-bars"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="toggleNav">
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="nav-link" routerLink="/home">Home</a>
+      <a class="nav-link" routerLink="/home" (click)="hideNavbar()">Home</a>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
         Our Services
       </a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" routerLink="/mission-vision" >Mission and Vision</a>
-        <a class="dropdown-item" routerLink="/recruitement-process-flow" >Recruitment Process
+        <a class="dropdown-item" routerLink="/mission-vision" (click)="hideNavbar()">Mission and Vision</a>
+        <a class="dropdown-item" routerLink="/recruitement-process-flow" (click)="hideNavbar()">Recruitment Process
           Flow Chart</a>
-        <a class="dropdown-item" routerLink="/sellingProposition" >Our Unique Selling
+        <a class="dropdown-item" routerLink="/sellingProposition" (click)="hideNavbar()" >Our Unique Selling
           Proposition(USP)</a>
-          <a class="dropdown-item" routerLink="/ethics" >Ethics, Confidentiality and Data
+          <a class="dropdown-item" routerLink="/ethics" (click)="hideNavbar()">Ethics, Confidentiality and Data
             Protection Policies</a>
-          <a class="dropdown-item" routerLink="/ourclients" >Some of Our Clients</a>
-          <a class="dropdown-item" routerLink="/industriesServed" >Industries Served by Us</a>
-          <a class="dropdown-item" routerLink="/otherServices" >Other Services</a>
+          <a class="dropdown-item" routerLink="/ourclients" (click)="hideNavbar()">Some of Our Clients</a>
+          <a class="dropdown-item" routerLink="/industriesServed" (click)="hideNavbar()">Industries Served by Us</a>
+          <a class="dropdown-item" routerLink="/otherServices" (click)="hideNavbar()">Other Services</a>
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/openings" >Current Openings</a>
+      <a class="nav-link" routerLink="/openings" (click)="hideNavbar()">Current Openings</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/status" >Check Status</a>
+      <a class="nav-link" routerLink="/status" (click)="hideNavbar()">Check Status</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/employer" >Employer Zone</a>
+      <a class="nav-link" routerLink="/employer" (click)="hideNavbar()">Employer Zone</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/jobseeker" >Jobseeker Zone</a>
+      <a class="nav-link" routerLink="/jobseeker" (click)="hideNavbar()">Jobseeker Zone</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/aboutus" >About Us</a>
+      <a class="nav-link" routerLink="/aboutus" (click)="hideNavbar()">About Us</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/feedback" >Feedback</a>
+      <a class="nav-link" routerLink="/feedback" (click)="hideNavbar()">Feedback</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="/contactus" >Contact Us</a>
+      <a class="nav-link" routerLink="/contactus" (click)="hideNavbar()">Contact Us</a>
     </li>
     
   </ul>

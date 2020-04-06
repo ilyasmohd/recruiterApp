@@ -22,9 +22,9 @@ export class HeaderComponent implements OnInit {
     if (this.pixelWidth > 768) {
       this.toggleNav = true;
     }
-    // else {
-    //   this.toggleNav = false;
-    // }
+    else {
+      this.toggleNav = false;
+    }
     $(document).ready(function () {
     $('.navbar-dark .dmenu').hover(function () {
             $(this).find('.sm-menu').first().stop(true, true).slideDown(200);
@@ -37,14 +37,15 @@ export class HeaderComponent implements OnInit {
   hideNavbar(){
     this.pixelWidth = window.screen.width;
     if (this.pixelWidth <= 768) {
-      this.toggleNav = !this.toggleNav;
+      this.toggleNav = false;
     }
   }
 
   navToggle(){
-    this.pixelWidth = window.screen.width;
-      this.toggle = !this.toggle;
+    if (this.pixelWidth <= 768) {
+      this.toggleNav = !this.toggleNav;
     }
+  }
  
 
 }
