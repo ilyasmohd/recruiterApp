@@ -76,24 +76,29 @@
                                 <hr width="100%">
                                 <label for="address" class=" form-group bold">Present Address</label>
                                 <div class="row">
-                                    <div class="col-md-3 form-group ">
-                                        <input id="address" name="address" placeholder="Address*"
+                                    <div class="col-md-6 form-group ">
+                                        <textarea id="address" name="address" placeholder="Address*" rows="3"
                                             class="form-control here" type="text" [(ngModel)]="jobSeekerObj.Address"
-                                            required="required">
+                                            required="required"></textarea>
                                     </div>
-                                    <div class="col-md-3 form-group ">
-                                        <input id="city" name="city" placeholder="City*" class="form-control here"
-                                            required="required" type="text" [(ngModel)]="jobSeekerObj.City">
-                                    </div>
-                                    <div class="col-md-3 form-group ">
-                                        <input id="pin" name="pin" placeholder="PIN*" class="form-control here"
-                                            required="required" type="text" [(ngModel)]="jobSeekerObj.PIN">
-                                    </div>
-                                    <div class="col-md-3 form-group ">
-                                        <select id="company" class="form-control" placeholder="Country*" title="Country"
-                                            [(ngModel)]="jobSeekerObj.Country" name="Country">
-                                            <option value="">--Select Country--</option>
-                                        </select>
+                                    <div class="col-md-6 form-group ">
+                                        <div class="row">
+                                            <div class="col-md-5 form-group ">
+                                                <input id="pin" name="pin" placeholder="PIN*" class="form-control here "
+                                                    required="required" type="text" [(ngModel)]="jobSeekerObj.PIN">
+                                            </div>
+                                            <div class="col-md-7 form-group ">
+                                                <input id="city" name="city" placeholder="City*"
+                                                    class="form-control here " required="required" type="text"
+                                                    [(ngModel)]="jobSeekerObj.City">
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <select id="company" class="form-control" placeholder="Country*"
+                                                title="Country" [(ngModel)]="jobSeekerObj.Country" name="Country">
+                                                <option value="">--Select Country--</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr width="100%">
@@ -108,7 +113,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-3 form-group ">
                                         <input id="permanentAddress" name="permanentAddress"
                                             placeholder="Permanent Address*" class="form-control here" type="text"
@@ -130,6 +135,37 @@
                                             name="PermanentCountry" [disabled]="isAddresSame">
                                             <option value="">--Select Country--</option>
                                         </select>
+                                    </div>
+                                </div> -->
+                                <div class="row">
+                                    <div class="col-md-6 form-group ">
+                                        <textarea id="permanentAddress" name="permanentAddress" rows="3"
+                                            placeholder="Permanent Address*" class="form-control here" type="text"
+                                            [disabled]="isAddresSame" [(ngModel)]="jobSeekerObj.PermanentAddress">
+                        </textarea>
+                                    </div>
+                                    <div class="col-md-6 form-group ">
+                                        <div class="row">
+                                            <div class="col-md-5 form-group ">
+                                                <input id="permanentpin" name="permanentpin"
+                                                    placeholder="Permanent PIN*" [disabled]="isAddresSame"
+                                                    class="form-control here" type="text"
+                                                    [(ngModel)]="jobSeekerObj.PermanentPIN">
+                                            </div>
+                                            <div class="col-md-7 form-group ">
+                                                <input id="permanentcity" name="permanentcity"
+                                                    placeholder="Permanent City*" [disabled]="isAddresSame"
+                                                    class="form-control here" required="required" type="text"
+                                                    [(ngModel)]="jobSeekerObj.PermanentCity">
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <select id="company" class="form-control" placeholder="Permanent Country*"
+                                                title="Country" [(ngModel)]="jobSeekerObj.PermanentCountry"
+                                                name="PermanentCountry" [disabled]="isAddresSame">
+                                                <option value="">--Select Country--</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr width="100%">
@@ -255,17 +291,16 @@
                                         class="col-md-2 form-group  col-form-label bold">Qualification</label>
                                     <div class="col-md-10">
                                         <div class="row">
+                                            <div class="col-md-3 form-group">
+                                                <input class="form-control" placeholder="Dip/Degree" type="text"
+                                                    [(ngModel)]="newQualification.Degree" name="newqualdegree" />
+                                            </div>
                                             <div class="col-md-5 form-group ">
                                                 <input class="form-control" placeholder="University" type="text"
                                                     [(ngModel)]="newQualification.University"
                                                     name="newqualuniversity" />
                                             </div>
-                                            <div class="col-md-3 form-group">
-                                                <input class="form-control" placeholder="Dip/Degree" type="text"
-                                                    [(ngModel)]="newQualification.Degree" name="newqualdegree" />
-
-                                            </div>
-                                            <div class="col-md-3 form-group">
+                                           <div class="col-md-3 form-group">
                                                 <input class="form-control" placeholder="Year passed" type="date"
                                                     [(ngModel)]="newQualification.YearPassed" name="newqualyear" />
 
@@ -277,15 +312,15 @@
                                         </div>
 
                                         <div class="row" *ngFor="let qual of jobSeekerObj.Qualification; let q = index">
-                                            <div class="col-md-5 form-group ">
-                                                <input name="{{q}}university" placeholder="University"
-                                                    class="form-control here" [(ngModel)]="qual.University" type="text">
-                                            </div>
                                             <div class="col-md-3 form-group">
                                                 <input name="{{q}}degree" placeholder="Dip/Degree"
                                                     class="form-control here" [(ngModel)]="qual.Degree" type="text"
                                                     name="degree">
                                             </div>
+                                            <div class="col-md-5 form-group ">
+                                                <input name="{{q}}university" placeholder="University"
+                                                    class="form-control here" [(ngModel)]="qual.University" type="text">
+                                            </div>                                        
                                             <div class="col-md-3 form-group">
                                                 <input name="{{q}}passed" placeholder="Year passed"
                                                     class="form-control here" [(ngModel)]="qual.YearPassed" type="date">
@@ -364,7 +399,7 @@
                                         <div class="row">
                                             <div class="col-md-4 form-group ">
                                                 <input id="currency" name="currency" placeholder="Currency"
-                                                    class="form-control here" type="text"
+                                                    class="form-control here" type="text" maxlength="3"
                                                     [(ngModel)]="jobSeekerObj.Currency">
                                             </div>
                                             <div class="col-md-4 form-group ">
@@ -431,7 +466,7 @@
                                 <hr width="100%">
                                 <div class="row ">
                                     <div class="col-md-12 text-right">
-                                        <button name="submit" type="submit" class="btn btn-primary">Save
+                                        <button name="submit" type="submit" class="btn btn-primary btn-style">Save
                                             Profile</button>&nbsp;&nbsp;
                                         <button class="btn btn-secondary">Cancel
                                         </button>

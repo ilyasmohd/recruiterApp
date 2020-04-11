@@ -9,7 +9,7 @@
   .service-details .card {
     border: 0;
     padding: 0 30px;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
     position: relative;
   }
   
@@ -87,3 +87,11 @@
     top: 50px;
     width: 100%;
   }
+  .icon-shadow {
+    box-shadow: 0px 0 16px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background: #fff;
+}
+section {
+  padding: 30px 0;
+}

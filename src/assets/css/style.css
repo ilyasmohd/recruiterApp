@@ -771,6 +771,10 @@ color:#1b1e21 !important;
   padding: 7px 24px;
   color: #f1f2f1;
 }
+.btn{
+  border-radius: 30px !important;
+  padding: 7px 24px !important;
+}
 @media only screen and (max-device-width: 768px){
 .p-5{
 padding: 1rem !important;
@@ -946,4 +950,11 @@ cursor:pointer
   margin-bottom: 10px;
   font-size: 18px;
   text-transform: uppercase;
+}
+hr {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+.form-group {
+  margin-bottom: 10px !important;
 }

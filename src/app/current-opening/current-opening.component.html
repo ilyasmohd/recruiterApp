@@ -101,24 +101,27 @@
     <div *ngFor="let opening of openings">
 
       <div class="row icon-shadow my-4">
-        <div class="col-lg-4 col-md-12 " data-aos="fade-up">
-          Job:<b> {{opening.Profession}} </b><br>
+        <div class="col-lg-3 col-md-12 " data-aos="fade-up">
+          <b>Job:</b>  {{opening.Profession}} <br>
           <p class=" mb-0">
-            Employer: <b> {{opening.Employer}}</b>
+            <b> Employer: </b> {{opening.Employer}}
           </p>
         </div>
-        <div class="col-lg-4 col-md-12 text-center" data-aos="fade-up">
+        <div class="col-lg-3 col-md-12 text-center" data-aos="fade-up">
           <p class=" mb-0">
-            Location: <b> {{opening.EmploymentCity}} </b>
+            <b> Location:</b>  {{opening.EmploymentCity}} 
           </p>
           <p class=" mb-0">
-            Salary: <b> {{opening.Renumeration}}</b>
-          </p>
-          <p class=" mb-0">
-            Salary: <b> {{opening.JobDescription}}</b>
+            <b> Salary: </b>  {{opening.Renumeration}}
           </p>
         </div>
-        <div class="col-lg-4 col-md-12 text-right aign-self-center" data-aos="fade-up">
+          <div class="col-lg-4 col-md-12 text-center" data-aos="fade-up">
+          <p class=" mb-0">
+            <b> Job Description: </b>  {{opening.JobDescription}}
+          </p>
+          </div>
+       
+        <div class="col-lg-2 col-md-12 text-right aign-self-center " data-aos="fade-up">
           <button (click)="navigate(opening.Profession)" class="btn-style my-2 ">Apply</button>
         </div>
       </div>
