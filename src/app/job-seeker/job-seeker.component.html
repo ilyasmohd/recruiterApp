@@ -11,9 +11,33 @@
                     </div>
                     <img src="assets/img/logo.png" alt="" class="img-fluid loader" *ngIf="showLoader">
                     <div class="row">
-                        <div class="col-md-12" *ngIf="!isApplicationSubmitted">
-                            <form (ngSubmit)="onSubmit()" ngNativeValidate>
+                        <div class="col-md-12" *ngIf="!existingJobSeekerChecked">
+                            <form (ngSubmit)="checkExistingJobSeeker()" ngNativeValidate>
                                 <div class="row">
+                                    <div class="col-md-4 form-group ">
+                                        <label for="aadharNo" class=" col-form-label">Aadhar No.*</label>
+                                        <input id="aadharNo" name="aadharNo" placeholder="Aadhar No.*"
+                                            required="required" class="form-control here" type="text"
+                                            [(ngModel)]="jobSeekerObj.AadharNo">
+                                            <p>Please provide '9999' if you dont have Aadhar No</p>
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <label for="passportNo" class="col-form-label">Passport No.*</label>
+                                        <input id="passportNo" name="passportNo" placeholder="Passport No.*"
+                                            class="form-control here" required="required" type="text"
+                                            [(ngModel)]="jobSeekerObj.PassportNo">
+                                            <p>Please provide '9999' if you dont have Passport No</p>
+                                    </div>
+                                </div>
+                                <input type="button" class="btn btn-success" value="Check Your Details"
+                                    (click)="checkExistingJobSeeker()">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" *ngIf="existingJobSeekerChecked && !isApplicationSubmitted && !isApplicationError">
+                            <form (ngSubmit)="onSubmit()" ngNativeValidate>
+                                <!-- <div class="row">
                                     <div class="col-md-4 form-group ">
                                         <label for="aadharNo" class=" col-form-label">Aadhar No.*</label>
                                         <input id="aadharNo" name="aadharNo" placeholder="Aadhar No.*"
@@ -26,8 +50,7 @@
                                             class="form-control here" required="required" type="text"
                                             [(ngModel)]="jobSeekerObj.PassportNo">
                                     </div>
-                                </div>
-                                <hr width="100%">
+                                </div>-->
                                 <label for="address" class="bold  form-group">Personal Details</label>
                                 <div class="row">
                                     <div class="col-md-4 form-group  form-group ">
@@ -97,7 +120,8 @@
                                             <select id="country" class="form-control" placeholder="Country*"
                                                 title="Country" [(ngModel)]="jobSeekerObj.Country" name="Country">
                                                 <option value="">--Select Country--</option>
-                                                <option *ngFor="let country of importedCountries" [value]="country.Name">
+                                                <option *ngFor="let country of importedCountries"
+                                                    [value]="country.Name">
                                                     {{country.Name}}</option>
                                             </select>
                                         </div>
@@ -144,7 +168,7 @@
                                         <textarea id="permanentAddress" name="permanentAddress" rows="3"
                                             placeholder="Permanent Address*" class="form-control here" type="text"
                                             [disabled]="isAddresSame" [(ngModel)]="jobSeekerObj.PermanentAddress">
-                        </textarea>
+                                        </textarea>
                                     </div>
                                     <div class="col-md-6 form-group ">
                                         <div class="row">
@@ -166,7 +190,8 @@
                                                 title="Country" [(ngModel)]="jobSeekerObj.PermanentCountry"
                                                 name="PermanentCountry" [disabled]="isAddresSame">
                                                 <option value="">--Select Country--</option>
-                                                <option *ngFor="let country of importedCountries" [value]="country.Name">
+                                                <option *ngFor="let country of importedCountries"
+                                                    [value]="country.Name">
                                                     {{country.Name}}</option>
                                             </select>
                                         </div>
@@ -319,15 +344,17 @@
                                             <div class="col-md-3 form-group">
                                                 <input name="{{q}}degree" placeholder="Dip/Degree"
                                                     class="form-control here" [(ngModel)]="qual.Degree" type="text"
-                                                    name="degree">
+                                                    name="degree" disabled>
                                             </div>
                                             <div class="col-md-5 form-group ">
                                                 <input name="{{q}}university" placeholder="University"
-                                                    class="form-control here" [(ngModel)]="qual.University" type="text">
+                                                    class="form-control here" [(ngModel)]="qual.University" type="text"
+                                                    disabled>
                                             </div>
                                             <div class="col-md-3 form-group">
                                                 <input name="{{q}}passed" placeholder="Year passed"
-                                                    class="form-control here" [(ngModel)]="qual.YearPassed" type="date">
+                                                    class="form-control here" [(ngModel)]="qual.YearPassed" type="date"
+                                                    disabled>
                                             </div>
                                             <div class="col-md-1 form-group">
                                                 <button class="btn btn-danger"
@@ -372,20 +399,21 @@
                                         <div class="row" *ngFor="let exp of jobSeekerObj.Experience; let e = index">
                                             <div class="col-md-3 form-group">
                                                 <input placeholder="Company worked with" class="form-control here"
-                                                    name="{{e}}companyWorked" [(ngModel)]="exp.Company" type="text">
+                                                    name="{{e}}companyWorked" [(ngModel)]="exp.Company" type="text"
+                                                    disabled>
                                             </div>
                                             <div class="col-md-2 form-group">
                                                 <input placeholder="Designation" class="form-control here"
                                                     name="{{e}}companyDesignation" [(ngModel)]="exp.Designation"
-                                                    type="text">
+                                                    type="text" disabled>
                                             </div>
                                             <div class="col-md-3 form-group">
                                                 <input placeholder="From" class="form-control here"
-                                                    [(ngModel)]="exp.From" type="date" name="{{e}}companyFrom">
+                                                    [(ngModel)]="exp.From" type="date" name="{{e}}companyFrom" disabled>
                                             </div>
                                             <div class="col-md-3 form-group">
                                                 <input placeholder="Upto" class="form-control here" [(ngModel)]="exp.To"
-                                                    type="date" name="{{e}}companyTo">
+                                                    type="date" name="{{e}}companyTo" disabled>
                                             </div>
                                             <div class="col-md-1 form-group">
                                                 <button class="btn btn-danger"

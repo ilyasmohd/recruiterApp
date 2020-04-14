@@ -7,6 +7,7 @@ import { CurrentOpeningsService } from '../ApiService/current-openings.service';
 import { isDefined } from '@angular/compiler/src/util';
 import { MiscellaneousService } from '../ApiService/miscellaneous.service';
 import { Countries, Country } from '../../assets/country-list/country-list';
+import { NotFoundError } from '../Common/not-found-eror';
 
 @Component({
   selector: 'app-job-seeker',
@@ -39,6 +40,7 @@ export class JobSeekerComponent implements OnInit {
   public miscelaneous: Miscelaneous = { SourceMasterData: [], IndustryMasterData: [], PositionMasterData: [], DivisionMasterData: [] };
   public jobMasterData: currentOpenings[] = [];
   public importedCountries: Country[] = [];
+  public existingJobSeekerChecked: boolean = false;
 
   public jobSeekerObj: JobSeekerDetails = {
     AadharNo: "",
@@ -76,7 +78,7 @@ export class JobSeekerComponent implements OnInit {
 
   constructor(private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute,
     private openingsService: CurrentOpeningsService, private miscellaneousService: MiscellaneousService) {
-      this.importedCountries = Countries;
+    this.importedCountries = Countries;
   }
 
   ngOnInit() {
@@ -205,6 +207,24 @@ export class JobSeekerComponent implements OnInit {
   handlePassportUpload(files: FileList): void {
     this.passportFile = files.item(0);
     this.jobseekerService.UploadFile(this.passportFile).subscribe(res => { console.log(res); this.jobSeekerObj.PPCopy = res; this.ppcopyuploaded = true; }, err => console.log(err));
+  }
+
+  checkExistingJobSeeker() {
+    this.jobseekerService.CheckExistingJobSeeker(this.jobSeekerObj.PassportNo, this.jobSeekerObj.AadharNo).subscribe(res => {
+      console.log('response from exisiting jobseeker api', res);
+      this.jobSeekerObj = res;
+      this.existingJobSeekerChecked = true;
+    }, err => {
+      if (err instanceof NotFoundError) {
+        console.log('No existing job seeker found');
+        this.existingJobSeekerChecked = true;
+      }
+      else {
+        this.isApplicationError = true;
+        this.existingJobSeekerChecked = false;
+      }
+    });
+    
   }
 }
 
