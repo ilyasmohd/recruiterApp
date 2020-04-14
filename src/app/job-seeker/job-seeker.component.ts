@@ -6,6 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 import { CurrentOpeningsService } from '../ApiService/current-openings.service';
 import { isDefined } from '@angular/compiler/src/util';
 import { MiscellaneousService } from '../ApiService/miscellaneous.service';
+import { Countries, Country } from '../../assets/country-list/country-list';
 
 @Component({
   selector: 'app-job-seeker',
@@ -37,6 +38,7 @@ export class JobSeekerComponent implements OnInit {
   public sourceIdentityMasterData: SourceIdentityMasterData[] = [];
   public miscelaneous: Miscelaneous = { SourceMasterData: [], IndustryMasterData: [], PositionMasterData: [], DivisionMasterData: [] };
   public jobMasterData: currentOpenings[] = [];
+  public importedCountries: Country[] = [];
 
   public jobSeekerObj: JobSeekerDetails = {
     AadharNo: "",
@@ -74,7 +76,7 @@ export class JobSeekerComponent implements OnInit {
 
   constructor(private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute,
     private openingsService: CurrentOpeningsService, private miscellaneousService: MiscellaneousService) {
-
+      this.importedCountries = Countries;
   }
 
   ngOnInit() {
