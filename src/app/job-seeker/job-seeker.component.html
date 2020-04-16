@@ -19,14 +19,14 @@
                                         <input id="aadharNo" name="aadharNo" placeholder="Aadhar No.*"
                                             required="required" class="form-control here" type="text"
                                             [(ngModel)]="jobSeekerObj.AadharNo">
-                                            <p>Please provide '9999' if you dont have Aadhar No</p>
+                                        <p>Please provide '9999' if you dont have Aadhar No</p>
                                     </div>
                                     <div class="col-md-4 form-group ">
                                         <label for="passportNo" class="col-form-label">Passport No.*</label>
                                         <input id="passportNo" name="passportNo" placeholder="Passport No.*"
                                             class="form-control here" required="required" type="text"
                                             [(ngModel)]="jobSeekerObj.PassportNo">
-                                            <p>Please provide '9999' if you dont have Passport No</p>
+                                        <p>Please provide '9999' if you dont have Passport No</p>
                                     </div>
                                 </div>
                                 <input type="button" class="btn btn-success" value="Check Your Details"
@@ -35,7 +35,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12" *ngIf="existingJobSeekerChecked && !isApplicationSubmitted && !isApplicationError">
+                        <div class="col-md-12"
+                            *ngIf="existingJobSeekerChecked && !isApplicationSubmitted && !isApplicationError">
                             <form (ngSubmit)="onSubmit()" ngNativeValidate>
                                 <!-- <div class="row">
                                     <div class="col-md-4 form-group ">
@@ -134,7 +135,8 @@
                                     </div>
                                     <div class="col-md-9 text-right">
                                         <label class="col-form-label">
-                                            <input type="checkbox" value="" (click)="toggleAddress()">
+                                            <input type="checkbox" value="" [checked]="jobSeekerObj.IsAddresSame"
+                                                (click)="toggleAddress()">
                                             Same as Current Address
                                         </label>
                                     </div>
@@ -461,6 +463,8 @@
                                                 <div *ngIf="cvUploaded" class="text-danger">Your CV has been uploaded
                                                 </div>
                                             </div>
+                                            <a [href]="cvFileUrl">DownloadFile</a>
+                                            <input type="button" class="btn btn-success" (click)="checkExistingCV()" value="Exisiting CV with US">
                                         </div>
                                         <div class="row form-group">
                                             <label for="photo" class="col-md-3 col-form-label">Photo</label>
@@ -507,7 +511,8 @@
                             </form>
                         </div>
                         <div class="col-md-12" *ngIf="isApplicationSubmitted">
-                            <h3>Your application has been submitted, your application no is {{applicationNo}}</h3>
+                            <!-- <h3>Your application has been submitted, your application no is {{applicationSubmittedText}}</h3> -->
+                            <h3>{{applicationSubmittedText}}</h3>
                         </div>
                         <div class="col-md-12" *ngIf="isApplicationError">
                             <h3 class="text-danger">Error while processing your request, please try again after some

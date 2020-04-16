@@ -55,11 +55,5 @@ export class DataService {
     }
 
     return Observable.throw(new AppError(error));
-  }
-
-  UploadFile(fileTobeUploaded: File): Observable<any> {
-    let formData: FormData = new FormData();
-    formData.append('file', fileTobeUploaded, fileTobeUploaded.name);
-    return this.http.post(environment.fileUploadApiUrl, formData);
-  }
+  } 
 }
