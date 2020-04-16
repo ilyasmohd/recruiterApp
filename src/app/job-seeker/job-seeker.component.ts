@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, NgForm } from '@angular/forms';
 import { JobseekerService } from '../ApiService/jobseeker.service';
 import { DatePipe } from '@angular/common';
@@ -8,17 +8,19 @@ import { isDefined } from '@angular/compiler/src/util';
 import { MiscellaneousService } from '../ApiService/miscellaneous.service';
 import { Countries, Country } from '../../assets/country-list/country-list';
 import { NotFoundError } from '../Common/not-found-eror';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-job-seeker',
   templateUrl: './job-seeker.component.html',
   styleUrls: ['./job-seeker.component.scss']
 })
-export class JobSeekerComponent implements OnInit {
+export class JobSeekerComponent implements OnInit, AfterViewInit {
 
-  public totalQualifications: Qualification[] = [{ Degree: "", YearPassed: "", University: "" }];
-  public totalExperience: Experience[] = [{ To: "", Company: "", From: "", Designation: "" }];
-  public totalProfessions: Profession[] = [{ Job: "", Division: "", Industry: "", Position: "" }];
+  public totalQualifications: Qualification[] = [{ Degree: "", YearPassed: "", University: "", ID: 0, JobSeekerID: 0 }];
+  public totalExperience: Experience[] = [{ To: "", Company: "", From: "", Designation: "", ID: 0, JobSeekerID: 0 }];
+  public totalProfessions: Profession[] = [{ Job: "", Division: "", Industry: "", Position: "", ID: 0, JobSeekerID: 0 }];
   private cvFile: File = null;
   private passportFile: File = null;
   private certificatesFile: File = null;
@@ -31,16 +33,17 @@ export class JobSeekerComponent implements OnInit {
   public ppcopyuploaded: boolean = false;
   public isApplicationError: boolean = false;
   public routeJob: string = '';
-  public newQualification: Qualification = { YearPassed: "", Degree: "", University: "" };
-  public newExperience: Experience = { Designation: "", From: "", Company: "", To: "" }
-  public newProfession: Profession = { Job: "", Division: "", Industry: "", Position: "" }
+  public newQualification: Qualification = { YearPassed: "", Degree: "", University: "", ID: 0, JobSeekerID: 0 };
+  public newExperience: Experience = { Designation: "", From: "", Company: "", To: "", ID: 0, JobSeekerID: 0 }
+  public newProfession: Profession = { Job: "", Division: "", Industry: "", Position: "", ID: 0, JobSeekerID: 0 }
   public showLoader: boolean = false;
-  public isAddresSame: boolean = false;
   public sourceIdentityMasterData: SourceIdentityMasterData[] = [];
   public miscelaneous: Miscelaneous = { SourceMasterData: [], IndustryMasterData: [], PositionMasterData: [], DivisionMasterData: [] };
   public jobMasterData: currentOpenings[] = [];
   public importedCountries: Country[] = [];
   public existingJobSeekerChecked: boolean = false;
+  public applicationSubmittedText: string = '';
+  public cvFileUrl: SafeResourceUrl = '';
 
   public jobSeekerObj: JobSeekerDetails = {
     AadharNo: "",
@@ -58,7 +61,7 @@ export class JobSeekerComponent implements OnInit {
     Experience: [],
     FamilyName: "",
     Gender: "Male",
-    ID: 0,
+    ID: -99,
     PIN: "",
     PPCopy: "",
     PassportNo: "",
@@ -74,10 +77,11 @@ export class JobSeekerComponent implements OnInit {
     SecondName: "",
     SourceIdentity: "",
     Source: "",
+    IsAddresSame: false
   };
 
   constructor(private jobseekerService: JobseekerService, private datePipe: DatePipe, private route: ActivatedRoute,
-    private openingsService: CurrentOpeningsService, private miscellaneousService: MiscellaneousService) {
+    private openingsService: CurrentOpeningsService, private miscellaneousService: MiscellaneousService, private sanitizer: DomSanitizer) {
     this.importedCountries = Countries;
   }
 
@@ -105,11 +109,18 @@ export class JobSeekerComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    // not using it as of now!!!!
+  }
+
   addProfessions(e) {
     if (e) e.preventDefault();
+    // if (this.jobSeekerObj.ID != -99) {
+    //   //this.newProfession.  =this.jobSeekerObj.ID;
+    // }
     console.log('this.newProfession', this.newProfession);
     this.jobSeekerObj.Profession.push(this.newProfession);
-    this.newProfession = { Job: "", Division: "", Industry: "", Position: "" };
+    this.newProfession = { Job: "", Division: "", Industry: "", Position: "", ID: 0, JobSeekerID: 0 };
   }
 
   removeProfessions(profIndex) {
@@ -122,7 +133,7 @@ export class JobSeekerComponent implements OnInit {
     if (this.newQualification.Degree != "" && this.newQualification.University != "" && this.newQualification.YearPassed != "") {
       this.newQualification.YearPassed = this.datePipe.transform(this.newQualification.YearPassed, 'yyyy-MM-dd');
       this.jobSeekerObj.Qualification.push(this.newQualification);
-      this.newQualification = { Degree: "", University: "", YearPassed: "" };
+      this.newQualification = { Degree: "", University: "", YearPassed: "", ID: 0, JobSeekerID: 0 };
     }
   }
 
@@ -136,7 +147,7 @@ export class JobSeekerComponent implements OnInit {
       this.newExperience.From = this.datePipe.transform(this.newExperience.From, 'yyyy-MM-dd');
       this.newExperience.To = this.datePipe.transform(this.newExperience.To, 'yyyy-MM-dd');
       this.jobSeekerObj.Experience.push(this.newExperience)
-      this.newExperience = { Company: "", Designation: "", From: "", To: "" };
+      this.newExperience = { Company: "", Designation: "", From: "", To: "", ID: 0, JobSeekerID: 0 };
     }
   }
 
@@ -144,8 +155,8 @@ export class JobSeekerComponent implements OnInit {
     this.jobSeekerObj.Experience.splice(expIndex, 1);
   }
 
-  UpdateSourceIdentity($event: SourceMasterData) {
-
+  UpdateSourceIdentity() {
+    console.log('this.jobSeekerObj.Source:', this.jobSeekerObj.Source);
     if (isDefined(this.miscelaneous.SourceMasterData.filter(_productType => _productType.Description == this.jobSeekerObj.Source)[0])) {
       this.sourceIdentityMasterData = this.miscelaneous.SourceMasterData.filter(_productType => _productType.Description == this.jobSeekerObj.Source)[0].SourceIdentities;
     }
@@ -156,8 +167,9 @@ export class JobSeekerComponent implements OnInit {
   }
 
   toggleAddress() {
-    this.isAddresSame = !this.isAddresSame;
-    if (this.isAddresSame) {
+    //this.isAddresSame = !this.isAddresSame;
+    this.jobSeekerObj.IsAddresSame = !this.jobSeekerObj.IsAddresSame;
+    if (this.jobSeekerObj.IsAddresSame) {
       this.jobSeekerObj.PermanentCity = this.jobSeekerObj.City;
       this.jobSeekerObj.PermanentAddress = this.jobSeekerObj.Address;
       this.jobSeekerObj.PermanentPIN = this.jobSeekerObj.PIN;
@@ -175,23 +187,65 @@ export class JobSeekerComponent implements OnInit {
   onSubmit(): void {
     this.showLoader = true;
     this.jobSeekerObj.DOB = this.datePipe.transform(this.jobSeekerObj.DOB, 'yyyy-MM-dd');
-    console.log('job seeker object on submit click:', this.jobSeekerObj);
-    this.jobseekerService.Create(this.jobSeekerObj).subscribe(res => {
-      console.log(res);
-      this.applicationNo = res;
-      this.isApplicationSubmitted = true;
-      this.showLoader = false;
-    }, err => {
-      this.isApplicationError = true; this.isApplicationSubmitted = false;
-      this.showLoader = false;
-      console.log(err)
+    this.jobSeekerObj.Qualification.forEach((qual: Qualification, index: number) => {
+      qual.YearPassed = this.datePipe.transform(qual.YearPassed, 'yyyy-MM-dd');
     });
+    this.jobSeekerObj.Experience.forEach((experience, index) => {
+      experience.From = this.datePipe.transform(experience.From, 'yyyy-MM-dd');
+      experience.To = this.datePipe.transform(experience.To, 'yyyy-MM-dd');
+    });
+    console.log('job seeker object on submit click:', this.jobSeekerObj);
+    if (this.jobSeekerObj.ID == -99) {
+      this.jobseekerService.Create(this.jobSeekerObj).subscribe(res => {
+        console.log(res);
+        this.applicationNo = res;
+        this.isApplicationSubmitted = true;
+        this.applicationSubmittedText = `Your application has been submitted, your application No:${res}`;
+        this.showLoader = false;
+      }, err => {
+        this.isApplicationError = true;
+        this.isApplicationSubmitted = false;
+        this.showLoader = false;
+        console.log(err)
+      });
+    }
+    else {
+      this.jobseekerService.Update(this.jobSeekerObj).subscribe(res => {
+        console.log('update method called, this is response', res);
+        this.applicationNo = res;
+        this.isApplicationSubmitted = true;
+        this.showLoader = false;
+      }, err => {
+        console.log('error while updating the details', err);
+        this.isApplicationError = true;
+        this.isApplicationSubmitted = false;
+        this.showLoader = false;
+      });
+    }
+
   }
 
   handleCVUpload(files: FileList): void {
     console.log('trying to upload cv file');
     this.cvFile = files.item(0);
     this.jobseekerService.UploadFile(this.cvFile).subscribe(res => { console.log(res); this.jobSeekerObj.CV = res; this.cvUploaded = true; }, err => console.log('cv upload failure', err));
+  }
+
+  checkExistingCV(e) {
+    if (e) e.preventDefault();
+    console.log('checking existing cv');
+    this.jobseekerService.GetUploadedFile(this.jobSeekerObj.CV).subscribe(res => {
+      console.log('response from donwload file');
+      const blob = new Blob([res as BlobPart]);
+      FileSaver.saveAs(blob, "panaropic200731539.jpg");
+      this.cvFileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+      //fileType = "image/jpeg"      
+      console.log(res);
+      console.log(blob);
+    },
+      err => {
+        console.log('download cv error', err);
+      });
   }
 
   handlePhotoUpload(files: FileList): void {
@@ -210,10 +264,14 @@ export class JobSeekerComponent implements OnInit {
   }
 
   checkExistingJobSeeker() {
+    this.showLoader = true;
     this.jobseekerService.CheckExistingJobSeeker(this.jobSeekerObj.PassportNo, this.jobSeekerObj.AadharNo).subscribe(res => {
-      console.log('response from exisiting jobseeker api', res);
       this.jobSeekerObj = res;
       this.existingJobSeekerChecked = true;
+      this.UpdateSourceIdentity();
+      console.log('response from exisiting jobseeker api', this.jobSeekerObj);
+      this.showLoader = false;
+      this.applicationSubmittedText = `Your Details have been updated, Your application no is ${this.jobSeekerObj.ID}`;
     }, err => {
       if (err instanceof NotFoundError) {
         console.log('No existing job seeker found');
@@ -223,8 +281,9 @@ export class JobSeekerComponent implements OnInit {
         this.isApplicationError = true;
         this.existingJobSeekerChecked = false;
       }
+      this.showLoader = false;
     });
-    
+
   }
 }
 
@@ -260,26 +319,33 @@ interface JobSeekerDetails {
   Experience: Experience[],
   Source: string,
   SourceIdentity: string,
+  IsAddresSame: boolean
 }
 
 interface Qualification {
-  University: string;
-  Degree: string;
-  YearPassed: string
+  ID: number,
+  University: string,
+  Degree: string,
+  YearPassed: string,
+  JobSeekerID: number
 }
 
 interface Experience {
-  Company: string;
-  Designation: string;
-  From: string;
-  To: string;
+  ID: Number,
+  Company: string,
+  Designation: string,
+  From: string,
+  To: string,
+  JobSeekerID: number
 }
 
 interface Profession {
+  ID: number,
   Job: string,
   Industry: string,
   Position: string,
-  Division: string
+  Division: string,
+  JobSeekerID: number
 }
 
 interface Miscelaneous {
