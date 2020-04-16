@@ -768,12 +768,12 @@ color:#1b1e21 !important;
   background: linear-gradient(to top, #36d1dc, #428bca) !important;
   border-radius: 30px;
   border: 0;
-  padding: 7px 24px;
+  padding: 7px 18px;
   color: #f1f2f1;
 }
 .btn{
   border-radius: 30px !important;
-  padding: 7px 24px !important;
+  padding: 7px 20px !important;
 }
 @media only screen and (max-device-width: 768px){
 .p-5{

@@ -14,22 +14,22 @@
                         <div class="col-md-12" *ngIf="!existingJobSeekerChecked">
                             <form (ngSubmit)="checkExistingJobSeeker()" ngNativeValidate>
                                 <div class="row">
-                                    <div class="col-md-4 form-group ">
+                                    <div class="col-md-5 form-group ">
                                         <label for="aadharNo" class=" col-form-label">Aadhar No.*</label>
                                         <input id="aadharNo" name="aadharNo" placeholder="Aadhar No.*"
                                             required="required" class="form-control here" type="text"
                                             [(ngModel)]="jobSeekerObj.AadharNo">
-                                            <p>Please provide '9999' if you dont have Aadhar No</p>
+                                            <small class="text-danger">* Please provide '9999' if you dont have Aadhar No</small>
                                     </div>
-                                    <div class="col-md-4 form-group ">
+                                    <div class="col-md-5 form-group ">
                                         <label for="passportNo" class="col-form-label">Passport No.*</label>
                                         <input id="passportNo" name="passportNo" placeholder="Passport No.*"
                                             class="form-control here" required="required" type="text"
                                             [(ngModel)]="jobSeekerObj.PassportNo">
-                                            <p>Please provide '9999' if you dont have Passport No</p>
+                                            <small class="text-danger">* Please provide '9999' if you dont have Passport No</small>
                                     </div>
                                 </div>
-                                <input type="button" class="btn btn-success" value="Check Your Details"
+                                <input type="button" class="btn btn-success mt-2" value="Check Your Details"
                                     (click)="checkExistingJobSeeker()">
                             </form>
                         </div>
@@ -221,10 +221,8 @@
                                     </div>
                                 </div>
                                 <hr width="100%">
-                                <div class="row">
                                     <label for="publicinfo"
-                                        class="col-md-2 form-group  col-form-label bold">Professions</label>
-                                    <div class="col-md-10">
+                                        class="bold col-form-label bold">Professions</label>
                                         <div class="row">
                                             <div class="col form-group ">
                                                 <select name="job" id="job" class="form-control here"
@@ -312,13 +310,9 @@
                                             </div>
 
                                         </div>
-                                    </div>
-                                </div>
                                 <hr width="100%">
-                                <div class=" row">
                                     <label for="publicinfo"
-                                        class="col-md-2 form-group  col-form-label bold">Qualification</label>
-                                    <div class="col-md-10">
+                                    class="bold col-form-label bold">Qualification</label>
                                         <div class="row">
                                             <div class="col-md-3 form-group">
                                                 <input class="form-control" placeholder="Dip/Degree" type="text"
@@ -361,14 +355,10 @@
                                                     (click)="removeQualifications(q)">Remove</button>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
                                 <hr width="100%">
 
-                                <div class="row">
                                     <label for="publicinfo"
-                                        class="col-md-2 form-group  col-form-label bold">Experience</label>
-                                    <div class="col-md-10">
+                                        class=" col-form-label bold">Experience</label>
                                         <div class="row">
                                             <div class="col-md-3 form-group">
                                                 <input placeholder="Company worked with" class="form-control here"
@@ -420,8 +410,6 @@
                                                     (click)="removeExperience(e)">Remove</button>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
                                 <hr width="100%">
 
                                 <div class=" row">
