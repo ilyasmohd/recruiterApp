@@ -440,17 +440,9 @@
                                                 <div *ngIf="cvUploaded" class="text-danger">Your CV has been uploaded
                                                 </div>
                                             </div>
+                                            <input type="button" class="btn btn-success" (click)="checkExistingFile(jobSeekerObj.CV)" value="Exisiting CV with US">
                                         </div>
-
-                                        <div class="row form-group">
-                                            <label for="photo" class="col-md-3 col-form-label">
-                                                <a [href]="cvFileUrl">DownloadFile</a></label>
-                                            <div class="col-md-9">
-                                                <input type="button" class="btn btn-success" (click)="checkExistingCV()"
-                                                    value="Exisiting CV with US">
-                                            </div>
-                                        </div>
-
+                                        
                                         <div class="row form-group">
                                             <label for="photo" class="col-md-3 col-form-label">Photo</label>
                                             <div class="col-md-9">
@@ -460,6 +452,7 @@
                                                 <div *ngIf="photoUploaded" class="text-danger">Your photo has been
                                                     uploaded</div>
                                             </div>
+                                            <input type="button" class="btn btn-success" (click)="checkExistingFile(jobSeekerObj.Photo)" value="Exisiting photo with US">
                                         </div>
                                         <div class="row form-group">
                                             <label for="certificates"
@@ -471,6 +464,7 @@
                                                 <div *ngIf="certificateUploaded" class="text-danger">Your certificate
                                                     has been uploaded</div>
                                             </div>
+                                            <input type="button" class="btn btn-success" (click)="checkExistingFile(jobSeekerObj.Certificates)" value="Exisiting certificate with US">
                                         </div>
                                         <div class="row form-group">
                                             <label for="ppcopy" class="col-md-3 col-form-label">PP copy</label>
@@ -481,6 +475,7 @@
                                                 <div *ngIf="ppcopyuploaded" class="text-danger">Your ppcopy has been
                                                     uploaded</div>
                                             </div>
+                                            <input type="button" class="btn btn-success" (click)="checkExistingFile(jobSeekerObj.PPCopy)" value="Exisiting passport with US">
                                         </div>
                                     </div>
                                 </div>

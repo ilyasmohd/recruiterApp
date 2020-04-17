@@ -3,7 +3,6 @@ import { DataService } from './data.service';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
-import { ResponseContentType, ResponseType } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +45,19 @@ export class JobseekerService extends DataService {
   }
   */
 
- GetUploadedFile(fileName: string): any {
-    return this.http.get(environment.fileUploadApiUrl, { params: new HttpParams().set('fileName', fileName), responseType: 'text' });
+  GetUploadedFile(fileName: string): any {
+    let headers: HttpHeaders = new HttpHeaders();
+    const opts = { params: new HttpParams().set('fileName', fileName) };
+    return this.http.get(environment.fileUploadApiUrl, { params: new HttpParams().set('fileName', fileName), responseType: 'blob' });
+  }
+
+  private extractContent(res: Response) {
+    console.log('the response', res);
+    var blob: any = res.blob();
+    console.log('the converted blob', blob);
+    window['saveAs'](blob, 'myfile.jpg');
+  }
+  private error(data: any) {
+
   }
 }

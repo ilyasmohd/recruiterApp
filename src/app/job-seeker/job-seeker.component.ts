@@ -10,6 +10,8 @@ import { Countries, Country } from '../../assets/country-list/country-list';
 import { NotFoundError } from '../Common/not-found-eror';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import * as FileSaver from 'file-saver';
+import { HttpResponse } from '@angular/common/http'
+import { ResponseContentType, ResponseType, RequestOptions } from '@angular/http';
 
 @Component({
   selector: 'app-job-seeker',
@@ -231,21 +233,15 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
     this.jobseekerService.UploadFile(this.cvFile).subscribe(res => { console.log(res); this.jobSeekerObj.CV = res; this.cvUploaded = true; }, err => console.log('cv upload failure', err));
   }
 
-  checkExistingCV(e) {
-    if (e) e.preventDefault();
+  checkExistingFile(fileName: string) {
+    //if (e) e.preventDefault();
     console.log('checking existing cv');
-    this.jobseekerService.GetUploadedFile(this.jobSeekerObj.CV).subscribe(res => {
-      console.log('response from donwload file');
-      const blob = new Blob([res as BlobPart]);
-      FileSaver.saveAs(blob, "panaropic200731539.jpg");
-      this.cvFileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
-      //fileType = "image/jpeg"      
-      console.log(res);
-      console.log(blob);
-    },
-      err => {
-        console.log('download cv error', err);
-      });
+    this.jobseekerService.GetUploadedFile(fileName).subscribe((res: any) => {
+      let blo: any = new Blob([res as Blob]);
+      console.log(blo);
+      FileSaver.saveAs(blo, "panaropic200731539.jpg");
+      //this.cvFileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blo));
+    });
   }
 
   handlePhotoUpload(files: FileList): void {
