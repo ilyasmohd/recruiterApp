@@ -173,20 +173,20 @@
                                     <div class="col-md-6 form-group ">
                                         <textarea id="permanentAddress" name="permanentAddress" rows="3"
                                             placeholder="Permanent Address*" class="form-control here" type="text"
-                                            [disabled]="isAddresSame" [(ngModel)]="jobSeekerObj.PermanentAddress">
+                                            [disabled]="jobSeekerObj.IsAddresSame" [(ngModel)]="jobSeekerObj.PermanentAddress">
                                         </textarea>
                                     </div>
                                     <div class="col-md-6 form-group ">
                                         <div class="row">
                                             <div class="col-md-5 form-group ">
                                                 <input id="permanentpin" name="permanentpin"
-                                                    placeholder="Permanent PIN*" [disabled]="isAddresSame"
+                                                    placeholder="Permanent PIN*" [disabled]="jobSeekerObj.IsAddresSame"
                                                     class="form-control here" type="text"
                                                     [(ngModel)]="jobSeekerObj.PermanentPIN">
                                             </div>
                                             <div class="col-md-7 form-group ">
                                                 <input id="permanentcity" name="permanentcity"
-                                                    placeholder="Permanent City*" [disabled]="isAddresSame"
+                                                    placeholder="Permanent City*" [disabled]="jobSeekerObj.IsAddresSame"
                                                     class="form-control here" required="required" type="text"
                                                     [(ngModel)]="jobSeekerObj.PermanentCity">
                                             </div>
@@ -194,7 +194,7 @@
                                         <div class="">
                                             <select id="company" class="form-control" placeholder="Permanent Country*"
                                                 title="Country" [(ngModel)]="jobSeekerObj.PermanentCountry"
-                                                name="PermanentCountry" [disabled]="isAddresSame">
+                                                name="PermanentCountry" [disabled]="jobSeekerObj.IsAddresSame">
                                                 <option value="">--Select Country--</option>
                                                 <option *ngFor="let country of importedCountries"
                                                     [value]="country.Name">
@@ -208,7 +208,7 @@
                                     <label for="publicinfo"
                                         class="col-md-2 form-group  col-form-label bold">Source</label>
                                     <div class="col-md-5">
-                                        <select name="source" id="source" (change)="UpdateSourceIdentity($event)"
+                                        <select name="source" id="source" (change)="UpdateSourceIdentity()"
                                             [(ngModel)]="jobSeekerObj.Source" class="form-control" required="required">
                                             <option value="">--Select Source--</option>
                                             <option *ngFor="let source of miscelaneous.SourceMasterData"

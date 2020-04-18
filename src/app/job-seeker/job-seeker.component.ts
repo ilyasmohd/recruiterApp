@@ -233,7 +233,7 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
     this.jobseekerService.UploadFile(this.cvFile).subscribe(res => { console.log(res); this.jobSeekerObj.CV = res; this.cvUploaded = true; }, err => console.log('cv upload failure', err));
   }
 
-  checkExistingFile(fileName: string, e: any) {
+  checkExistingFile(fileName: string) {
     console.log('checking existing cv');
     this.jobseekerService.GetUploadedFile(fileName).subscribe((blobResponse: Blob) => {
       let fileBlob: Blob = new Blob([blobResponse]);
