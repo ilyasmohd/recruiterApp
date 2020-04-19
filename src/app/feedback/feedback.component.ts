@@ -10,7 +10,7 @@ import { FeedBackService } from '../ApiService/feed-back.service';
 export class FeedbackComponent implements OnInit {
 
   public feedBackQuestions: FeedBackQuestions[];
-  public feedBackDetails: FeedBackDetails = { CustomerName: "", OfficialName: "", feedbackType: "", date: "", FeedBackProvided: [] };
+  public feedBackDetails: FeedBackDetails = { CustomerName: "", OfficialName: "", feedbackType: "", date: "", FeedBackProvided: [], Comments:"" };
   public isFeedBackSubmitted: boolean;
   public isApplicationError: boolean;
   public showLoader: boolean = true;
@@ -25,6 +25,7 @@ export class FeedbackComponent implements OnInit {
     this.feedBackService.GetAllQuestions().subscribe(
       questions => {
         questions.forEach(element => {
+          element.PointsGiven = "";
           this.feedBackDetails.FeedBackProvided.push(element);
         });
         if (this.feedBackDetails) {
@@ -33,7 +34,7 @@ export class FeedbackComponent implements OnInit {
         }
       },
       error => {
-        console.log(error); this.isApplicationError = true; this.isFeedBackSubmitted = false;          this.showLoader = false;
+        console.log(error); this.isApplicationError = true; this.isFeedBackSubmitted = false; this.showLoader = false;
 
       });
   }
@@ -55,19 +56,20 @@ export class FeedbackComponent implements OnInit {
 }
 
 interface FeedBackQuestions {
-  ID: number;
-  Question: string;
-  MaxPoints: number;
-  PointsGiven: number;
-  FeedBackRemarks: string;
+  ID: number,
+  Question: string,
+  MaxPoints: number,
+  PointsGiven: number,
+  FeedBackRemarks: string
 }
 
 interface FeedBackDetails {
-  CustomerName: string;
-  OfficialName: string;
-  feedbackType: string;
-  date: string
-  FeedBackProvided: FeedBackQuestions[];
+  CustomerName: string,
+  OfficialName: string,
+  feedbackType: string,
+  date: string,
+  FeedBackProvided: FeedBackQuestions[],
+  Comments: string
 }
 
 

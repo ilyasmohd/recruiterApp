@@ -12,6 +12,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import * as FileSaver from 'file-saver';
 import { HttpResponse } from '@angular/common/http'
 import { ResponseContentType, ResponseType, RequestOptions } from '@angular/http';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-job-seeker',
@@ -224,7 +225,6 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
         this.showLoader = false;
       });
     }
-
   }
 
   handleCVUpload(files: FileList): void {
@@ -233,14 +233,14 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
     this.jobseekerService.UploadFile(this.cvFile).subscribe(res => { console.log(res); this.jobSeekerObj.CV = res; this.cvUploaded = true; }, err => console.log('cv upload failure', err));
   }
 
-  checkExistingFile(fileName: string) {
-    //if (e) e.preventDefault();
+  checkExistingFile(fileName: string, e:any) {
     console.log('checking existing cv');
-    this.jobseekerService.GetUploadedFile(fileName).subscribe((res: any) => {
-      let blo: any = new Blob([res as Blob]);
-      console.log(blo);
-      FileSaver.saveAs(blo, "panaropic200731539.jpg");
-      //this.cvFileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blo));
+    this.jobseekerService.GetUploadedFile(fileName).subscribe((blobResponse: Blob) => {
+      let fileBlob: Blob = new Blob([blobResponse]);
+      FileSaver.saveAs(fileBlob, fileName);
+    }, err=>{
+      console.log('error', err);
+      //$('.test').text = 'test';
     });
   }
 

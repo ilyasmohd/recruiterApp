@@ -1,11 +1,11 @@
-<div class="container-fluid bg-pd50 mt-5"  >
-    <div   [class.disabled]="showLoader ">        
+<div class="container-fluid bg-pd50 mt-5">
+    <div [class.disabled]="showLoader ">
     </div>
-    <div class="container" >
+    <div class="container">
         <div class="col-md-12">
             <div class="card card-pdmg">
                 <div class="card-body">
-                    <div class="row" >
+                    <div class="row">
                         <img src="assets/img/logo.png" alt="" class="img-fluid loader" *ngIf="showLoader">
                         <div class="col-md-12" *ngIf="!isFeedBackSubmitted">
                             <form (ngSubmit)="onSubmit()" ngNativeValidate>
@@ -13,46 +13,46 @@
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
                                         <label for="feedBackType" class=" col-form-label">FeedBack From:</label>
-                                        <select name="feedBackType" id="feedBackType" class="form-control here" required="required"
-                                        [(ngModel)]="feedBackDetails.feedbackType">
-                                        <option value="">--Select--</option>
-                                        <option value="employer">Employer</option>
-                                        <option value="customer">Customer</option>
-                                        <option value="candidate">Candidate</option>
-                                    </select>
+                                        <select name="feedBackType" id="feedBackType" class="form-control here"
+                                            required="required" [(ngModel)]="feedBackDetails.feedbackType">
+                                            <option value="">--Select--</option>
+                                            <option value="employer">Employer</option>
+                                            <option value="customer">Customer</option>
+                                            <option value="candidate">Candidate</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
                                         <label for="customerName" class=" col-form-label">Name:</label>
                                         <input id="customerName" name="customerName"
-                                            placeholder="Please enter your name*" class="form-control here" type="text" required="required"
-                                            [(ngModel)]="feedBackDetails.CustomerName">
+                                            placeholder="Please enter your name*" class="form-control here" type="text"
+                                            required="required" [(ngModel)]="feedBackDetails.CustomerName">
                                     </div>
                                     <div class="col-md-4 form-group ">
                                         <label for="officialName" class=" col-form-label">Official Name:</label>
                                         <input id="officialName" name="officialName"
-                                            placeholder="Please enter official name*" class="form-control here" required="required"
-                                            type="text" [(ngModel)]="feedBackDetails.OfficialName">
+                                            placeholder="Please enter official name*" class="form-control here"
+                                            required="required" type="text" [(ngModel)]="feedBackDetails.OfficialName">
                                     </div>
                                     <div class="col-md-4 form-group ">
                                         <label for="feedBackDate" class="col-form-label">Date:</label>
-                                        <input id="date" name="feedBackDate"
-                                            placeholder="Please enter your date*" class="form-control here" type="date" required="required"
+                                        <input id="date" name="feedBackDate" placeholder="Please enter your date*"
+                                            class="form-control here" type="date" required="required"
                                             [(ngModel)]="feedBackDetails.date">
                                     </div>
                                 </div>
                                 <!-- <hr width="100%"> -->
-                                <div class=" my-2">
+                                <div class="my-2">
                                     <table class="table table-responsive table-striped table-hover mb-1">
                                         <tr>
                                             <th>Q.no</th>
                                             <th>Question</th>
                                             <th>Max Points</th>
                                             <th>Points Given</th>
-                                            <th>Remarks(If Any)</th>
+                                            <!--<th>Remarks(If Any)</th>-->
                                         </tr>
-                                        <tr *ngFor="let question of feedBackDetails.FeedBackProvided;let i=index">
+                                        <tr name="feedBackPointsGiven" *ngFor="let question of feedBackDetails.FeedBackProvided;let i=index">
                                             <td>{{i+1}}</td>
                                             <td>
                                                 {{question.Question}}
@@ -61,19 +61,33 @@
                                                 {{question.MaxPoints}}
                                             </td>
                                             <td>
-                                                <input placeholder="Points*" maxlength="3"
-                                                    class="form-control here" type="number" min=0 [max]="question.MaxPoints" name="points" required="required"
+                                                <!-- <input placeholder="Points*" maxlength="3" class="form-control here"
+                                                    type="number" min=0 [max]="question.MaxPoints" name="points"
+                                                    required="required" [(ngModel)]="question.PointsGiven"> -->
+                                                <select name="Points" class="form-control here"
                                                     [(ngModel)]="question.PointsGiven">
+                                                    <option value="">--Select--</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>                                                    
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
                                             </td>
-                                            <td width="20%">
+                                            <!--<td width="20%">
                                                 <input placeholder="Remarks(if any)"
                                                     class="form-control here" type="text" name="pointsRemarks"
                                                     [(ngModel)]="question.FeedBackRemarks">
-                                            </td>
+                                            </td>-->
                                         </tr>
                                     </table>
                                     <div class="col-md-12 mb-3">
-                                    <textarea rows="5" placeholder="Any Comments.." class="form-control"></textarea>
+                                        <textarea rows="5" name="finalComments" placeholder="Any Comments.." [(ngModel)]="feedBackDetails.Comments" class="form-control"></textarea>
                                     </div>
                                     <!-- <div class="row form-group  "  >
                                         <div class="col-lg-7 col-md-2 " data-aos="fade-up">
