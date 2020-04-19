@@ -445,7 +445,7 @@
                                                 <div *ngIf="cvUploaded" class="text-danger">Your CV has been uploaded
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 form-group">
+                                            <div class="col-md-4 form-group" *ngIf="jobSeekerObj.ID > 0">
                                                 <input type="button" class="btn btn-success"
                                                     (click)="checkExistingFile(jobSeekerObj.CV)"
                                                     value="Exisiting CV with US">
@@ -460,7 +460,7 @@
                                                 <div *ngIf="photoUploaded" class="text-danger">Your photo has been
                                                     uploaded</div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" *ngIf="jobSeekerObj.ID > 0">
                                                 <input type="button" class="btn btn-success"
                                                     (click)="checkExistingFile(jobSeekerObj.Photo)"
                                                     value="Exisiting photo with US">
@@ -476,7 +476,7 @@
                                                 <div *ngIf="certificateUploaded" class="text-danger">Your certificate
                                                     has been uploaded</div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" *ngIf="jobSeekerObj.ID > 0">
                                                 <input type="button" class="btn btn-success"
                                                     (click)="checkExistingFile(jobSeekerObj.Certificates)"
                                                     value="Exisiting certificate with US">
@@ -491,7 +491,7 @@
                                                 <div *ngIf="ppcopyuploaded" class="text-danger">Your ppcopy has been
                                                     uploaded</div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-4" *ngIf="jobSeekerObj.ID > 0">
                                                 <input type="button" class="btn btn-success"
                                                     (click)="checkExistingFile(jobSeekerObj.PPCopy)"
                                                     value="Exisiting passport with US">
