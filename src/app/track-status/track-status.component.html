@@ -4,29 +4,34 @@
             <div class="card-body">
                 <h4 class="text-success mb-3">Track-status!!!!</h4>
                 <div class="row">
-                    <div class="col-md-4 form-group d-flex">
-                        <input type="text" class="form-control " placeholder="PassportNo*" required
+                    <div class="col-md-12 form-group d-flex">
+                        <input type="text" class="form-control " placeholder="Passport No*" required
                             [(ngModel)]="searchByPassport">
-                            <button class="btn btn-success ml-2" (click)="checkStatusbyPassPort()">Check</button>
+                        <!-- <button class="btn btn-success ml-2" (click)="checkStatusbyPassPort()">Check</button> -->
                         <!-- <button class="btn btn-success" (click)="checkStatusbyPassPort()">Check Status by PassPort
                             No</button> -->
                     </div>
-                    <div class="col-md-4 form-group d-flex"> <input type="text" placeholder="AadharNo*"
+                    <div class="col-md-12 form-group d-flex"> <input type="text" placeholder="Aadhar No*"
                             class="form-control" required [(ngModel)]="searchByAadhar">
-                        <button class="btn btn-success ml-2" (click)="checkStatusbyAadhar()">Check</button>
-                            <!-- <button class="btn btn-success" (click)="checkStatusbyAadhar()">Check Status by Aadhar
+                        <!-- <button class="btn btn-success ml-2" (click)="checkStatusbyAadhar()">Check</button> -->
+                        <!-- <button class="btn btn-success" (click)="checkStatusbyAadhar()">Check Status by Aadhar
                                 No</button> -->
                     </div>
-                    <div class="col-md-4 form-group d-flex">
+                    <div class="col-md-12 form-group d-flex">
                         <input type="text" class="form-control" placeholder="Application No*" required
                             [(ngModel)]="searchByApplication" type="number">
                         <!-- <button class="btn btn-success" (click)="checkStatusbyApplicationNo()">Check Status by
                             Application No</button> -->
-                            <button class="btn btn-success ml-2" (click)="checkStatusbyPassPort()">Check</button>
+                        <!-- <button class="btn btn-success ml-2" (click)="checkStatusbyPassPort()">Check</button> -->
                     </div>
                 </div>
+                <button class="btn btn-success"
+                    [disabled]="searchByApplication.length<=0 && searchByAadhar.length<=0 && searchByPassport.length<=0"
+                    (click)="checkStatus()">SEARCH</button>
+                <br> <br> <br>
                 <div class="row" *ngIf="isAdmin">
-                    <div class="col-md-3 form-group">
+                    <br>
+                    <div class="col-md-4 form-group">
                         <select id="presentStatus" class="form-control" name="presentStatus"
                             [(ngModel)]="presentStatusID">
                             <option value="0">--Present Status--</option>
@@ -34,23 +39,25 @@
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-4 form-group">
                         <select id="nextStatus" class="form-control" name="nextStatus" [(ngModel)]="nextStatusID">
                             <option value="0">--Next Status--</option>
                             <option *ngFor="let stat of statusMasterData" [value]="stat.ID">{{stat.Description}}
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-3 form-group">
+                    <div class="col-md-4 form-group">
                         <input type="date" id="nextStatusDate" class="form-control" name="nextStatusDate"
                             [(ngModel)]="nextStatusDate" placeholder="next status date" title="next status date">
                     </div>
-                    <div class="col-md-2 form-group">
+                </div>
+                <div class="row">
+                    <div class="col-md-8 form-group">
                         <input type="text" id="statusRemarks" class="form-control" name="statusRemarks"
                             [(ngModel)]="remarks" placeholder="enter remarks(if any)">
                     </div>
-                    <div class="col-md-1 form-group">
-                        <button class="btn btn-success" (click)="updateTrackStatus()">Update</button>
+                    <div class="col-md-4 form-group">
+                        <button class="btn btn-success" (click)="updateTrackStatus()">Update Candidate Status</button>
                     </div>
                 </div>
                 <b class="text-danger">

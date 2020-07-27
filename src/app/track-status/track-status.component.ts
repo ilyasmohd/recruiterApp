@@ -40,17 +40,17 @@ export class TrackStatusComponent implements OnInit {
     })
   }
 
- changeStatus() {
-  document.getElementById('noresultFound').innerHTML = "No Applicant Found";
+  changeStatus() {
+    document.getElementById('noresultFound').innerHTML = "No Applicant Found";
     setTimeout(function () {
       document.getElementById('noresultFound').innerHTML = "";
     }, 1500);
   }
 
-  checkStatusbyAadhar() {
+  checkStatus() {
     console.log('checkStatus', this.completeStatus.PassPort, this.completeStatus.Aadhar, this.completeStatus.ID);
-    if (this.searchByAadhar != "") {
-      this.statusService.TrackStatus("", this.searchByAadhar, 0).subscribe(status => {
+    if (this.searchByPassport != '' || this.searchByAadhar != '' || this.searchByApplication != '') {
+      this.statusService.TrackStatus(this.searchByPassport == '' ? '-99' : this.searchByPassport, this.searchByAadhar == '' ? '-99' : this.searchByAadhar, this.searchByApplication == '' ? '-99' : this.searchByApplication).subscribe(status => {
         console.log(status);
         if (status.length > 0) {
           this.completeStatus = status[0];
@@ -71,53 +71,77 @@ export class TrackStatusComponent implements OnInit {
     }
   }
 
-  checkStatusbyApplicationNo() {
-    console.log('checkStatus', this.completeStatus.PassPort, this.completeStatus.Aadhar, this.completeStatus.ID);
-    if (this.searchByApplication != "") {
-      this.statusService.TrackStatus("", "", this.searchByApplication).subscribe(status => {
-        console.log(status);
-        if (status.length > 0) {
-          this.completeStatus = status[0];
-        }
-        else {
-          this.completeStatus.ID = 0;
-          this.completeStatus.Name = "";
-          this.completeStatus.TaskDetails = "";
-          this.completeStatus.Cell = "";
-          this.completeStatus.Status = [];
-          this.completeStatus.PassPort = "";
-          this.completeStatus.Aadhar = "";
-          this.changeStatus();
-        }
-      }, err => {
-        console.log(err);
-      });
-    }
-  }
+  // checkStatusbyAadhar() {
+  //   console.log('checkStatus', this.completeStatus.PassPort, this.completeStatus.Aadhar, this.completeStatus.ID);
+  //   if (this.searchByAadhar != "") {
+  //     this.statusService.TrackStatus("", this.searchByAadhar, 0).subscribe(status => {
+  //       console.log(status);
+  //       if (status.length > 0) {
+  //         this.completeStatus = status[0];
+  //       }
+  //       else {
+  //         this.completeStatus.ID = 0;
+  //         this.completeStatus.Name = "";
+  //         this.completeStatus.TaskDetails = "";
+  //         this.completeStatus.Cell = "";
+  //         this.completeStatus.Status = [];
+  //         this.completeStatus.PassPort = "";
+  //         this.completeStatus.Aadhar = "";
+  //         this.changeStatus();
+  //       }
+  //     }, err => {
+  //       console.log(err);
+  //     });
+  //   }
+  // }
 
-  checkStatusbyPassPort() {
-    console.log('checkStatus', this.completeStatus.PassPort, this.completeStatus.Aadhar, this.completeStatus.ID);
-    if (this.searchByPassport != "") {
-      this.statusService.TrackStatus(this.searchByPassport, "", 0).subscribe(status => {
-        console.log(status);
-        if (status.length > 0) {
-          this.completeStatus = status[0];
-        }
-        else {
-          this.completeStatus.ID = 0;
-          this.completeStatus.Name = "";
-          this.completeStatus.TaskDetails = "";
-          this.completeStatus.Cell = "";
-          this.completeStatus.Status = [];
-          this.completeStatus.PassPort = "";
-          this.completeStatus.Aadhar = "";
-          this.changeStatus();
-        }
-      }, err => {
-        console.log(err);
-      });
-    }
-  }
+  // checkStatusbyApplicationNo() {
+  //   console.log('checkStatus', this.completeStatus.PassPort, this.completeStatus.Aadhar, this.completeStatus.ID);
+  //   if (this.searchByApplication != "") {
+  //     this.statusService.TrackStatus("", "", this.searchByApplication).subscribe(status => {
+  //       console.log(status);
+  //       if (status.length > 0) {
+  //         this.completeStatus = status[0];
+  //       }
+  //       else {
+  //         this.completeStatus.ID = 0;
+  //         this.completeStatus.Name = "";
+  //         this.completeStatus.TaskDetails = "";
+  //         this.completeStatus.Cell = "";
+  //         this.completeStatus.Status = [];
+  //         this.completeStatus.PassPort = "";
+  //         this.completeStatus.Aadhar = "";
+  //         this.changeStatus();
+  //       }
+  //     }, err => {
+  //       console.log(err);
+  //     });
+  //   }
+  // }
+
+  // checkStatusbyPassPort() {
+  //   console.log('checkStatus', this.completeStatus.PassPort, this.completeStatus.Aadhar, this.completeStatus.ID);
+  //   if (this.searchByPassport != "") {
+  //     this.statusService.TrackStatus(this.searchByPassport, "", 0).subscribe(status => {
+  //       console.log(status);
+  //       if (status.length > 0) {
+  //         this.completeStatus = status[0];
+  //       }
+  //       else {
+  //         this.completeStatus.ID = 0;
+  //         this.completeStatus.Name = "";
+  //         this.completeStatus.TaskDetails = "";
+  //         this.completeStatus.Cell = "";
+  //         this.completeStatus.Status = [];
+  //         this.completeStatus.PassPort = "";
+  //         this.completeStatus.Aadhar = "";
+  //         this.changeStatus();
+  //       }
+  //     }, err => {
+  //       console.log(err);
+  //     });
+  //   }
+  // }
 
   updateTrackStatus() {
     console.log(this.presentStatusID, this.nextStatusID, this.remarks, this.nextStatusDate);
