@@ -16,7 +16,7 @@ export class TrackStatusComponent implements OnInit {
   public searchByPassport: string = "";
   public searchByAadhar: string = "";
   public searchByApplication: string = "";
-  public completeStatus: TrackStatus = { ID: 0, Name: "", PassPort: "", Aadhar: "", TaskDetails: "", Cell: "", Status: [] };
+  public completeStatus: TrackStatus = { ID: 0, Name: "", PassPort: "", Aadhar: "", TaskDetails: "", Cell: "", Status: [], ECNR: false };
   public presentStatusID: number = 0;
   public nextStatusID: number = 0;
   public remarks: string = "";
@@ -31,13 +31,7 @@ export class TrackStatusComponent implements OnInit {
     //console.log(this.route.snapshot.paramMap.get("admin"));
     //console.log(this.route.snapshot.url);
     this.isAdmin = (this.route.snapshot.paramMap.get("admin") == "admin") && (this.route.snapshot.url[0].path == "adminstatus");
-    console.log(this.isAdmin);
-    this.statusService.GetStatusMasterData().subscribe(statuses => {
-      this.statusMasterData = statuses;
-      console.log(this.statusMasterData);
-    }, err => {
-      console.log(err);
-    })
+    //console.log(this.isAdmin);
   }
 
   changeStatus() {
@@ -54,6 +48,21 @@ export class TrackStatusComponent implements OnInit {
         console.log(status);
         if (status.length > 0) {
           this.completeStatus = status[0];
+
+          //receiving the status master data from backend
+          this.statusService.GetStatusMasterData().subscribe(statuses => {
+            this.statusMasterData = statuses;
+            if (this.completeStatus.ECNR) {
+              this.statusMasterData = this.statusMasterData.filter((x)=>{
+                return x.Description == '';
+              });
+            }
+            
+            console.log(this.statusMasterData);
+          }, err => {
+            console.log(err);
+          });
+
         }
         else {
           this.completeStatus.ID = 0;
@@ -167,7 +176,8 @@ interface TrackStatus {
   Aadhar: string,
   TaskDetails: string,
   Cell: string,
-  Status: Status[]
+  Status: Status[],
+  ECNR: boolean
 }
 
 interface Status {
