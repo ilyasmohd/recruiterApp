@@ -31,7 +31,7 @@ export class TrackStatusComponent implements OnInit {
     //console.log(this.route.snapshot.paramMap.get("admin"));
     //console.log(this.route.snapshot.url);
     this.isAdmin = (this.route.snapshot.paramMap.get("admin") == "admin") && (this.route.snapshot.url[0].path == "adminstatus");
-    //console.log(this.isAdmin);
+    console.log('isAdmin:', this.isAdmin);
   }
 
   changeStatus() {
@@ -48,16 +48,24 @@ export class TrackStatusComponent implements OnInit {
         console.log(status);
         if (status.length > 0) {
           this.completeStatus = status[0];
-
+          console.log(this.completeStatus);
           //receiving the status master data from backend
           this.statusService.GetStatusMasterData().subscribe(statuses => {
             this.statusMasterData = statuses;
+
+            this.statusMasterData.filter(status => {
+              //let found: boolean = true;
+              return this.completeStatus.Status.some(stat => {
+                return status.ID == stat.PresentStatus || status.ID == stat.NextStatus;
+              });
+              //return found;
+            });
+
             if (this.completeStatus.ECNR) {
-              this.statusMasterData = this.statusMasterData.filter((x)=>{
-                return x.Description == '';
+              this.statusMasterData = this.statusMasterData.filter(status => {
+                return status.ID != 10;
               });
             }
-            
             console.log(this.statusMasterData);
           }, err => {
             console.log(err);
@@ -182,13 +190,13 @@ interface TrackStatus {
 
 interface Status {
   Date: Date,
-  PresentStatus: string,
-  NextStatus: string,
+  PresentStatus: number,
+  NextStatus: number,
   NextStatusDate: Date,
   Remarks: string
 }
 
 interface StatusMasterData {
-  ID: string,
+  ID: number,
   Description: string
 }
