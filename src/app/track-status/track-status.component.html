@@ -31,40 +31,43 @@
                 <br> <br> <br>
                 <div class="row" *ngIf="isAdmin && completeStatus.ID != 0">
                     <br>
-                    <!-- <div class="col-md-4 form-group">
-                        <select id="presentStatus" class="form-control" name="presentStatus"
-                            [(ngModel)]="presentStatusID">
-                            <option value="0">--Present Status--</option>
-                            <option *ngFor="let stat of statusMasterData" [value]="stat.ID">{{stat.Description}}
-                            </option>
-                        </select>
-                    </div> -->
                     <div class="col-md-4 form-group">
+                        <label for="presentStatus">Present Status:</label>
+                        <select disabled="true" id="presentStatus" class="form-control" name="presentStatus"
+                            [(ngModel)]="presentStatusID">
+                            <option [value]="presentStatusID">{{presentStatusDescription}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="nextStatus">Next Status:</label>
                         <select id="nextStatus" class="form-control" name="nextStatus" [(ngModel)]="nextStatusID">
                             <option value="0">--Next Status--</option>
                             <option *ngFor="let stat of statusMasterData" [value]="stat.ID">{{stat.Description}}
                             </option>
                         </select>
                     </div>
-                    <div class="col-md-4 form-group">
+                    <!-- <div class="col-md-4 form-group">
+                        <label for="nextStatusDate">Next Status Tentative Date:</label>
                         <input type="date" id="nextStatusDate" class="form-control" name="nextStatusDate"
-                            [(ngModel)]="nextStatusDate" placeholder="next status date" title="next status date">
-                    </div>
+                            [(ngModel)]="nextStatusDate" placeholder="next status date" [min]="currentDate"
+                            title="next status date">
+                    </div> -->
                 </div>
                 <div class="row" *ngIf="isAdmin && completeStatus.ID != 0">
                     <div class="col-md-8 form-group">
+                        <label for="statusRemarks">Remarks(Any):</label>
                         <input type="text" id="statusRemarks" class="form-control" name="statusRemarks"
                             [(ngModel)]="remarks" placeholder="enter remarks(if any)">
                     </div>
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-3 form-group">
                         <button class="btn btn-success" (click)="updateTrackStatus()">Update Candidate Status</button>
                     </div>
                 </div>
                 <b class="text-danger">
                     <div id="noresultFound"></div>
                 </b>
-                <div class="card-style" *ngIf="isAdmin && completeStatus.ID != 0">
-                    <div class="row mb-4" *ngIf="completeStatus">
+                <div class="card-style" *ngIf="completeStatus.ID != 0">
+                    <div class="row mb-4">
                         <div class="col-md-6">
                             <p><b> Name:</b> {{completeStatus.Name}} </p>
                             <p><b> Passport:</b> {{completeStatus.PassPort}} </p>
@@ -72,24 +75,23 @@
                         </div>
                         <div class="col-md-6">
                             <p> <b>Task:</b> {{completeStatus.TaskDetails}} </p>
-                            <b>Cell No.:</b> {{completeStatus.Cell}}
+                            <b>Cell No:</b> {{completeStatus.Cell}}
                         </div>
                     </div>
                     <div class="table-responsive row">
-                        <table class="table " *ngIf="completeStatus.Status">
+                        <table class="table">
                             <tr>
                                 <th>Date</th>
-                                <th>Present Status</th>
-                                <th>Next Status</th>
-                                <th>Next Status Date</th>
+
+                                <th>Status</th>
+                                <!-- <th>Next Status Date(Tentative)</th> -->
                                 <th>Remarks</th>
                             </tr>
                             <tbody>
                                 <tr *ngFor="let singleStatus of completeStatus.Status">
-                                    <td>{{singleStatus.Date | date:'shortDate' }}</td>
-                                    <td>{{singleStatus.PresentStatus}}</td>
+                                    <td>{{singleStatus.Date | date: 'dd-MMM-yyyy' }}</td>
                                     <td>{{singleStatus.NextStatus}}</td>
-                                    <td>{{singleStatus.NextStatusDate}}</td>
+                                    <!-- <td>{{singleStatus.NextStatusDate | date: 'dd-MMM-yyyy' }}</td> -->
                                     <td>{{singleStatus.Remarks}}</td>
                                 </tr>
                             </tbody>
