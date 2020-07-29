@@ -138,6 +138,10 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
       this.jobSeekerObj.Qualification.push(this.newQualification);
       this.newQualification = { Degree: "", University: "", YearPassed: "", ID: 0, JobSeekerID: 0 };
     }
+    else{
+      alert("please enter all fields of Qualification")
+    }
+    
   }
 
   removeQualifications(qualIndex) {
@@ -152,6 +156,10 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
       this.jobSeekerObj.Experience.push(this.newExperience)
       this.newExperience = { Company: "", Designation: "", From: "", To: "", ID: 0, JobSeekerID: 0 };
     }
+    else{
+      alert("please enter all fields of Experience")
+    }
+    
   }
 
   removeExperience(expIndex) {

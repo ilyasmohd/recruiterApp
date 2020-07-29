@@ -82,7 +82,8 @@
                                     </div>
                                     <div class="col-md-4 form-group ">
                                         <input id="DOB" name="DOB" placeholder="DOB*" [(ngModel)]="jobSeekerObj.DOB"
-                                            class="form-control here" required="required" type="date" title="DOB*">
+                                        onfocus="(this.type='date')" class="form-control here" required="required"
+                                         type="date" title="DOB*">
                                     </div>
                                     <div class="col-md-4 form-group ">
                                         <input id="email" name="email" placeholder="Email*" class="form-control here"
@@ -205,10 +206,10 @@
                                     </div>
                                 </div>
                                 <hr width="100%">
-                                <div class="row">
+                                <div class="row mt-3">
                                     <label for="publicinfo"
                                         class="col-md-2 form-group  col-form-label bold">Source</label>
-                                    <div class="col-md-5">
+                                    <div class="col-md-5 form-group">
                                         <select name="source" id="source" (change)="UpdateSourceIdentity()"
                                             [(ngModel)]="jobSeekerObj.Source" class="form-control" required="required">
                                             <option value="">--Select Source--</option>
@@ -216,7 +217,7 @@
                                                 [value]="source.Description">{{source.Description}}</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-5 form-group">
                                         <select name="sourceIdentity" id="sourceIdentity"
                                             [(ngModel)]="jobSeekerObj.SourceIdentity" class="form-control"
                                             required="required">
@@ -230,7 +231,7 @@
                                 <hr width="100%">
                                 <label for="publicinfo" class="bold col-form-label bold">Professions</label>
                                 <div class="row">
-                                    <div class="col form-group ">
+                                    <div class="col-md-3 form-group ">
                                         <select name="job" id="job" class="form-control here"
                                             [(ngModel)]="newProfession.Job">
                                             <option value="">--Select Job--</option>
@@ -238,7 +239,7 @@
                                                 {{job.Profession}}</option>
                                         </select>
                                     </div>
-                                    <div class="col form-group ">
+                                    <div class="col-md-3 form-group ">
                                         <select name="industry" id="industry" class="form-control here"
                                             [(ngModel)]="newProfession.Industry">
                                             <option value="">--Select Industry--</option>
@@ -246,7 +247,7 @@
                                                 [value]="industry.Description">{{industry.Description}}</option>
                                         </select>
                                     </div>
-                                    <div class="col form-group ">
+                                    <div class="col-md-3 form-group ">
                                         <select name="division" id="division" class="form-control here"
                                             [(ngModel)]="newProfession.Division">
                                             <option value="">--Select Division--</option>
@@ -254,7 +255,7 @@
                                                 [value]="division.Description">{{division.Description}}</option>
                                         </select>
                                     </div>
-                                    <div class="col form-group ">
+                                    <div class="col-md-2 form-group ">
                                         <select name="position" id="position" class="form-control here"
                                             [(ngModel)]="newProfession.Position">
                                             <option value="">--Select Position--</option>
@@ -262,15 +263,15 @@
                                                 [value]="position.Description">{{position.Description}}</option>
                                         </select>
                                     </div>
-                                    <div class="col-1 form-group align-self-end">
+                                    <div class="col-md-1 form-group align-self-end">
                                         <button class="btn btn-primary" (click)="addProfessions($event)"><span
-                                                style="padding-left: 12px;padding-right:12px;">Add</span></button>
+                                                style="padding-left: 12px;padding-right:12px;"><i class="fa fa-plus"></i></span></button>
                                     </div>
                                 </div>
 
                                 <div class="row" *ngFor="let prof of jobSeekerObj.Profession; let p = index">
                                     <!-- <div *ngIf="jobSeekerObj.Professions && prof.Job.length>0 && prof.Industry.length>0 && prof.Division.length>0 && prof.Position.length>0 "> -->
-                                    <div class="col form-group ">
+                                    <div class="col-md-3 form-group ">
                                         <!-- <select name="{{p}}job" id="job" class="form-control here"
                                                     [(ngModel)]="jobSeekerObj.Job">
                                                     <option value="">--Select Job--</option>
@@ -280,7 +281,7 @@
                                         <input type="text" name="{{p}}job" class="form-control here" [value]="prof.Job"
                                             disabled>
                                     </div>
-                                    <div class="col form-group ">
+                                    <div class="col-md-3 form-group ">
                                         <!-- <select name="{{p}}industry" id="industry" class="form-control here"
                                                     [(ngModel)]="jobSeekerObj.Industry">
                                                     <option value="">--Select Industry--</option>
@@ -290,7 +291,7 @@
                                         <input type="text" name="{{p}}industry" class="form-control here"
                                             [value]="prof.Industry" disabled>
                                     </div>
-                                    <div class="col form-group ">
+                                    <div class="col-md-3 form-group ">
                                         <!-- <select name="{{p}}division" id="division" class="form-control here"
                                                     [(ngModel)]="jobSeekerObj.Division">
                                                     <option value="">--Select Division--</option>
@@ -300,7 +301,7 @@
                                         <input type="text" name="{{p}}division" class="form-control here"
                                             [value]="prof.Division" disabled>
                                     </div>
-                                    <div class="col form-group ">
+                                    <div class="col-md-2 form-group ">
                                         <!-- <select name="{{p}}position" id="position" class="form-control here"
                                                     [(ngModel)]="jobSeekerObj.Position">
                                                     <option value="">--Select Position--</option>
@@ -311,7 +312,8 @@
                                             [value]="prof.Position" disabled>
                                     </div>
                                     <div class="col-md-1 form-group">
-                                        <button class="btn btn-danger" (click)="removeProfessions(p)">Remove</button>
+                                        <button class="btn btn-danger" (click)="removeProfessions(p)"><span
+                                            style="padding-left: 12px;padding-right:12px;"><i class="fa fa-minus"></i></span></button>
                                     </div>
 
                                 </div>
@@ -333,7 +335,7 @@
                                     </div>
                                     <div class="col-md-1 form-group">
                                         <button class="btn btn-primary" (click)="addQualifications($event)"><span
-                                                style="padding-left: 12px;padding-right:12px;">Add</span></button>
+                                                style="padding-left: 12px;padding-right:12px;"><i class="fa fa-plus"></i></span></button>
                                     </div>
                                 </div>
 
@@ -351,7 +353,8 @@
                                             [(ngModel)]="qual.YearPassed" type="date" disabled>
                                     </div>
                                     <div class="col-md-1 form-group">
-                                        <button class="btn btn-danger" (click)="removeQualifications(q)">Remove</button>
+                                        <button class="btn btn-danger" (click)="removeQualifications(q)"><span
+                                            style="padding-left: 12px;padding-right:12px;"><i class="fa fa-minus"></i></span></button>
                                     </div>
                                 </div>
                                 <hr width="100%">
@@ -381,7 +384,7 @@
                                     <div class="col-md-1 form-group">
                                         <button class="btn btn-primary" type="button"
                                             (click)="addExperience($event)"><span
-                                                style="padding-left: 12px;padding-right:12px;">Add</span></button>
+                                                style="padding-left: 12px;padding-right:12px;"><i class="fa fa-plus"></i></span></button>
 
                                     </div>
                                 </div>
@@ -404,7 +407,8 @@
                                             type="date" name="{{e}}companyTo" disabled>
                                     </div>
                                     <div class="col-md-1 form-group">
-                                        <button class="btn btn-danger" (click)="removeExperience(e)">Remove</button>
+                                        <button class="btn btn-danger" (click)="removeExperience(e)"><span
+                                            style="padding-left: 12px;padding-right:12px;"><i class="fa fa-minus"></i></span></button>
                                     </div>
                                 </div>
                                 <hr width="100%">

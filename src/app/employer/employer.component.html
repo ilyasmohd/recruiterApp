@@ -62,54 +62,105 @@
                         <div class="col-md-12">
                             <form>
                                 <div class="row">
-                                    <div class="col-md-3 form-group ">
+                                <div class="row col-md-11">
+                                    <div class="col-md-4 form-group ">
                                         <label for="website" class=" col-form-label">Profession</label>
-                                        <input id="website" name="Profession" placeholder="Profession*"
+                                        <input id="profession" name="profession" placeholder="Profession*" [(ngModel)]="newEmpProfessions.profession"
                                             class="form-control here" type="text">
                                     </div>
-                                    <div class="col-md-3 form-group ">
+                                    <div class="col-md-4 form-group ">
                                         <label for="username" class="col-form-label">Quantity</label>
-                                        <input id="username" name="username" placeholder="Passport No.*"
+                                        <input id="quantity" name="quantity" placeholder="Quantity" [(ngModel)]="newEmpProfessions.quantity"
                                             class="form-control here" required="required" type="text">
                                     </div>
-                                    <div class="col-md-3 form-group ">
+                                    <div class="col-md-4 form-group ">
                                         <label for="publicinfo" class=" col-form-label">Place of employment</label>
-                                        <input id="website" name="website" placeholder="Industry"
+                                        <input id="placeofEmployment" name="placeofEmployment" placeholder="Place of employment" [(ngModel)]="newEmpProfessions.placeofEmployment"
                                             class="form-control here" type="text">
                                     </div>
-                                    <div class="col-md-3 form-group ">
+
+                                    <div class="col-md-4 form-group ">
                                         <label for="publicinfo" class=" col-form-label">Job Description</label>
-                                        <input id="website" name="website" placeholder="Industry"
+                                        <input id="jobDescription" name="jobDescription" placeholder="Job Description" [(ngModel)]="newEmpProfessions.jobDescription"
                                             class="form-control here" type="text">
                                     </div>
+                                    <div class="col-md-4 form-group ">
+                                        <label for="username" class="col-form-label">Currency</label>
+                                        <input id="currency" name="currency" placeholder="Currency" [(ngModel)]="newEmpProfessions.currency"
+                                        class="form-control here" type="text">
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <label for="publicinfo" class=" col-form-label">Amount</label>
+                                        <input id="amount" name="amount" [(ngModel)]="newEmpProfessions.amount" placeholder="Amount" 
+                                        class="form-control here" type="text">
+                                    </div>
+                                  
                                 </div>
-                                <hr width="100%">
-                                <div class=" row">
+                                <div class="col-md-1 form-group align-self-end">
+                                    <button class="btn btn-primary" (click)="addEmpProfessions($event)"><span
+                                            style="padding-left: 12px;padding-right:12px;"><i class="fa fa-plus"></i></span></button>
+                                </div>
+                                </div>
+                                <div class="row" *ngFor="let prof of empObj.EmpProfessions; let p = index">
+                                    <div class="col-md-11 row">
+                                    <div class="col-md-4 form-group ">
+                                        <input type="text" name="{{p}}profession" class="form-control here" [value]="prof.Profession"
+                                            disabled>
+                                    </div>
+                                    <div class="col-md-4 form-group ">                                    
+                                        <input type="text" name="{{p}}quantity" class="form-control here"
+                                            [value]="prof.Quantity" disabled>
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <input type="text" name="{{p}}placeofEmployment" class="form-control here"
+                                            [value]="prof.PlaceofEmployment" disabled>
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <input type="text" name="{{p}}jobDescription" class="form-control here"
+                                            [value]="prof.JobDescription" disabled>
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <input type="text" name="{{p}}currency" class="form-control here"
+                                            [value]="prof.Currency" disabled>
+                                    </div>
+                                    <div class="col-md-4 form-group ">
+                                        <input type="text" name="{{p}}amount" class="form-control here"
+                                            [value]="prof.Amount" disabled>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-1 form-group">
+                                        <button class="btn btn-danger" (click)="removeEmpProfessions(p)"><span
+                                            style="padding-left: 12px;padding-right:12px;"><i class="fa fa-minus"></i></span></button>
+                                    </div>
+
+                                </div>
+                                <!-- <hr width="100%"> -->
+                                <!-- <div class=" row">
                                     <label for="publicinfo" class="col-md-4 form-group  col-form-label">Basic
                                         Salary</label>
                                     <div class="col-md-8">
                                         <div class="row">
                                             <label for="publicinfo" class="col-md-3 col-form-label">Currency</label>
                                             <div class="col-md-3">
-                                                <input id="website" name="website" placeholder="Currency"
+                                                <input id="currency" name="currency" placeholder="Currency" [(ngModel)]="empObj.currency"
                                                     class="form-control here" type="text">
                                             </div>
                                             <label for="publicinfo" class="col-md-2 col-form-label">Amount</label>
                                             <div class="col-md-4 form-group ">
-                                                <input id="website" name="website" placeholder="Amount"
+                                                <input id="amount" name="amount" [(ngModel)]="empObj.amount" placeholder="Amount" 
                                                     class="form-control here" type="text">
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <hr width="100%">
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
                                         <label for="website" class=" col-form-label">Contract Period</label>
                                     </div>
                                     <div class="col-md-4 form-group ">
-                                        <input id="username" name="username" placeholder="Period"
-                                            class="form-control here" required="required" type="text">
+                                        <input id="period" name="period" placeholder="Period"
+                                            class="form-control here" required="required" [(ngModel)]="empObj.period">
                                     </div>
                                     <div class="col-md-4 form-group ">
                                         <label for="publicinfo" class=" col-form-label">Months</label>
@@ -120,7 +171,7 @@
                                         <label for="website" class=" col-form-label">Leave Salary</label>
                                     </div>
                                     <div class="col-md-4 form-group ">
-                                        <input id="username" name="username" placeholder="Salary*"
+                                        <input id="salary" name="salary" placeholder="Salary*"  [(ngModel)]="empObj.salary"
                                             class="form-control here" required="required" type="text">
                                     </div>
                                     <div class="col-md-4 form-group ">
