@@ -83,7 +83,7 @@
                                     <div class="col-md-4 form-group ">
                                         <input id="DOB" name="DOB" placeholder="DOB*" [(ngModel)]="jobSeekerObj.DOB"
                                         onfocus="(this.type='date')" class="form-control here" required="required"
-                                         type="date" title="DOB*">
+                                         type="text" title="DOB">
                                     </div>
                                     <div class="col-md-4 form-group ">
                                         <input id="email" name="email" placeholder="Email*" class="form-control here"
@@ -329,7 +329,7 @@
                                             [(ngModel)]="newQualification.University" name="newqualuniversity" />
                                     </div>
                                     <div class="col-md-3 form-group">
-                                        <input class="form-control" placeholder="Year passed" type="date"
+                                        <input class="form-control" placeholder="Year passed"  onfocus="(this.type='date')"
                                             [(ngModel)]="newQualification.YearPassed" name="newqualyear" />
 
                                     </div>
@@ -350,7 +350,7 @@
                                     </div>
                                     <div class="col-md-3 form-group">
                                         <input name="{{q}}passed" placeholder="Year passed" class="form-control here"
-                                            [(ngModel)]="qual.YearPassed" type="date" disabled>
+                                            [(ngModel)]="qual.YearPassed" type="date"  disabled>
                                     </div>
                                     <div class="col-md-1 form-group">
                                         <button class="btn btn-danger" (click)="removeQualifications(q)"><span
@@ -372,14 +372,14 @@
                                             class="form-control here" type="text">
                                     </div>
                                     <div class="col-md-3 form-group">
-                                        <input id="website" placeholder="Period from" id="newExperienceFrom"
+                                        <input id="website" placeholder="Period from" id="newExperienceFrom" onfocus="(this.type='date')"
                                             [(ngModel)]="newExperience.From" name="newExpfrom" class="form-control here"
-                                            type="date">
+                                            type="text">
                                     </div>
                                     <div class="col-md-3 form-group">
-                                        <input id="website" placeholder="Period Upto" id="newExperienceTo"
+                                        <input id="website" placeholder="Period Upto" id="newExperienceTo" onfocus="(this.type='date')"
                                             [(ngModel)]="newExperience.To" name="newExpUpto" class="form-control here"
-                                            type="date">
+                                            type="text">
                                     </div>
                                     <div class="col-md-1 form-group">
                                         <button class="btn btn-primary" type="button"
@@ -507,9 +507,9 @@
                                 <hr width="100%">
                                 <div class="row ">
                                     <div class="col-md-12 text-right">
-                                        <button name="submit" type="submit" class="btn btn-primary btn-style">Save
+                                        <button type="submit" class="btn btn-primary btn-style">Save
                                             Profile</button>&nbsp;&nbsp;
-                                        <button class="btn btn-secondary">Cancel
+                                        <button class="btn btn-secondary" type="button">Cancel
                                         </button>
                                     </div>
                                 </div>
