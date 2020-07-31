@@ -33,7 +33,7 @@
                                             No</small>
                                     </div>
                                 </div>
-                                <input type="button" class="btn btn-success mt-2" value="Check Your Details"
+                                <input type="button" class="btn btn-success mt-2" value="PROCEED"
                                     (click)="checkExistingJobSeeker()">
                             </form>
                         </div>
@@ -89,6 +89,11 @@
                                         <input id="email" name="email" placeholder="Email*" class="form-control here"
                                             required="required" type="text" [(ngModel)]="jobSeekerObj.Email">
                                     </div>
+
+                                    <div class="col-md-4 form-group ">
+                                        <input id="alteremail" name="alteremail" placeholder="Alternate Email*"
+                                            class="form-control here" type="text" [(ngModel)]="jobSeekerObj.Email">
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 form-group ">
@@ -102,6 +107,13 @@
                                             [(ngModel)]="jobSeekerObj.AlternateCellNo">
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-4 form-group ">
+                                        <label for="DOB" style="display: inline">DOB:</label>
+                                        <input id="DOB" name="DOB" placeholder="DOB*" [(ngModel)]="jobSeekerObj.DOB"
+                                            class="form-control here" required="required" type="date" title="DOB*">
+                                    </div>
+                                </div>
                                 <hr width="100%">
                                 <label for="address" class=" form-group bold">Present Address</label>
                                 <div class="row">
@@ -112,14 +124,14 @@
                                     </div>
                                     <div class="col-md-6 form-group ">
                                         <div class="row">
-                                            <div class="col-md-5 form-group ">
-                                                <input id="pin" name="pin" placeholder="PIN*" class="form-control here "
-                                                    required="required" type="text" [(ngModel)]="jobSeekerObj.PIN">
-                                            </div>
                                             <div class="col-md-7 form-group ">
                                                 <input id="city" name="city" placeholder="City*"
                                                     class="form-control here " required="required" type="text"
                                                     [(ngModel)]="jobSeekerObj.City">
+                                            </div>
+                                            <div class="col-md-5 form-group ">
+                                                <input id="pin" name="pin" placeholder="PIN*" class="form-control here "
+                                                    required="required" type="text" [(ngModel)]="jobSeekerObj.PIN">
                                             </div>
                                         </div>
                                         <div class="">
@@ -138,7 +150,9 @@
                                     <div class="col-md-3 ">
                                         <label for="permanentAddress" class="form-group bold">Permanent Address </label>
                                     </div>
-                                    <div class="col-md-9 text-right">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
                                         <label class="col-form-label">
                                             <input type="checkbox" value="" [checked]="jobSeekerObj.IsAddresSame"
                                                 (click)="toggleAddress()">
