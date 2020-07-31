@@ -10,10 +10,10 @@ import { FeedBackService } from '../ApiService/feed-back.service';
 export class FeedbackComponent implements OnInit {
 
   public feedBackQuestions: FeedBackQuestions[];
-  public feedBackDetails: FeedBackDetails = { CustomerName: "", OfficialName: "", feedbackType: "", date: "", FeedBackProvided: [], Comments:"" };
+  public feedBackDetails: FeedBackDetails = { CustomerName: "", City: "", OfficialName: "", FeedbackType: 0, date: "", FeedBackProvided: [], Comments: "", Email: "", Mobile: '' };
   public isFeedBackSubmitted: boolean;
   public isApplicationError: boolean;
-  public showLoader: boolean = true;
+  public showLoader: boolean = false;
 
   constructor(private feedBackService: FeedBackService) {
     this.isFeedBackSubmitted = false;
@@ -21,8 +21,14 @@ export class FeedbackComponent implements OnInit {
   }
 
   ngOnInit() {
+    //his.showLoader = true;
+  }
+
+  radioChanged() {
+    //console.log(this.feedBackDetails.feedbackType);
     this.showLoader = true;
-    this.feedBackService.GetAllQuestions().subscribe(
+    this.feedBackDetails.FeedBackProvided.splice(0, this.feedBackDetails.FeedBackProvided.length);
+    this.feedBackService.GetAllQuestions(this.feedBackDetails.FeedbackType).subscribe(
       questions => {
         questions.forEach(element => {
           element.PointsGiven = "";
@@ -30,13 +36,16 @@ export class FeedbackComponent implements OnInit {
         });
         if (this.feedBackDetails) {
           console.log(this.feedBackDetails);
-          this.showLoader = false;
+          //this.showLoader = false;
         }
       },
       error => {
         console.log(error); this.isApplicationError = true; this.isFeedBackSubmitted = false; this.showLoader = false;
 
+      }, () => {
+        this.showLoader = false;
       });
+
   }
 
   onSubmit(): void {
@@ -59,14 +68,17 @@ interface FeedBackQuestions {
   ID: number,
   Question: string,
   MaxPoints: number,
-  PointsGiven: number,
+  PointsGiven: string,
   FeedBackRemarks: string
 }
 
 interface FeedBackDetails {
   CustomerName: string,
   OfficialName: string,
-  feedbackType: string,
+  FeedbackType: number,
+  City: string,
+  Mobile: string,
+  Email: string,
   date: string,
   FeedBackProvided: FeedBackQuestions[],
   Comments: string

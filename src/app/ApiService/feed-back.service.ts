@@ -19,8 +19,8 @@ export class FeedBackService extends DataService {
     super(environment.feedBackApiUrl, http);
   }
 
-  GetAllQuestions(): Observable<any> {
-    const opts = { params: new HttpParams().set('customerName', 'GetFeedBackQuestions') };
+  GetAllQuestions(questionTypeID: number): Observable<any> {
+    const opts = { params: new HttpParams().set('customerName', 'GetFeedBackQuestions').set('questionTypeId', questionTypeID.toString()) };
     return this.http.get(environment.feedBackApiUrl, opts)
       .catch(super.handleError);
   }
