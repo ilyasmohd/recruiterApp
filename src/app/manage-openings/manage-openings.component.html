@@ -12,32 +12,32 @@
                     <div class="col-lg-4 col-md-12 " data-aos="fade-up">
                         <p>
                             <label for="{{q}}Profession">Profession:</label>
-                                <input name="{{q}}Profession" placeholder="Profession" class="form-control here"
-                                    type="text" [(ngModel)]="opening.Profession">
-              </p>
-              <p>
+                            <input name="{{q}}Profession" placeholder="Profession" class="form-control here" type="text"
+                                [(ngModel)]="opening.Profession">
+                        </p>
+                        <p>
                             <label for="{{q}}Employer">Employer:</label>
-                                <input name="{{q}}Employer" placeholder="Employer" class="form-control here" type="text"
-                                    [(ngModel)]="opening.Employer">
-                                    </p>
+                            <input name="{{q}}Employer" placeholder="Employer" class="form-control here" type="text"
+                                [(ngModel)]="opening.Employer">
+                        </p>
                     </div>
                     <div class="col-lg-4 col-md-12" data-aos="fade-up">
                         <p>
                             <label for="{{q}}EmploymentCity">Employment City:</label>
-                                <input name="{{q}}EmploymentCity" placeholder="EmploymentCity" class="form-control here"
-                                    type="text" [(ngModel)]="opening.EmploymentCity">
+                            <input name="{{q}}EmploymentCity" placeholder="EmploymentCity" class="form-control here"
+                                type="text" [(ngModel)]="opening.EmploymentCity">
                         </p>
                         <p>
                             <label for="{{q}}Renumeration">Renumeration:</label>
-                                <input name="{{q}}Renumeration" placeholder="Renumeration" class="form-control here"
-                                    type="number" [(ngModel)]="opening.Renumeration">
+                            <input name="{{q}}Renumeration" placeholder="Renumeration" class="form-control here"
+                                type="number" [(ngModel)]="opening.Renumeration">
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-12" data-aos="fade-up">
                         <p>
                             <label for="{{q}}JobDescription">Job Description:</label>
-                                <input name="{{q}}JobDescription" placeholder="JobDescription" class="form-control here"
-                                    type="text" [(ngModel)]="opening.JobDescription">
+                            <input name="{{q}}JobDescription" placeholder="JobDescription" class="form-control here"
+                                type="text" [(ngModel)]="opening.JobDescription">
                         </p>
                         <p>
                             <label class="col-form-label">
@@ -48,9 +48,19 @@
                     </div>
                 </div>
                 <div class="" data-aos="fade-up">
-                    <button class="btn btn-primary btn-style" (click)="updateOpening(opening, q)">Update Opening</button>
-                    <button class="btn btn-danger pull-right" (click)="removeOpening(opening.ID, q)">Remove
-                        Opening</button>
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8">
+                            <button class="btn btn-primary btn-style" (click)="updateOpening(opening, q)">Update
+                                Opening</button>
+                            <b class="text-danger">
+                                <div [id]="q"></div>
+                            </b>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <button class="btn btn-danger pull-right" (click)="removeOpening(opening.ID, q)">Remove
+                                Opening Permanently</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -64,43 +74,43 @@
             <div class="col-lg-4 col-md-12 " data-aos="fade-up">
                 <p>
                     <label for="NewProfession">Profession:</label>
-                        <input name="NewProfession" placeholder="Profession" class="form-control here" type="text"
-                            [(ngModel)]="singleNewOpening.Profession">
+                    <input name="NewProfession" placeholder="Profession" class="form-control here" type="text"
+                        [(ngModel)]="singleNewOpening.Profession">
                 </p>
                 <p>
                     <label for="NewEmployer">Employer:</label>
-                        <input name="NewEmployer" placeholder="Employer" class="form-control here" type="text"
-                            [(ngModel)]="singleNewOpening.Employer">
+                    <input name="NewEmployer" placeholder="Employer" class="form-control here" type="text"
+                        [(ngModel)]="singleNewOpening.Employer">
                 </p>
 
             </div>
             <div class="col-lg-4 col-md-12" data-aos="fade-up">
                 <p>
                     <label for="NewEmploymentCity">Employment City:</label>
-                        <input name="NewEmploymentCity" placeholder="EmploymentCity" class="form-control here"
-                            type="text" [(ngModel)]="singleNewOpening.EmploymentCity">
+                    <input name="NewEmploymentCity" placeholder="EmploymentCity" class="form-control here" type="text"
+                        [(ngModel)]="singleNewOpening.EmploymentCity">
                 </p>
                 <p>
                     <label for="NewRenumeration">Renumeration Amount:</label>
-                        <input name="NewRenumeration" placeholder="Renumeration" class="form-control here" type="number"
-                            [(ngModel)]="singleNewOpening.Renumeration">
+                    <input name="NewRenumeration" placeholder="Renumeration" class="form-control here" type="number"
+                        [(ngModel)]="singleNewOpening.Renumeration">
                 </p>
             </div>
             <div class="col-lg-4 col-md-12" data-aos="fade-up">
                 <p>
                     <label for="NewJobDescription">Job Description:</label>
-                        <input name="NewJobDescription" placeholder="JobDescription" class="form-control here"
-                            type="text" [(ngModel)]="singleNewOpening.JobDescription">
+                    <input name="NewJobDescription" placeholder="JobDescription" class="form-control here" type="text"
+                        [(ngModel)]="singleNewOpening.JobDescription">
                 </p>
                 <p>
                     <label class="col-form-label">
                         Is Oppurtunity Open:</label>
-                        <select class="form-control here" name="NewIsOppurtunityOpen"
-                            [(ngModel)]="singleNewOpening.IsOppurtunityOpen">
-                            <option [value]="true">Yes</option>
-                            <option [value]="false">No</option>
-                        </select>
-                    
+                    <select class="form-control here" name="NewIsOppurtunityOpen"
+                        [(ngModel)]="singleNewOpening.IsOppurtunityOpen">
+                        <option [value]="true">Yes</option>
+                        <option [value]="false">No</option>
+                    </select>
+
                 </p>
             </div>
             <button class="btn-style m-2 " (click)="addOpening($event)">Add Opening</button>
@@ -115,34 +125,32 @@
                     <div class="col-lg-4 col-md-12 " data-aos="fade-up">
                         <p>
                             <label for="{{q}}Profession">Profession: </label>
-                                <input name="{{q}}Profession" type="text" disabled [(ngModel)]="opening.Profession">
-                         </p>
+                            <input name="{{q}}Profession" type="text" disabled [(ngModel)]="opening.Profession">
+                        </p>
                         <p>
                             <label for="{{q}}Employer">Employer: </label>
-                                <input name="{{q}}Employer" type="text" disabled [(ngModel)]="opening.Employer">
+                            <input name="{{q}}Employer" type="text" disabled [(ngModel)]="opening.Employer">
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-12" data-aos="fade-up">
                         <p>
                             <label for="{{q}}EmploymentCity">Employment City: </label>
-                                <input name="{{q}}EmploymentCity" type="text" disabled
-                                    [(ngModel)]="opening.EmploymentCity">
+                            <input name="{{q}}EmploymentCity" type="text" disabled [(ngModel)]="opening.EmploymentCity">
                         </p>
                         <p>
                             <label for="{{q}}Renumeration">Renumeration: </label>
-                                <input name="{{q}}Renumeration" type="text" disabled [(ngModel)]="opening.Renumeration">
+                            <input name="{{q}}Renumeration" type="text" disabled [(ngModel)]="opening.Renumeration">
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-12" data-aos="fade-up">
                         <p>
                             <label for="{{q}}JobDescription">Employment City: </label>
-                                <input name="{{q}}JobDescription" type="text" disabled
-                                    [(ngModel)]="opening.JobDescription">
+                            <input name="{{q}}JobDescription" type="text" disabled [(ngModel)]="opening.JobDescription">
                         </p>
                         <p>
                             <label for="{{q}}IsOppurtunityOpen">IsOppurtunityOpen: </label>
-                                <input type="text" *ngIf="opening.IsOppurtunityOpen" value="Yes" disabled>
-                                <input type="text" *ngIf="!opening.IsOppurtunityOpen" value="No" disabled>
+                            <input type="text" *ngIf="opening.IsOppurtunityOpen" value="Yes" disabled>
+                            <input type="text" *ngIf="!opening.IsOppurtunityOpen" value="No" disabled>
                         </p>
                     </div>
                     <button class="btn btn-danger my-2 pull-right" (click)="this.newOpenings.splice(q, 1);">Remove

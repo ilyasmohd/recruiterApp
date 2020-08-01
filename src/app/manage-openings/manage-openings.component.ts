@@ -64,16 +64,26 @@ export class ManageOpeningsComponent implements OnInit {
       })
   }
 
-  updateOpening(opening: CurrentOpeningsService, q: number) {
+  updateOpening(opening: currentOpenings, q: number) {
     this.showLoader = true;
     this.openingsService.Update(opening).subscribe(res => {
       console.log(res);
       this.showLoader = false;
+      this.OpeningUpdatedMessage(q);
     },
       err => {
         console.log(err);
         this.showLoader = false;
+      }, () => {
+        
       });
+  }
+
+  OpeningUpdatedMessage(q: any) {
+    document.getElementById(q).innerHTML = "Opening updated successfully";
+    setTimeout(function () {
+      document.getElementById(q).innerHTML = "";
+    }, 1500);
   }
 
   removeOpening(id: number, q: number) {
