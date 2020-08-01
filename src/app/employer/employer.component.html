@@ -3,7 +3,7 @@
         <div>
             <div class="card card-pdmg">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row" *ngIf="requestSubmitted == false">
                         <div class="col-md-10">
                             <h4>We need manpower as detailed below</h4>
                             <hr>
@@ -16,9 +16,9 @@
                             <hr>
                         </div>
                     </div>
-                    <div class="row" *ngIf="optionSelected=='option1'">
+                    <div class="row" *ngIf="optionSelected=='option1' && requestSubmitted == false">
                         <div class="col-md-12">
-                            <form>
+                            <form (ngSubmit)="submitCallMeRequirementDetails($event)" ngNativeValidate>
                                 <div class="row">
                                     <div class="form-group ">
                                         <b class="text-danger pl-3">Please call me on my Phone number to discuss my
@@ -30,30 +30,34 @@
                                     <div class="col-md-6 form-group ">
                                         <label for="callername" class=" col-form-label">Name of Caller</label>
                                         <input id="callername" name="callername" placeholder="Name of Caller*"
+                                            [(ngModel)]="employerRequirementDetails.nameOfCaller"
                                             class="form-control here" type="text" required="required">
                                     </div>
                                     <div class="col-md-6 form-group ">
                                         <label for="companyname" class="col-form-label">Name of Company</label>
                                         <input id="companyname" name="companyname" placeholder="Name of Company*"
+                                            [(ngModel)]="employerRequirementDetails.nameOfCompany"
                                             class="form-control here" required="required" type="text">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 form-group ">
                                         <label for="calleremail" class=" col-form-label">Email</label>
-                                        <input id="calleremail" name="calleremail" placeholder="Industry"
-                                            class="form-control here" type="text" required="required">
+                                        <input id="calleremail" name="calleremail" placeholder="Email"
+                                            [(ngModel)]="employerRequirementDetails.email" class="form-control here"
+                                            type="text" required="required">
                                     </div>
                                     <div class="col-md-6 form-group ">
                                         <label for="callercontactno" class=" col-form-label">Contact No(along with
                                             country code)</label>
                                         <input id="callercontactno" name="callercontactno" placeholder="contact no"
+                                            [(ngModel)]="employerRequirementDetails.contactNo" required="required"
                                             class="form-control here" type="text">
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class=" col-md-8">
-                                        <button name="submit" type="submit" class="btn btn-primary btn-style"> Submit My
+                                        <button name="submit" type="submit" class="btn btn-primary btn-style"> <i class="fa fa-file-text-o" aria-hidden="true"></i> Submit My
                                             Request
                                         </button>
                                     </div>
@@ -61,7 +65,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="row" *ngIf="optionSelected=='option2'">
+                    <div class="row" *ngIf="optionSelected=='option2' && requestSubmitted == false">
                         <div class="col-md-12">
                             <div>
                                 <form (ngSubmit)="addEmpProfessions($event)" ngNativeValidate>
@@ -243,7 +247,7 @@
                             <div class="row">
                                 <div class="offs  col-md-8">
                                     <button name="submit" (click)="submitRequirementDetails()"
-                                        class="btn btn-primary btn-style"> Submit My
+                                        class="btn btn-primary btn-style"> <i class="fa fa-file-text-o" aria-hidden="true"></i> Submit My
                                         Request
                                     </button>
                                     <b class="text-danger">
@@ -253,6 +257,11 @@
                             </div>
                             <!-- </form> -->
                         </div>
+                    </div>
+                    <div class="row" *ngIf="requestSubmitted == true">
+                        <b class="text-success">
+                            <div>We have recorded your request, we will get back to you soon.</div>
+                        </b>
                     </div>
                 </div>
             </div>

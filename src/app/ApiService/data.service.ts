@@ -30,7 +30,7 @@ export class DataService {
     const opts = { params: new HttpParams().set('Id', id) };
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'text/html; charset=UTF-8'        
+        'Content-Type': 'text/html; charset=UTF-8'
       })
     };
     return this.http.delete(this.url + '/' + id, httpOptions)
@@ -55,5 +55,5 @@ export class DataService {
     }
 
     return Observable.throw(new AppError(error));
-  } 
+  }
 }

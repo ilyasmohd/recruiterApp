@@ -9,6 +9,7 @@ export class EmployerComponent implements OnInit {
   public optionSelected: string = "";
   public employerRequirementDetails: EmployerRequirementDetails = { TotalProfessions: [], contractPeriod: '', leaveAfterMonths: '', leaveSalary: 0, email: '', contactNo: '', nameOfCaller: '', nameOfCompany: '' };
   public SignleProfession: SignleProfession = { amount: '', currency: '', jobDescription: '', placeofEmployment: '', profession: '', quantity: '' };
+  public requestSubmitted: boolean = false;
 
   constructor(public employerService: EmployerService) {
 
@@ -30,6 +31,19 @@ export class EmployerComponent implements OnInit {
     this.employerRequirementDetails.TotalProfessions.splice(qualIndex, 1);
   }
 
+  submitCallMeRequirementDetails(e) {
+    if (e) e.preventDefault();
+    console.log(this.employerRequirementDetails);
+    this.employerService.Create(this.employerRequirementDetails).subscribe(succ => {
+      console.log(succ);
+      this.requestSubmitted = true;
+    }, err => {
+      console.log(err);
+    }, () => {
+      //alert('submit complete');
+    });
+  }
+
   submitRequirementDetails() {
     console.log(this.employerRequirementDetails);
     if (this.employerRequirementDetails.TotalProfessions.length <= 0) {
@@ -40,11 +54,12 @@ export class EmployerComponent implements OnInit {
       //alert('corect');
       this.employerService.Create(this.employerRequirementDetails).subscribe(succ => {
         console.log(succ);
+        this.requestSubmitted = true;
       }, err => {
         console.log(err);
       }, () => {
-        alert('submit complete');
-      })
+        //alert('submit complete');
+      });
     }
   }
 
