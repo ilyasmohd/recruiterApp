@@ -22,6 +22,7 @@ import { EmployerComponent } from './employer/employer.component';
 import { CurrentOpeningComponent } from './current-opening/current-opening.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { JobseekerService } from './ApiService/jobseeker.service';
+import { EmployerService } from './ApiService/employer.service';
 import { StatusService } from './ApiService/status.service';
 import { MiscellaneousService } from './ApiService/miscellaneous.service'
 import { CurrentOpeningsService } from './ApiService/current-openings.service';
@@ -87,7 +88,7 @@ const appRoutes: Routes = [    // define this before @NgModule
     AngularFontAwesomeModule, ReactiveFormsModule, FormsModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
   ],
-  providers: [JobseekerService, CurrentOpeningsService, StatusService, MiscellaneousService, DatePipe],
+  providers: [JobseekerService, CurrentOpeningsService, StatusService, MiscellaneousService,EmployerService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

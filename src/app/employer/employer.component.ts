@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { EmployerService } from '../ApiService/employer.service';
 @Component({
   selector: 'app-employer',
   templateUrl: './employer.component.html',
@@ -7,13 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployerComponent implements OnInit {
   public optionSelected: string = "";
-  public newEmpProfessions: EmpProfessions = {
-    profession: "", quantity: "", placeofEmployment: "",
-    jobDescription: "", currency: 0, amount: 0
-  };
-  public empObj: EmpProfessionsDetails = { EmpProfessions: [], period: "", salary: 0 };
+  public employerRequirementDetails: EmployerRequirementDetails = { TotalProfessions: [], contractPeriod: '', leaveAfterMonths: '', leaveSalary: 0, email: '', contactNo: '', nameOfCaller: '', nameOfCompany: '' };
+  public SignleProfession: SignleProfession = { amount: '', currency: '', jobDescription: '', placeofEmployment: '', profession: '', quantity: '' };
 
-  constructor() { }
+  constructor(public employerService: EmployerService) {
+
+  }
 
 
   ngOnInit() {
@@ -22,35 +21,58 @@ export class EmployerComponent implements OnInit {
   addEmpProfessions(e) {
     if (e) e.preventDefault();
     // this.newEmpProfessions=newEmpProfessions;
-    console.log('this.newEmpProfessions', this.newEmpProfessions);
-    if (this.newEmpProfessions.profession != "" && this.newEmpProfessions.quantity != ""
-     && this.newEmpProfessions.placeofEmployment != "" && this.newEmpProfessions.jobDescription!= "" 
-     && this.newEmpProfessions.currency!= 0 && this.newEmpProfessions.amount!= 0) {
-    this.empObj.EmpProfessions.push(this.newEmpProfessions);
-    this.newEmpProfessions = null;
-    }
-    else{
-      alert("please enter all fields")
-    }
+    // console.log('this.newEmpProfessions', this.SignleProfession);
+    this.employerRequirementDetails.TotalProfessions.push(this.SignleProfession);
+    this.SignleProfession = { amount: '', currency: '', jobDescription: '', placeofEmployment: '', profession: '', quantity: '' };
   }
 
   removeEmpProfessions(qualIndex) {
-    this.empObj.EmpProfessions.splice(qualIndex, 1);
+    this.employerRequirementDetails.TotalProfessions.splice(qualIndex, 1);
+  }
+
+  submitRequirementDetails() {
+    console.log(this.employerRequirementDetails);
+    if (this.employerRequirementDetails.TotalProfessions.length <= 0) {
+      this.atleastOneProfessionMsg();
+      return;
+    }
+    else {
+      //alert('corect');
+      this.employerService.Create(this.employerRequirementDetails).subscribe(succ => {
+        console.log(succ);
+      }, err => {
+        console.log(err);
+      }, () => {
+        alert('submit complete');
+      })
+    }
+  }
+
+  atleastOneProfessionMsg() {
+    document.getElementById("noProfessionError").innerHTML = "Please provide atleast one profession";
+    setTimeout(function () {
+      document.getElementById("noProfessionError").innerHTML = "";
+    }, 1500);
   }
 
 }
 
-interface EmpProfessionsDetails {
-  EmpProfessions: EmpProfessions[],
-  period: string,
-  salary: number
+interface EmployerRequirementDetails {
+  TotalProfessions: SignleProfession[],
+  contractPeriod: string,
+  leaveSalary: number
+  leaveAfterMonths: string,
+  nameOfCaller: string,
+  nameOfCompany: string,
+  email: string,
+  contactNo: string
 }
 
-interface EmpProfessions {
+interface SignleProfession {
   profession: string,
   quantity: string,
   placeofEmployment: string,
   jobDescription: string,
-  currency: number,
-  amount: number
+  currency: string,
+  amount: string
 }

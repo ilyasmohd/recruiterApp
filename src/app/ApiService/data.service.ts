@@ -20,7 +20,7 @@ export class DataService {
   }
 
   Create(resource): Observable<any> {
-    console.log('data to jobseeker service', resource);
+    console.log('data create metod', resource, 'url:', this.url);
     return this.http.post(this.url, resource, {
       headers: new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8'),
     }).catch(this.handleError);

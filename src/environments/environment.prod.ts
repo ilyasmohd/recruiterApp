@@ -2,6 +2,7 @@ export const environment = {
   production: true,
   jobSeekerApiUrl: 'https://ilyas.somee.com/ManPowerApp/api/jobseeker',
   currentOpeningsApiUrl: 'https://ilyas.somee.com/ManPowerApp/api/currentopenings',
+  employerRequirementApiUrl: 'https://ilyas.somee.com/ManPowerApp/api/employerRequirement',
   fileUploadApiUrl: 'https://ilyas.somee.com/ManPowerApp/api/FileUploader',
   feedBackApiUrl:'https://ilyas.somee.com/ManPowerApp/api/feedbacks',
   miscellaneousApiUrl:'https://ilyas.somee.com/ManPowerApp/api/miscellaneous',
