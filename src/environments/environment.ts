@@ -11,6 +11,7 @@ export const environment = {
   feedBackApiUrl:'http://localhost:63164/api/feedbacks',
   miscellaneousApiUrl:'http://localhost:63164/api/miscellaneous',
   statusApiUrl: 'http://localhost:63164/api/status',
+
   // jobSeekerApiUrl: 'https://ilyas.somee.com/ManPowerApp/api/jobseeker',
   // currentOpeningsApiUrl: 'https://ilyas.somee.com/ManPowerApp/api/currentopenings',
   // employerRequirementApiUrl: 'https://ilyas.somee.com/ManPowerApp/api/EmployerRequirement',
