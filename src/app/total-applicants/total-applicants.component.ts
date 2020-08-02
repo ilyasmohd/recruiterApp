@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JobseekerService } from '../ApiService/jobseeker.service';
 import { DatePipe } from '@angular/common';
 import { MiscellaneousService } from '../ApiService/miscellaneous.service';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-total-applicants',
@@ -39,6 +40,42 @@ export class TotalApplicantsComponent implements OnInit {
     });
   }
 
+  searchApplicants(e: any) {
+    if (e) e.preventDefault();
+    let searchedJobSeeker: JobSeekerDetails[] = [];
+    if (this.searchByName != '') {
+      this.totalJobSeekers.filter(t => t.FirstName.search(this.searchByName) > -1).forEach(x => {
+        searchedJobSeeker.push(x);
+      });
+    }
+    if (this.searchByPassPortNo != '') {
+      this.totalJobSeekers.filter(t => t.PassportNo.search(this.searchByPassPortNo) > -1).forEach(x => {
+        if (searchedJobSeeker.findIndex(s => s.FirstName.search(x.FirstName) == -1)) {
+          searchedJobSeeker.push(x);
+        }
+      });
+    }
+    if (this.searchByAadharNo != '') {
+      this.totalJobSeekers.filter(t => t.AadharNo.search(this.searchByAadharNo) > -1).forEach(x => {
+        if (searchedJobSeeker.findIndex(s => s.FirstName.search(x.FirstName) == -1)) {
+          searchedJobSeeker.push(x);
+        }
+      });;
+    }
+    if (this.searchByIndustry != '') {
+      this.totalJobSeekers.forEach(jobSeeker => {
+        jobSeeker.Profession.forEach(profes => {
+          if (profes.Industry.trim().toLowerCase() == this.searchByIndustry.trim().toLowerCase()) {
+            //searchedJobSeeker.push(jobSeeker);
+            if (searchedJobSeeker.findIndex(x => x.FirstName.search(jobSeeker.FirstName) == -1)) {
+              searchedJobSeeker.push(jobSeeker);
+            }
+          }
+        });
+      });
+    }
+    this.jobSeekers = searchedJobSeeker;
+  }
   searchApplicantsByName(e: any) {
     if (e) e.preventDefault();
     this.jobSeekers = this.totalJobSeekers.filter(x => x.FirstName.search(this.searchByName) > -1);
@@ -90,6 +127,30 @@ export class TotalApplicantsComponent implements OnInit {
     });
     this.jobSeekers = newSekeer;
   }
+
+  downLoadApplicantCV(fileName: string) {
+    console.log('checking existing cv');
+    this.jobseekerService.GetUploadedFile(fileName).subscribe((blobResponse: Blob) => {
+      let fileBlob: Blob = new Blob([blobResponse]);
+      FileSaver.saveAs(fileBlob, fileName);
+    }, err => {
+      console.log('error', err);
+      //$('.test').text = 'test';
+    });
+  }
+
+  viewApplicantCV(fileName: string){
+    this.jobseekerService.GetUploadedFile(fileName).subscribe((blobResponse: Blob) => {
+      let fileBlob: Blob = new Blob([blobResponse]);
+      const fileURL = URL.createObjectURL(fileBlob);
+      window.open(fileURL, '_blank');
+      //FileSaver.saveAs(fileBlob, fileName);
+    }, err => {
+      console.log('error', err);
+      //$('.test').text = 'test';
+    });
+  }
+
 }
 
 interface JobSeekerDetails {

@@ -13,6 +13,40 @@
             <div class="card-body">
                 <h4 class="text-success mb-3">Search Job Applicants!!!!</h4>
                 <div class="row">
+                    <div class="col-md-8 form-group">
+                        <label for="searchByName">Candidate Name</label>
+                        <input type="text" class="form-control" name="searchByName" id="searchByName"
+                            placeholder="Applicant name" [(ngModel)]="searchByName">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 form-group">
+                        <label for="searchByPassPortNo">Passport No</label>
+                        <input type="text" placeholder="Passport No" id="searchByPassPortNo" name="searchByPassPortNo"
+                            class="form-control here" [(ngModel)]="searchByPassPortNo">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 form-group">
+                        <label for="searchByAadharNo">Aadhar No</label>
+                        <input type="text" placeholder="Aadhar No" [(ngModel)]="searchByAadharNo"
+                            name="searchByAadharNo" id="searchByAadharNo" class="form-control here">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 form-group">
+                        <label for="industrySearch">Industry</label>
+                        <select name="industrySearch" class="form-control here" id="industrySearch"
+                            [(ngModel)]="searchByIndustry">
+                            <option value="">--select Industry--</option>
+                            <option *ngFor="let industry of miscelaneous.IndustryMasterData"
+                                [value]="industry.Description">
+                                {{industry.Description}}</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" (click)="searchApplicants($event)">Search Candidates</button>
+                <!-- <div class="row">
                     <div class="col-md-4 form-group">
                         <input type="text" class="form-control" placeholder="Applicant name" [(ngModel)]="searchByName">
                         <button class="btn btn-primary" (click)="searchApplicantsByName($event)">Search by First
@@ -30,8 +64,8 @@
                         <button class="btn btn-primary" (click)="searchApplicantsByAadharNo($event)">Search by
                             Aadhar no</button>
                     </div>
-                </div>
-                <div class="row">
+                </div> -->
+                <!-- <div class="row">
                     <div class="col-md-4 form-group">
                         <select name="industrySearch" class="form-control here" id="industrySearch"
                             [(ngModel)]="searchByIndustry">
@@ -65,40 +99,55 @@
                         <button class="btn btn-primary" (click)="searchApplicantsByPosition($event)">Search by
                             Position</button>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div *ngFor="let applicant of jobSeekers" class="card-style">
                 <div class="row mb-4 myTable-style">
                     <div class="col-md-6">
-                        <p><b> Name:</b> {{applicant.FirstName}} - {{applicant.SecondName}} -
-                            {{applicant.FamilyName}}</p>
-                        <p> <b> Passport:</b> {{applicant.PassportNo}} </p>
-                        <b>Aadhar No:</b> {{applicant.AadharNo}}
-                    </div>
-                    <div class="col-md-6">
+                        <p><b> Name:</b> {{applicant.FirstName}} - {{applicant.SecondName}} - {{applicant.FamilyName}}
+                        </p>
+                        <p><b> Passport:</b> {{applicant.PassportNo}} </p>
+                        <p><b>Aadhar No:</b> {{applicant.AadharNo}}</p>
                         <p> <b>Email:</b> {{applicant.Email}} </p>
                         <p><b>Cell No:</b> {{applicant.CellNo}}</p>
-                        <b>Alternate Cell No:</b> {{applicant.AlternateCellNo}}
+                        <p><b>Alternate Cell No:</b> {{applicant.AlternateCellNo}}</p>
+                    </div>
+                    <!-- <div class="col-md-6">
+
+                    </div> -->
+                    <div class="col-md-6">
+                        <table class="table " *ngIf="applicant.Profession">
+                            <tr>
+                                <th>Job</th>
+                                <th>Industry</th>
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let professions of applicant.Profession">
+                                    <td>{{professions.Job}}</td>
+                                    <td> {{professions.Industry}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary" (click)="viewApplicantCV(applicant.CV)">View CV</button>
+                        <button class="btn btn-success" (click)="downLoadApplicantCV(applicant.CV)">Download CV</button>
                     </div>
                 </div>
-                <div class="table-responsive row myTable-style">
+                <!-- <div class="table-responsive row myTable-style">
                     <p><b>Profession Details:-</b></p>
                     <table class="table " *ngIf="applicant.Profession">
                         <tr>
+                            <th>Job</th>
                             <th>Industry</th>
-                            <th>Position</th>
-                            <th>Division</th>
                         </tr>
                         <tbody>
                             <tr *ngFor="let professions of applicant.Profession">
+                                <td>{{professions.Job}}</td>
                                 <td> {{professions.Industry}}</td>
-                                <td>{{professions.Position}}</td>
-                                <td>{{professions.Division}}</td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="table-responsive row myTable-style">
+                </div> -->
+                <!-- <div class="table-responsive row myTable-style">
                     <p><b>Qualification Details:-</b></p>
                     <table class="table " *ngIf="applicant.Qualification">
                         <tr>
@@ -114,8 +163,8 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="table-responsive row myTable-style">
+                </div> -->
+                <!-- <div class="table-responsive row myTable-style">
                     <p> <b> Experience Details:-</b></p>
                     <table class="table " *ngIf="applicant.Experience">
                         <tr>
@@ -133,7 +182,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
