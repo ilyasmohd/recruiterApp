@@ -50,11 +50,17 @@
                 <div class="" data-aos="fade-up">
                     <div class="row">
                         <div class="col-lg-8 col-md-8">
-                            <button class="btn btn-primary btn-style" (click)="updateOpening(opening, q)">Update
-                                Opening</button>
-                            <b class="text-danger">
-                                <div [id]="q"></div>
-                            </b>
+                            <div class="row">
+                                <label for="{{q}}lastUpdatedOn">Updated On</label>
+                                <input class="form-control col-lg-3 col-md-3" placeholder="Updated on"
+                                    onfocus="(this.type='date')" [(ngModel)]="opening.LastUpdatedOn"
+                                    name="{{q}}lastUpdatedOn" />
+                                <button class="btn btn-primary btn-style col-lg-2 col-md-2"
+                                    (click)="updateOpening(opening, q)">Update</button>
+                                <b class="text-danger">
+                                    <div [id]="q"></div>
+                                </b>
+                            </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
                             <button class="btn btn-danger pull-right" (click)="removeOpening(opening.ID, q)">Remove

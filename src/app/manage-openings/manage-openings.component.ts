@@ -13,7 +13,7 @@ export class ManageOpeningsComponent implements OnInit {
   public showLoader: boolean = false
   public currentOpenings: currentOpenings[] = [];
   public newOpenings: currentOpenings[] = [];
-  public singleNewOpening: currentOpenings = { ID: 0, Profession: '', Employer: '', EmploymentCity: '', Renumeration: '', JobDescription: '', IsOppurtunityOpen: false, CreatedOn: new Date() }
+  public singleNewOpening: currentOpenings = { ID: 0, Profession: '', Employer: '', EmploymentCity: '', Renumeration: '', JobDescription: '', IsOppurtunityOpen: false, CreatedOn: new Date(), LastUpdatedOn: new Date() }
 
   constructor(private openingsService: CurrentOpeningsService, private router: Router) {
 
@@ -24,6 +24,11 @@ export class ManageOpeningsComponent implements OnInit {
     this.openingsService.GetAll().subscribe(
       jobs => {
         this.currentOpenings = jobs;
+        
+        this.currentOpenings.forEach(x => {
+          x.LastUpdatedOn = new Date(x.LastUpdatedOn).toISOString().substring(0, 10);
+        });
+
         if (this.currentOpenings) {
           this.showLoader = false;
         }
@@ -37,7 +42,7 @@ export class ManageOpeningsComponent implements OnInit {
     console.log('this.newQualification', this.singleNewOpening);
     if (this.singleNewOpening.Employer != "" && this.singleNewOpening.EmploymentCity != "" && this.singleNewOpening.JobDescription != "" && this.singleNewOpening.Profession != "" && this.singleNewOpening.Renumeration != "") {
       this.newOpenings.push(this.singleNewOpening);
-      this.singleNewOpening = { ID: 0, Profession: '', Employer: '', EmploymentCity: '', Renumeration: '', JobDescription: '', IsOppurtunityOpen: false, CreatedOn: new Date() };
+      this.singleNewOpening = { ID: 0, Profession: '', Employer: '', EmploymentCity: '', Renumeration: '', JobDescription: '', IsOppurtunityOpen: false, CreatedOn: new Date(), LastUpdatedOn: new Date() };
     }
   }
 
@@ -66,6 +71,7 @@ export class ManageOpeningsComponent implements OnInit {
 
   updateOpening(opening: currentOpenings, q: number) {
     this.showLoader = true;
+    opening.LastUpdatedOn = new Date(opening.LastUpdatedOn).toISOString().substring(0, 10);
     this.openingsService.Update(opening).subscribe(res => {
       console.log(res);
       this.showLoader = false;
@@ -75,7 +81,7 @@ export class ManageOpeningsComponent implements OnInit {
         console.log(err);
         this.showLoader = false;
       }, () => {
-        
+
       });
   }
 
@@ -111,4 +117,5 @@ interface currentOpenings {
   JobDescription: string;
   IsOppurtunityOpen: boolean;
   CreatedOn: Date;
+  LastUpdatedOn: string;
 }
