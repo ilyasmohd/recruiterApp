@@ -23,7 +23,7 @@ export class TrackStatusComponent implements OnInit {
   public nextStatusDate: Date;
   public isAdmin: boolean = false;
   public noResultFound: string = "";
-  public RemoveEcnrStatus: number[] = [11, 12, 13];
+  public RemoveEcnrStatus: number[] = [9];
   public currentDate: string = '';
 
   constructor(private datePipe: DatePipe, private statusService: StatusService, private route: ActivatedRoute) {
@@ -115,13 +115,14 @@ export class TrackStatusComponent implements OnInit {
     console.log(this.presentStatusID, this.nextStatusID, this.remarks, 'nextStatusDate:', this.datePipe.transform(this.nextStatusDate, 'dd-MMM-yyyy'));
     this.statusService.UpdateTrackStatus(
       this.completeStatus.ID,
-      this.presentStatusID,
+      1,  //this.presentStatusID,
       this.nextStatusID,
       this.remarks,
-      this.datePipe.transform(this.nextStatusDate, 'dd-MMM-yyyy')
+      this.datePipe.transform(new Date(), 'dd-MMM-yyyy')
     ).subscribe(res => {
       console.log(res);
       this.statusUpdated = true;
+      this.remarks = "";
       this.checkStatus();
     }, err => {
       console.log(err);
