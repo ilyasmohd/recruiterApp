@@ -25,6 +25,7 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
   public totalExperience: Experience[] = [{ To: "", Company: "", From: "", Designation: "", ID: 0, JobSeekerID: 0 }];
   public totalProfessions: Profession[] = [{ Job: "", Division: "", Industry: "", Position: "", ID: 0, JobSeekerID: 0 }];
   private cvFile: File = null;
+  private adharFile: File = null;
   private passportFile: File = null;
   private certificatesFile: File = null;
   private picFile: File = null;
@@ -34,6 +35,7 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
   public photoUploaded: boolean = false;
   public certificateUploaded: boolean = false;
   public ppcopyuploaded: boolean = false;
+  public adharuploaded: boolean = false;
   public isApplicationError: boolean = false;
   public routeJob: string = '';
   public newQualification: Qualification = { YearPassed: "", Degree: "", University: "", ID: 0, JobSeekerID: 0 };
@@ -50,6 +52,7 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
 
   public jobSeekerObj: JobSeekerDetails = {
     AadharNo: "",
+    AdharCopy: "",
     FirstName: "",
     Address: "",
     AlternateCellNo: "",
@@ -67,7 +70,7 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
     ID: -99,
     PIN: "",
     PPCopy: "",
-    PassportNo: "",
+    PassportNo: "passport1",
     PermanentAddress: "",
     PermanentCity: "",
     PermanentPIN: "",
@@ -138,10 +141,10 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
       this.jobSeekerObj.Qualification.push(this.newQualification);
       this.newQualification = { Degree: "", University: "", YearPassed: "", ID: 0, JobSeekerID: 0 };
     }
-    else{
+    else {
       alert("please enter all fields of Qualification")
     }
-    
+
   }
 
   removeQualifications(qualIndex) {
@@ -156,10 +159,10 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
       this.jobSeekerObj.Experience.push(this.newExperience)
       this.newExperience = { Company: "", Designation: "", From: "", To: "", ID: 0, JobSeekerID: 0 };
     }
-    else{
+    else {
       alert("please enter all fields of Experience")
     }
-    
+
   }
 
   removeExperience(expIndex) {
@@ -267,27 +270,45 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
     this.jobseekerService.UploadFile(this.passportFile).subscribe(res => { console.log(res); this.jobSeekerObj.PPCopy = res; this.ppcopyuploaded = true; }, err => console.log(err));
   }
 
-  checkExistingJobSeeker() {
-    this.showLoader = true;
-    this.jobseekerService.CheckExistingJobSeeker(this.jobSeekerObj.PassportNo, this.jobSeekerObj.AadharNo).subscribe(res => {
-      this.jobSeekerObj = res;
-      this.existingJobSeekerChecked = true;
-      this.UpdateSourceIdentity();
-      console.log('response from exisiting jobseeker api', this.jobSeekerObj);
-      this.showLoader = false;
-      this.applicationSubmittedText = `Your Details have been updated, Your application no is ${this.jobSeekerObj.ID}`;
-    }, err => {
-      if (err instanceof NotFoundError) {
-        console.log('No existing job seeker found');
-        this.existingJobSeekerChecked = true;
-      }
-      else {
-        this.isApplicationError = true;
-        this.existingJobSeekerChecked = false;
-      }
-      this.showLoader = false;
-    });
+  handleAdharCopyUpload(files: FileList): void {
+    this.adharFile = files.item(0);
+    this.jobseekerService.UploadFile(this.adharFile).subscribe(res => { console.log(res); this.jobSeekerObj.AdharCopy = res; this.adharuploaded = true; }, err => console.log(err));
+ 
+  }
 
+  anyOne() {
+    document.getElementById('anyOne').innerHTML = "either passport or adhar no to be provided";
+    setTimeout(function () {
+      document.getElementById('anyOne').innerHTML = "";
+    }, 1500);
+  }
+
+  checkExistingJobSeeker() {
+    console.log('PassportNo:', this.jobSeekerObj.PassportNo, ',AadharNo:', this.jobSeekerObj.AadharNo);
+    if (this.jobSeekerObj.PassportNo.length > 0 || (this.jobSeekerObj.AadharNo.length > 0 && this.jobSeekerObj.AadharNo.length == 12)) {
+      this.showLoader = true;
+      this.jobseekerService.CheckExistingJobSeeker(this.jobSeekerObj.PassportNo, this.jobSeekerObj.AadharNo).subscribe(res => {
+        this.jobSeekerObj = res;
+        this.existingJobSeekerChecked = true;
+        this.UpdateSourceIdentity();
+        console.log('response from exisiting jobseeker api', this.jobSeekerObj);
+        this.showLoader = false;
+        this.applicationSubmittedText = `Your Details have been updated, Your application no is ${this.jobSeekerObj.ID}`;
+      }, err => {
+        if (err instanceof NotFoundError) {
+          console.log('No existing job seeker found');
+          this.existingJobSeekerChecked = true;
+        }
+        else {
+          this.isApplicationError = true;
+          this.existingJobSeekerChecked = false;
+        }
+        this.showLoader = false;
+      });
+    }
+    else {
+      this.anyOne();
+    }
   }
 }
 
@@ -318,6 +339,7 @@ interface JobSeekerDetails {
   Photo: string,
   Certificates: string,
   PPCopy: string,
+  AdharCopy: string,
   Profession: Profession[],
   Qualification: Qualification[],
   Experience: Experience[],
