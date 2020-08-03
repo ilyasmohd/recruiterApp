@@ -45,15 +45,7 @@
                                             Vendors
                                         </label>
                                     </div>
-
                                 </div>
-                                <!-- <div class="col-md-4 form-group ">
-
-                                    </div>
-                                    <div class="col-md-4 form-group ">
-
-                                    </div> 
-                                </div>-->
                                 <div class="row" *ngIf="feedBackDetails.FeedbackType != 0">
                                     <div class="col-md-4 form-group ">
                                         <label *ngIf="feedBackDetails.FeedbackType == 2" for="customerName"
@@ -66,8 +58,14 @@
                                             placeholder="Please enter your name*" class="form-control here" type="text"
                                             required="required" [(ngModel)]="feedBackDetails.CustomerName">
                                     </div>
-                                    <div class="col-md-4 form-group ">
+                                    <div class="col-md-4 form-group " *ngIf="feedBackDetails.FeedbackType != 2">
                                         <label for="officialName" class=" col-form-label">Official Name:</label>
+                                        <input id="officialName" name="officialName"
+                                            placeholder="Please enter official name*" class="form-control here"
+                                            required="required" type="text" [(ngModel)]="feedBackDetails.OfficialName">
+                                    </div>
+                                    <div class="col-md-4 form-group " *ngIf="feedBackDetails.FeedbackType == 2">
+                                        <label for="officialName" class=" col-form-label">PP/Aadhar/Application No:</label>
                                         <input id="officialName" name="officialName"
                                             placeholder="Please enter official name*" class="form-control here"
                                             required="required" type="text" [(ngModel)]="feedBackDetails.OfficialName">
@@ -149,7 +147,8 @@
                                         </div>
                                     </div> -->
                                 </div>
-                                <button type="submit" class="btn-style ml-3">Submit</button>
+                                <button type="submit" class="btn-style ml-3"
+                                    *ngIf="feedBackDetails.FeedbackType != 0">Submit</button>
                             </form>
                         </div>
                         <div class="col-md-12" *ngIf="isFeedBackSubmitted">

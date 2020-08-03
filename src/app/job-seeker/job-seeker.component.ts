@@ -70,7 +70,7 @@ export class JobSeekerComponent implements OnInit, AfterViewInit {
     ID: -99,
     PIN: "",
     PPCopy: "",
-    PassportNo: "passport1",
+    PassportNo: "",
     PermanentAddress: "",
     PermanentCity: "",
     PermanentPIN: "",
