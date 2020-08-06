@@ -69,10 +69,10 @@
       <a class="nav-link" routerLink="/home" (click)="hideNavbar()">Home</a>
     </li>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+      <a class="nav-link" routerLink="/otherServices" (click)="hideNavbar()">
         Our Services
       </a>
-      <div class="dropdown-menu">
+      <!-- <div class="dropdown-menu">
         <a class="dropdown-item" routerLink="/mission-vision" (click)="hideNavbar()">Mission and Vision</a>
         <a class="dropdown-item" routerLink="/recruitement-process-flow" (click)="hideNavbar()">Recruitment Process
           Flow Chart</a>
@@ -83,7 +83,7 @@
           <a class="dropdown-item" routerLink="/ourclients" (click)="hideNavbar()">Some of Our Clients</a>
           <a class="dropdown-item" routerLink="/industriesServed" (click)="hideNavbar()">Industries Served by Us</a>
           <a class="dropdown-item" routerLink="/otherServices" (click)="hideNavbar()">Other Services</a>
-      </div>
+      </div> -->
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/openings" (click)="hideNavbar()">Current Openings</a>
@@ -97,9 +97,26 @@
     <li class="nav-item">
       <a class="nav-link" routerLink="/jobseeker" (click)="hideNavbar()">Jobseeker Zone</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/aboutus" (click)="hideNavbar()">About Us</a>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" routerLink="/aboutus" id="navbardrop" data-toggle="dropdown">
+        About Us
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink="/mission-vision" (click)="hideNavbar()">Mission and Vision</a>
+        <a class="dropdown-item" routerLink="/recruitement-process-flow" (click)="hideNavbar()">Recruitment Process
+          Flow Chart</a>
+        <a class="dropdown-item" routerLink="/sellingProposition" (click)="hideNavbar()" >Our Unique Selling
+          Proposition(USP)</a>
+          <a class="dropdown-item" routerLink="/ethics" (click)="hideNavbar()">Ethics, Confidentiality and Data
+            Protection Policies</a>
+          <a class="dropdown-item" routerLink="/ourclients" (click)="hideNavbar()">Some of Our Clients</a>
+          <a class="dropdown-item" routerLink="/industriesServed" (click)="hideNavbar()">Industries Served by Us</a>
+          <!-- <a class="dropdown-item" routerLink="/otherServices" (click)="hideNavbar()">Other Services</a> -->
+      </div>
     </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" routerLink="/aboutus" (click)="hideNavbar()">About Us</a>
+    </li> -->
     <li class="nav-item">
       <a class="nav-link" routerLink="/feedback" (click)="hideNavbar()">Feedback</a>
     </li>

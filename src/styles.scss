@@ -259,3 +259,38 @@
 .mobile-nav-active .mobile-nav-toggle i {
   color: #fff;
 }
+
+button{
+  cursor:  pointer !important;
+}
+
+button:focus{
+  outline: none !important;
+}
+
+.form-check-input {
+  margin-top: .4rem !important;
+}
+
+.bg-pd50{
+  min-height: 480px;
+  overflow-y: auto;
+}
+
+.btn-circle {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  color: #ffffff !important;
+  font-weight: bold;
+  text-align: center;
+  width: 50px;
+  outline: none;
+  cursor: pointer;
+  height: 30px;
+  text-align: center;
+  // padding: 6px 0;
+  font-size: 12px;
+  line-height: 30px;
+  border-radius: 15px;
+}

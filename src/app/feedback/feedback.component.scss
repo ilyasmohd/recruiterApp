@@ -11,9 +11,12 @@
     cursor: not-allowed;
     background: #dddddd8f !important;
     z-index: 1000 !important;
-    height: 2000px;
+    height: 1500px;
     min-height: 100%;
     position: absolute;
     top: 0px;
     width: 90%;
   }
+table th{
+  background: #dddddd8f !important;
+}
