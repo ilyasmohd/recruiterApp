@@ -1,4 +1,4 @@
-import { Component, HostListener, ElementRef } from '@angular/core';
+import { Component, HostListener, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ethics',
